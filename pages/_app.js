@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyle />
       <ChakraProvider>
         <Header />
-        {/* <Component {...pageProps} /> */}
+        <Component {...pageProps} />
         <Footer />
       </ChakraProvider>
     </>

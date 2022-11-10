@@ -14,7 +14,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ({ news }) {
+export default function novinky ({ news }) {
   const data = news.data.sort((prev, next) => prev.id - next.id);
   return (
     <Container mt="2rem" minHeight="81vh">

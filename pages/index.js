@@ -8,16 +8,16 @@ import { Flex } from "@chakra-ui/react";
 
 const URL = process.env.STRAPI_URL;
 
-// export async function getStaticProps() {
-//   const noticeResponse = await fetcher(`${URL}/notices`);
-//   const newsResponse = await fetcher(`${URL}/news`);
-//   return {
-//     props: {
-//       news: newsResponse,
-//       notices: noticeResponse,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const noticeResponse = await fetcher(`${URL}/notices`);
+  const newsResponse = await fetcher(`${URL}/news`);
+  return {
+    props: {
+      news: newsResponse,
+      notices: noticeResponse,
+    },
+  };
+}
 
 const LandingContainer = styled.div`
   height: 100%;
