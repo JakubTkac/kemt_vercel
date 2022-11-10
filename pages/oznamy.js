@@ -30,7 +30,7 @@ const StyledPostContainer = styled.div`
   flex-direction: column;
 `;
 
-export default function ({ notices }) {
+export default function oznamy({ notices }) {
   const data = notices.data.sort((prev, next) => prev.id - next.id);
   return (
     <StyledPostContainer>
