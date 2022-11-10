@@ -1,6 +1,8 @@
 import { fetcher } from "../lib/api";
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
+import styled from "styled-components";
+import { COLOR } from "../Theme";
 
 const URL = process.env.STRAPI_URL;
 
@@ -14,10 +16,24 @@ export async function getStaticProps() {
   };
 }
 
-export default function oznamy ({ notices }) {
+const StyledMoreButton = styled.text`
+  cursor: pointer;
+  color: ${COLOR.DANGER};
+`;
+
+const StyledPostContainer = styled.div`
+  display: flex;
+  border: 1px solid black;
+  width: 100%;
+  min-height: 85.8vh;
+  padding: 6rem 36vw;
+  flex-direction: column;
+`;
+
+export default function ({ notices }) {
   const data = notices.data.sort((prev, next) => prev.id - next.id);
   return (
-    <Container minHeight="81vh" mt="2rem">
+    <StyledPostContainer>
       <Heading as="h1" size="xl" mb="2rem">
         Oznamy
       </Heading>
@@ -31,11 +47,11 @@ export default function oznamy ({ notices }) {
               {notice.attributes.content}
             </Text>
             <Link href={`/oznamy/${notice.attributes.slug}`}>
-              Čítaj ďalej...
+              <StyledMoreButton>Čítaj ďalej...</StyledMoreButton>
             </Link>
           </Box>
         ))}
       </VStack>
-    </Container>
+    </StyledPostContainer>
   );
 }

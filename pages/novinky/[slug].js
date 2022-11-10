@@ -26,9 +26,9 @@ const StyledPostContainer = styled.div`
   display: flex;
   border: 1px solid black;
   width: 100%;
-  min-height: ${HEIGHT.XXXL};
+  min-height: 85.8vh;
   flex-direction: column;
-  padding: 6rem 12rem;
+  padding: 6rem 20vw;
 `;
 
 const StyledHeadingBox = styled.div`

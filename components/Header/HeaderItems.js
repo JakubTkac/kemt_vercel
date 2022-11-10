@@ -2,22 +2,22 @@ export const katedraDropdownItems = [
   {
     id: 1,
     title: "O nás",
-    path: "./",
+    path: "../",
   },
   {
     id: 2,
     title: "História v skratke",
-    path: "./",
+    path: "../",
   },
   {
     id: 3,
     title: "Alumni",
-    path: "./",
+    path: "../",
   },
   {
     id: 4,
     title: "Výročné správy",
-    path: "./",
+    path: "../",
   },
 ];
 
@@ -25,37 +25,37 @@ export const personalDropdownItems = [
   {
     id: 1,
     title: "Vedenie katedry",
-    path: "./",
+    path: "../",
   },
   {
     id: 2,
     title: "Profesori",
-    path: "./",
+    path: "../",
   },
   {
     id: 3,
     title: "Docenti",
-    path: "./",
+    path: "../",
   },
   {
     id: 4,
     title: "Odborní asistenti",
-    path: "./",
+    path: "../",
   },
   {
     id: 5,
     title: "Výskumníci",
-    path: "./",
+    path: "../",
   },
   {
     id: 6,
     title: "PhD. Študenti",
-    path: "./",
+    path: "../",
   },
   {
     id: 7,
     title: "THP pracovníci",
-    path: "./",
+    path: "../",
   },
 ];
 
@@ -63,27 +63,27 @@ export const studiumDropdownItems = [
   {
     id: 1,
     title: "Študijné programy",
-    path: "./",
+    path: "../",
   },
   {
     id: 2,
     title: "Bakalárske štúdium",
-    path: "./",
+    path: "../",
   },
   {
     id: 3,
     title: "Inžinierske štúdium",
-    path: "./",
+    path: "../",
   },
   {
     id: 4,
     title: "Bakalárska práca",
-    path: "./",
+    path: "../",
   },
   {
     id: 5,
     title: "Diplomové práce",
-    path: "./",
+    path: "../",
   },
 ];
 
@@ -91,22 +91,22 @@ export const vedaDropdownItems = [
   {
     id: 1,
     title: "Výskumné skupiny",
-    path: "./",
+    path: "../",
   },
   {
     id: 2,
     title: "Aktívne projekty",
-    path: "./",
+    path: "../",
   },
   {
     id: 3,
     title: "Ukončené projekty",
-    path: "./",
+    path: "../",
   },
   {
     id: 4,
     title: "Publikácie",
-    path: "./",
+    path: "../",
   },
 ];
 
@@ -114,45 +114,45 @@ export const headerItems = [
   {
     id: 1,
     title: "Katedra",
-    path: "./",
+    path: "../",
     dropdownItems: katedraDropdownItems,
   },
   {
     id: 2,
     title: "Personál",
-    path: "./",
+    path: "../",
     dropdownItems: personalDropdownItems,
   },
   {
     id: 3,
     title: "Štúdium",
-    path: "./",
+    path: "../",
     dropdownItems: studiumDropdownItems,
   },
   {
     id: 4,
     title: "Veda a výskum",
-    path: "./",
+    path: "../",
     dropdownItems: vedaDropdownItems,
   },
   {
     id: 5,
     title: "Dokumenty",
-    path: "./",
+    path: "../",
   },
   {
     id: 6,
     title: "Ocenenia",
-    path: "./",
+    path: "../",
   },
   {
     id: 7,
     title: "Galéria",
-    path: "./",
+    path: "../",
   },
   {
     id: 8,
     title: "Archív",
-    path: "./",
+    path: "../",
   },
 ];

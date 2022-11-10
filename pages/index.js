@@ -22,6 +22,7 @@ export async function getStaticProps() {
 const LandingContainer = styled.div`
   height: 100%;
   width: 100%;
+  min-height: 85.8vh;
 `;
 
 export default function Home({ notices, news }) {

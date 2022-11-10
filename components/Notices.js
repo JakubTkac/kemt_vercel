@@ -1,9 +1,27 @@
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
+import { COLOR, HEIGHT, SPACE } from "../Theme";
+import styled from "styled-components";
 
 const Capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+const StyledShowAllButton = styled.button`
+  width: 100%;
+  margin: 2rem 0;
+  background-color: ${COLOR.FEI_PRIMARY};
+  color: ${COLOR.BLACK};
+  text-align: center;
+  height: ${SPACE.XL};
+  border: black 1px solid;
+  border-radius: 5px;
+`;
+
+const StyledMoreButton = styled.text`
+  cursor: pointer;
+  color: ${COLOR.DANGER};
+`;
 
 const Notices = (props) => {
   return (
@@ -26,13 +44,17 @@ const Notices = (props) => {
                 props.data.data[notice.id - 1].attributes.slug
               }`}
             >
-              Zobraziť viac
+              <StyledMoreButton color={COLOR.DANGER}>
+                Zobraziť viac...
+              </StyledMoreButton>
             </Link>
           </Box>
         ))}
       </VStack>
       <Link href={props.heading}>
-        <Text>Zobraziť všetky {props.heading}</Text>
+        <StyledShowAllButton>
+          Zobraziť všetky {props.heading}
+        </StyledShowAllButton>
       </Link>
     </Container>
   );
