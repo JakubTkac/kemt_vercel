@@ -5,6 +5,7 @@ import { fetcher } from "../lib/api";
 import styled from "styled-components";
 import Notices from "../components/Notices";
 import { Flex } from "@chakra-ui/react";
+import { SCREENS } from "../Theme";
 
 const URL = process.env.STRAPI_URL;
 
@@ -25,19 +26,24 @@ const LandingContainer = styled.div`
   min-height: 85.8vh;
 `;
 
+const StyledFlex = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 4rem;
+  min-height: 81vh;
+  @media (max-width: ${SCREENS.XL}) {
+    margin: 0 2em;
+    min-height: 88vh;
+  }
+`;
 export default function Home({ notices, news }) {
   return (
     <LandingContainer>
-      <Flex
-        align="top"
-        justifyContent="center"
-        alignItems="center"
-        mx="4rem"
-        minHeight="81vh"
-      >
+      <StyledFlex>
         <Notices data={notices} heading="oznamy" />
         <Notices data={news} heading="novinky" />
-      </Flex>
+      </StyledFlex>
     </LandingContainer>
   );
 }

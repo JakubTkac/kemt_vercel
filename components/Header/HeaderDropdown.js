@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { COLOR, HEIGHT } from "../../Theme";
+import { COLOR, HEIGHT, SCREENS } from "../../Theme";
 
 const DropdownContainer = styled.div`
   border: 1px solid ${COLOR.FEI_PRIMARY};
@@ -14,6 +14,13 @@ const DropdownContainer = styled.div`
   width: 15%;
   height: auto;
   flex-direction: column;
+  @media (max-width: ${SCREENS.XL}) {
+    top: ${HEIGHT.XS};
+    width: 20%;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+    width: 25%;
+  }
 `;
 
 const DropdownList = styled.ul`

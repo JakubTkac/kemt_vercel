@@ -7,9 +7,7 @@ const URL = process.env.STRAPI_URL;
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export async function getStaticPaths() {
-  console.log(URL);
   const notices = await fetcher(`${URL}/notices`);
-  console.log(notices);
   const paths = notices.data.map((item) => ({
     params: { slug: item.attributes.slug },
   }));
@@ -50,7 +48,6 @@ const StyledDate = styled.text`
 `;
 
 function Content({ notices }) {
-  console.log(notices.data.attributes);
   return (
     <StyledPostContainer>
       <StyledHeadingBox>

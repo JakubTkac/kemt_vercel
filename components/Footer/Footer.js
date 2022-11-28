@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, HEIGHT } from "../../Theme";
+import { COLOR, FONT_SIZE, HEIGHT, SCREENS } from "../../Theme";
 import { Flex } from "@chakra-ui/react";
 import { footerItems } from "./FooterItems";
 
@@ -10,11 +10,20 @@ const StyledFooterContainer = styled.div`
   height: ${HEIGHT.S};
   flex-direction: row;
   background-color: ${COLOR.FEI_PRIMARY};
+  @media (max-width: ${SCREENS.XL}) {
+    height: ${HEIGHT.XS};
+  }
 `;
 
 const StyledFooterParagraph = styled.p`
   text-align: center;
   font-size: ${FONT_SIZE.M};
+  @media (max-width: ${SCREENS.LG}) {
+    font-size: ${FONT_SIZE.S};
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    font-size: ${FONT_SIZE.XS};
+  }
 `;
 
 const StyledFooterNav = styled.div`

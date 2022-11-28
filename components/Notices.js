@@ -7,6 +7,12 @@ const Capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+const StyledContainer = styled.div`
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledShowAllButton = styled.button`
   width: 100%;
   margin: 2rem 0;
@@ -25,7 +31,7 @@ const StyledMoreButton = styled.text`
 
 const Notices = (props) => {
   return (
-    <Container maxW="md" m="3rem" justifyContent="start" alignItems="start">
+    <Container m="3rem">
       <Heading as="h1" size="xl" pb="2rem">
         {Capitalize(props.heading)}
       </Heading>
@@ -42,8 +48,7 @@ const Notices = (props) => {
             <Link
               href={`/${props.heading}/${
                 props.data.data[notice.id - 1].attributes.slug
-              }`}
-            >
+              }`}>
               <StyledMoreButton color={COLOR.DANGER}>
                 Zobraziť viac...
               </StyledMoreButton>
