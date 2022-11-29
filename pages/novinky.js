@@ -122,7 +122,7 @@ const StyledText = styled.p`
 
 const StyledWrapper = styled.div``;
 
-export default function ({ news }) {
+export default function Novinky({ news }) {
   const data = news.data.sort((prev, next) => prev.id - next.id);
   return (
     <StyledFlex>

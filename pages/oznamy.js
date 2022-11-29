@@ -121,7 +121,7 @@ const StyledText = styled.p`
 
 const StyledWrapper = styled.div``;
 
-export default function ({ notices }) {
+export default function Oznamy({ notices }) {
   const data = notices.data.sort((prev, next) => prev.id - next.id);
   return (
     <StyledFlex>
