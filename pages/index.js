@@ -35,6 +35,16 @@ const StyledFlex = styled.div`
   @media (max-width: ${SCREENS.XL}) {
     margin: 0 2em;
     min-height: 88vh;
+    align-items: start;
+    padding-top: 4rem;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+    margin: 0 0.5em;
+    padding-top: 6rem;
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    flex-direction: column;
+    padding: 0 1rem;
   }
 `;
 export default function Home({ notices, news }) {
