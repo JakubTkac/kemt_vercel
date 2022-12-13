@@ -125,7 +125,7 @@ export default function vedenie({ vedenie }) {
         <StyledHeading>Profesori Katedry KEMT</StyledHeading>
         {data.map((profesor) => {
           return (
-            <StyledWrapper>
+            <StyledWrapper key={profesor.id}>
               <div>
                 <StyledName>
                   {`${profesor.attributes.firstTitles}

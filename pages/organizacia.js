@@ -57,7 +57,7 @@ const Organizacia = () => {
         <StyledContainer>
           {OrganizaciaItems.map(({ slug, id, title }) => {
             return (
-              <Link href={`/organizacia/${slug}`} id={id}>
+              <Link href={`/organizacia/${slug}`} id={id} key={id}>
                 <StyledShowAllButton>{title}</StyledShowAllButton>
               </Link>
             );
