@@ -1,4 +1,4 @@
-import { OrganizaciaItems } from "./organizacia/OrganizaciaItems";
+import { OrganizaciaItems } from "../components/Organizacia/OrganizaciaItems";
 import Link from "next/link";
 import styled from "styled-components";
 import { COLOR, SCREENS, SPACE } from "../Theme";
