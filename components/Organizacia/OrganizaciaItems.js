@@ -1,4 +1,4 @@
-const OrganizaciaItems = [
+export const OrganizaciaItems = [
   {
     id: 1,
     slug: "vedenie-katedry-kemt",
@@ -35,5 +35,3 @@ const OrganizaciaItems = [
     title: "Administrativni Pracovnici",
   },
 ];
-
-export default OrganizaciaItems;
