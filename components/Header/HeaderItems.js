@@ -25,37 +25,37 @@ export const personalDropdownItems = [
   {
     id: 1,
     title: "Vedenie katedry",
-    path: "../",
+    path: "../organizacia/vedenie-katedry-kemt",
   },
   {
     id: 2,
     title: "Profesori",
-    path: "../",
+    path: "../organizacia/profesori",
   },
   {
     id: 3,
     title: "Docenti",
-    path: "../",
+    path: "../organizacia/docenti",
   },
   {
     id: 4,
     title: "Odborní asistenti",
-    path: "../",
+    path: "../organizacia/odborni-asistenti",
   },
   {
     id: 5,
     title: "Výskumníci",
-    path: "../",
+    path: "../organizacia/vyskumnici",
   },
   {
     id: 6,
     title: "PhD. Študenti",
-    path: "../",
+    path: "../organizacia/phd-studenti",
   },
   {
     id: 7,
     title: "THP pracovníci",
-    path: "../",
+    path: "../organizacia/administrativni-pracovnici",
   },
 ];
 
@@ -120,7 +120,7 @@ export const headerItems = [
   {
     id: 2,
     title: "Personál",
-    path: "../",
+    path: "../organizacia",
     dropdownItems: personalDropdownItems,
   },
   {

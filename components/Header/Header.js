@@ -205,7 +205,9 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderLogo>
-        <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
+        <Link href="../">
+          <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
+        </Link>
       </HeaderLogo>
       {isLargerThan768 ? (
         <HeaderContent>
