@@ -6,7 +6,7 @@ const DropdownContainer = styled.div`
   border: 1px solid ${COLOR.FEI_PRIMARY};
   align-items: start;
   display: flex;
-
+  z-index: 10;
   /* gap: 2rem;
   padding-left: 2rem; */
   top: ${HEIGHT.S};
