@@ -30,7 +30,7 @@ export const SCREENS = {
   MD: "768px",
   LG: "1024px",
   XL: "1280px",
-  "2XL": "1536px",
+  XXL: "1536px",
   "3XL": "3840px",
 };
 

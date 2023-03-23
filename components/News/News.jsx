@@ -1,6 +1,6 @@
 import { Capitalize } from "../../lib/typography";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, SPACE } from "../../Theme";
+import { COLOR, SCREENS } from "../../Theme";
 import NewsPreview from "./NewsPreview";
 import Link from "next/link";
 import StyledShowAllButton from "../Styled/StyledShowAllButton";
@@ -14,7 +14,6 @@ const StyledContainer = styled.div`
   background-color: ${COLOR.PLATINUM.DEFAULT};
   border: 1px solid ${COLOR.PLATINUM[600]};
   width: 100%;
-  height: auto;
   @media (max-width: ${SCREENS.XL}) {
     padding: 0 1.5rem;
   }
@@ -22,8 +21,6 @@ const StyledContainer = styled.div`
   }
   @media (max-width: ${SCREENS.MD}) {
   }
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
 `;
 
 const StyledNewsWrapper = styled.ul`
@@ -33,9 +30,8 @@ const StyledNewsWrapper = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: row;
-  align-items: center;
   padding-bottom: 2rem;
-  @media (max-width: ${SCREENS.LG}) {
+  @media (max-width: ${SCREENS.XL}) {
     justify-content: center;
   }
 `;
@@ -44,13 +40,13 @@ const News = ({ heading, data }) => {
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledNewsWrapper>
-        {data.data.slice(0, 3).map((dataItem) => (
+        {data.data.slice(0, 3).map(({ attributes, id }) => (
           <NewsPreview
-            key={dataItem.id}
-            heading={dataItem.attributes.title}
-            slug={dataItem.attributes.slug}
-            date={dataItem.attributes.date}
-            img={dataItem.attributes.image.data.attributes.url}
+            key={id}
+            heading={attributes.title}
+            slug={attributes.slug}
+            date={new Date(attributes.date)}
+            img={attributes.image.data.attributes.url}
           ></NewsPreview>
         ))}
       </StyledNewsWrapper>

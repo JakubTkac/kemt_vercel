@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FONT_SIZE, SCREENS } from "../../Theme";
+import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
 
 const StyledHeroContainer = styled.div`
   overflow: hidden;
@@ -32,14 +32,24 @@ const StyledHeroContent = styled.div`
   font-size: ${FONT_SIZE.XL};
   padding: 8rem 0;
   h2 {
-    text-transform: uppercase;
-    background-color: #fafafa;
-    color: black;
     text-align: center;
+    span {
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: ${COLOR.SEC[300]};
+      color: ${COLOR.BLACK};
+      text-align: center;
+    }
   }
   button {
-    background: red;
-    color: white;
+    padding: 0.1em;
+    font-weight: 500;
+    background-color: ${COLOR.PRI.DEFAULT};
+    color: ${COLOR.BLACK};
+    border: ${COLOR.PRI[600]} 1px solid;
+    &:hover {
+      background-color: ${COLOR.PRI[300]};
+    }
   }
   div {
     margin-top: 2rem;
@@ -70,12 +80,23 @@ const StyledHeroContent = styled.div`
 const Hero = () => {
   return (
     <StyledHeroContainer>
-      {/*<img src="/Kemt_Hero.png" />*/}
       <StyledHeroContent>
-        <h2>Katedra elektroniky a multimediálnych telekomunikácií</h2>
+        <h2>
+          <span>Katedra elektroniky </span>
+          <span>a multimediálnych </span>
+          <span>telekomunikácií</span>
+        </h2>
         <div>
-          <button>E-Prihlaska</button>
-          <button>Pokyny</button>
+          <button>
+            <a href="https://eprihlaska.tuke.sk/eprihlaska/pages/odosielatel/rozhranie_odosielatela.mais">
+              E-Prihláška
+            </a>
+          </button>
+          <button>
+            <a href="https://www.fei.tuke.sk/sk/studium/pre-uchadzacov/podmienky-prijatia">
+              Podmienky
+            </a>
+          </button>
         </div>
       </StyledHeroContent>
     </StyledHeroContainer>

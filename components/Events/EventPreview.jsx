@@ -1,17 +1,15 @@
+import Link from "next/link";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
-import Link from "next/link";
 
 const StyledNoticePreview = styled.li`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-items: center;
+  position: relative;
   width: 100%;
-  height: 100%;
   background-color: ${COLOR.BACKGROUND};
-  border: 1px ${COLOR.PLATINUM[600]} solid;
-  min-height: 130px;
+  &:hover {
+    background-color: ${COLOR.SEC[50]};
+  }
   @media (max-width: ${SCREENS.XL}) {
   }
 
@@ -20,22 +18,33 @@ const StyledNoticePreview = styled.li`
   @media (max-width: ${SCREENS.MD}) {
   }
   a {
-    padding-top: 0.2em;
+    width: 100%;
+    padding: 0.4em;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
     @media (max-width: ${SCREENS.XL}) {
     }
     @media (max-width: ${SCREENS.LG}) {
     }
     @media (max-width: ${SCREENS.MD}) {
     }
-    &:hover > h3 {
-      text-decoration: none;
+    &:after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 20px 0 0 20px;
+      border-color: ${COLOR.PLATINUM.DEFAULT} transparent transparent
+        ${COLOR.SEC.DEFAULT};
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
   span {
-    text-align: center;
     text-transform: uppercase;
     font-size: ${FONT_SIZE.XS};
     @media (max-width: ${SCREENS.XL}) {
@@ -46,9 +55,8 @@ const StyledNoticePreview = styled.li`
     }
   }
   h3 {
-    text-align: center;
+    padding-left: 0.5em;
     font-weight: 700;
-    text-decoration: underline;
     font-size: ${FONT_SIZE.M};
     @media (max-width: ${SCREENS.XL}) {
     }
@@ -59,11 +67,10 @@ const StyledNoticePreview = styled.li`
   }
 `;
 
-const NoticePreview = ({ heading, date, slug }) => {
-  const newDate = new Date(date);
+const EventPreview = ({ slug, heading, date }) => {
   return (
     <StyledNoticePreview>
-      <Link href={`/oznamy/${slug}`}>
+      <Link href={`/udalosti/${slug}`}>
         <a>
           <span>{`${date.getDate()}.${
             date.getMonth() + 1
@@ -74,5 +81,4 @@ const NoticePreview = ({ heading, date, slug }) => {
     </StyledNoticePreview>
   );
 };
-
-export default NoticePreview;
+export default EventPreview;

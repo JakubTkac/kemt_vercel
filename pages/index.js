@@ -8,16 +8,19 @@ import { Flex } from "@chakra-ui/react";
 import { SCREENS, WIDTH } from "../Theme";
 import Hero from "../components/Hero/Hero";
 import News from "../components/News/News";
+import Events from "../components/Events/Events";
 
 const URL = process.env.STRAPI_URL;
 
 export async function getStaticProps() {
   const noticeResponse = await fetcher(`${URL}/notices`);
   const newsResponse = await fetcher(`${URL}/news?populate=*`);
+  const eventsResponse = await fetcher(`${URL}/events?sort=date%3Adesc`);
   return {
     props: {
       news: newsResponse,
       notices: noticeResponse,
+      events: eventsResponse,
     },
   };
 }
@@ -47,13 +50,25 @@ const StyledFlex = styled.div`
     flex-direction: column;
   }
 `;
-export default function Home({ notices, news }) {
+
+const StyledNewsEventsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  @media (max-width: ${SCREENS.LG}) {
+    flex-direction: column;
+  }
+`;
+export default function Home({ notices, news, events }) {
   return (
     <LandingContainer>
       <StyledFlex>
         <Hero />
         <Notices data={notices} heading="oznamy" />
-        <News data={news} heading="novinky" />
+        <StyledNewsEventsWrapper>
+          <News data={news} heading="novinky" />
+          <Events data={events} heading="udalosti"></Events>
+        </StyledNewsEventsWrapper>
       </StyledFlex>
     </LandingContainer>
   );

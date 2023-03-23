@@ -13,6 +13,7 @@ import NoticePreview from "./NoticePreview";
 import { Capitalize } from "../../lib/typography";
 import StyledShowAllButton from "../Styled/StyledShowAllButton";
 import StyledHeadingH1 from "../Styled/StyledHeadingH1";
+import useBetterMediaQuery from "../../utils/useBetterMediaQuery";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -30,8 +31,6 @@ const StyledContainer = styled.div`
   }
   @media (max-width: ${SCREENS.MD}) {
   }
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
 `;
 
 const StyledGridWrapper = styled.ul`
@@ -51,18 +50,32 @@ const StyledGridWrapper = styled.ul`
 `;
 
 const Notices = ({ data, heading }) => {
+  const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledGridWrapper>
-        {data.data.slice(0, 9).map((dataItem) => (
-          <NoticePreview
-            key={dataItem.id}
-            heading={dataItem.attributes.title}
-            slug={dataItem.attributes.slug}
-            date={dataItem.attributes.date}
-          ></NoticePreview>
-        ))}
+        {isLargerThan768
+          ? data.data
+              .slice(0, 9)
+              .map(({ attributes, id }) => (
+                <NoticePreview
+                  key={id}
+                  heading={attributes.title}
+                  slug={attributes.slug}
+                  date={new Date(attributes.date)}
+                ></NoticePreview>
+              ))
+          : data.data
+              .slice(0, 3)
+              .map(({ attributes, id }) => (
+                <NoticePreview
+                  key={id}
+                  heading={attributes.title}
+                  slug={attributes.slug}
+                  date={new Date(attributes.date)}
+                ></NoticePreview>
+              ))}
       </StyledGridWrapper>
       <Link href={heading}>
         <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>

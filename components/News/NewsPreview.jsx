@@ -12,8 +12,11 @@ const StyledNewsWrapper = styled.li`
   background-color: ${COLOR.BACKGROUND};
   border: 1px ${COLOR.PLATINUM[600]} solid;
   min-height: 130px;
-  @media (max-width: ${SCREENS.XL}) {
+  @media (max-width: ${SCREENS.XXL}) {
     width: 48%;
+  }
+  @media (max-width: ${SCREENS.XL}) {
+    width: 80%;
   }
   @media (max-width: ${SCREENS.LG}) {
     width: 100%;
@@ -67,7 +70,6 @@ const Img = styled.img`
 `;
 
 const NewsPreview = ({ heading, slug, date, img }) => {
-  console.log(URL);
   return (
     <StyledNewsWrapper>
       <Link href={`/novinky/${slug}`}>
@@ -75,7 +77,9 @@ const NewsPreview = ({ heading, slug, date, img }) => {
           <AspectRatio.Root ratio={3 / 2}>
             <Img src={`http://194.233.172.84${img}`} alt={img}></Img>
           </AspectRatio.Root>
-          <span>{date}</span>
+          <span>{`${date.getDate()}.${
+            date.getMonth() + 1
+          }.${date.getFullYear()}`}</span>
           <h3>{heading}</h3>
         </a>
       </Link>
