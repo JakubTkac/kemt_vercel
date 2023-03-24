@@ -12,7 +12,7 @@ import Events from "../components/Events/Events";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const noticeResponse = await fetcher(`${URL}/notices`);
   const newsResponse = await fetcher(`${URL}/news?populate=*`);
   const eventsResponse = await fetcher(`${URL}/events?sort=date%3Adesc`);

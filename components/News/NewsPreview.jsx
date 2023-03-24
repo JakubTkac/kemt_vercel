@@ -12,6 +12,7 @@ const StyledNewsWrapper = styled.li`
   background-color: ${COLOR.BACKGROUND};
   border: 1px ${COLOR.PLATINUM[600]} solid;
   min-height: 130px;
+
   @media (max-width: ${SCREENS.XXL}) {
     width: 48%;
   }
@@ -38,7 +39,7 @@ const StyledNewsWrapper = styled.li`
     &:hover > h3 {
       text-decoration: none;
     }
-    span {
+    time {
       text-align: center;
       text-transform: uppercase;
       font-size: ${FONT_SIZE.XS};
@@ -77,9 +78,9 @@ const NewsPreview = ({ heading, slug, date, img }) => {
           <AspectRatio.Root ratio={3 / 2}>
             <Img src={`http://194.233.172.84${img}`} alt={img}></Img>
           </AspectRatio.Root>
-          <span>{`${date.getDate()}.${
+          <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
-          }.${date.getFullYear()}`}</span>
+          }.${date.getFullYear()}`}</time>
           <h3>{heading}</h3>
         </a>
       </Link>

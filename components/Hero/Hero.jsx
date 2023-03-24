@@ -9,6 +9,12 @@ const StyledHeroContainer = styled.div`
   background-size: cover;
   position: relative;
   background-position: 50% 50%;
+  //background: linear-gradient(
+  //  to bottom,
+  //  #006ded 0%,
+  //  #1bace2 34.48%,
+  //  #00e2ed 100%
+  //);
   //img {
   //  position: absolute;
   //  z-index: -1;
@@ -22,6 +28,16 @@ const StyledHeroContainer = styled.div`
   }
   @media (max-width: ${SCREENS.MD}) {
   }
+  div {
+    background-image: linear-gradient(
+      to top,
+      rgb(252, 184, 20, 0.6),
+      rgba(252, 184, 20, 0.6)
+    );
+  }
+  div > div {
+    background: none;
+  }
 `;
 
 const StyledHeroContent = styled.div`
@@ -32,11 +48,12 @@ const StyledHeroContent = styled.div`
   font-size: ${FONT_SIZE.XL};
   padding: 8rem 0;
   h2 {
+    margin: 0 4em;
     text-align: center;
     span {
       font-weight: 700;
       text-transform: uppercase;
-      background-color: ${COLOR.SEC[300]};
+      //background-color: ${COLOR.SEC[300]};
       color: ${COLOR.BLACK};
       text-align: center;
     }
@@ -44,11 +61,11 @@ const StyledHeroContent = styled.div`
   button {
     padding: 0.1em;
     font-weight: 500;
-    background-color: ${COLOR.PRI.DEFAULT};
+    //background-color: ${COLOR.PRI.DEFAULT};
     color: ${COLOR.BLACK};
-    border: ${COLOR.PRI[600]} 1px solid;
+    border: ${COLOR.BLACK} 1px solid;
     &:hover {
-      background-color: ${COLOR.PRI[300]};
+      background-color: ${COLOR.PRI[500]};
     }
   }
   div {

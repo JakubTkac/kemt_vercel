@@ -44,7 +44,7 @@ const StyledNoticePreview = styled.li`
       top: 0;
     }
   }
-  span {
+  time {
     text-transform: uppercase;
     font-size: ${FONT_SIZE.XS};
     @media (max-width: ${SCREENS.XL}) {
@@ -72,9 +72,9 @@ const EventPreview = ({ slug, heading, date }) => {
     <StyledNoticePreview>
       <Link href={`/udalosti/${slug}`}>
         <a>
-          <span>{`${date.getDate()}.${
+          <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
-          }.${date.getFullYear()}`}</span>
+          }.${date.getFullYear()}`}</time>
           <h3>{heading}</h3>
         </a>
       </Link>

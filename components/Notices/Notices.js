@@ -49,6 +49,19 @@ const StyledGridWrapper = styled.ul`
   }
 `;
 
+const noticePreviewCount = (data, sliceCount) => {
+  return data.data
+    .slice(0, sliceCount)
+    .map(({ attributes, id }) => (
+      <NoticePreview
+        key={id}
+        heading={attributes.title}
+        slug={attributes.slug}
+        date={new Date(attributes.date)}
+      ></NoticePreview>
+    ));
+};
+
 const Notices = ({ data, heading }) => {
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
@@ -56,26 +69,8 @@ const Notices = ({ data, heading }) => {
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledGridWrapper>
         {isLargerThan768
-          ? data.data
-              .slice(0, 9)
-              .map(({ attributes, id }) => (
-                <NoticePreview
-                  key={id}
-                  heading={attributes.title}
-                  slug={attributes.slug}
-                  date={new Date(attributes.date)}
-                ></NoticePreview>
-              ))
-          : data.data
-              .slice(0, 3)
-              .map(({ attributes, id }) => (
-                <NoticePreview
-                  key={id}
-                  heading={attributes.title}
-                  slug={attributes.slug}
-                  date={new Date(attributes.date)}
-                ></NoticePreview>
-              ))}
+          ? noticePreviewCount(data, 9)
+          : noticePreviewCount(data, 3)}
       </StyledGridWrapper>
       <Link href={heading}>
         <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>

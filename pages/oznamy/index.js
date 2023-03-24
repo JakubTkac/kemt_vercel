@@ -1,9 +1,8 @@
-import { fetcher } from "../lib/api";
-import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
+import { fetcher } from "../../lib/api";
 import Link from "next/link";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../Theme";
-import Content from "./oznamy/[slug]";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
+import Content from "./[slug]";
 
 const URL = process.env.STRAPI_URL;
 
@@ -122,7 +121,7 @@ const StyledText = styled.p`
 
 const StyledWrapper = styled.div``;
 
-function Oznamy({ notices }) {
+function Index({ notices }) {
   const data = notices.data.sort((prev, next) => prev.id - next.id);
   return (
     <StyledFlex>
@@ -145,4 +144,4 @@ function Oznamy({ notices }) {
   );
 }
 
-export default Oznamy;
+export default Index;

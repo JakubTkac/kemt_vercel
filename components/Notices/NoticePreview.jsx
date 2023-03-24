@@ -12,6 +12,9 @@ const StyledNoticePreview = styled.li`
   background-color: ${COLOR.BACKGROUND};
   border: 1px ${COLOR.PLATINUM[600]} solid;
   min-height: 130px;
+  &:hover {
+    background-color: ${COLOR.SEC[50]};
+  }
   @media (max-width: ${SCREENS.XL}) {
   }
 
@@ -34,7 +37,7 @@ const StyledNoticePreview = styled.li`
       text-decoration: none;
     }
   }
-  span {
+  time {
     text-align: center;
     text-transform: uppercase;
     font-size: ${FONT_SIZE.XS};
@@ -65,9 +68,9 @@ const NoticePreview = ({ heading, date, slug }) => {
     <StyledNoticePreview>
       <Link href={`/oznamy/${slug}`}>
         <a>
-          <span>{`${date.getDate()}.${
+          <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
-          }.${date.getFullYear()}`}</span>
+          }.${date.getFullYear()}`}</time>
           <h3>{heading}</h3>
         </a>
       </Link>
