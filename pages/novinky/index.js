@@ -138,7 +138,7 @@ const Index = ({ news, pagination }) => {
     };
     fetchPageItems();
     console.log("useEffect, New pageItems: ", pageItems);
-  }, [pageNum, news]);
+  }, [pageNum]);
 
   const totalPages = pagination.pageCount;
 
