@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
 // populate=*&pagination[page]=1&pagination[pageSize]=10
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const newsResponse = await fetcher(
-    `${URL}/news?populate=*&pagination[page]=1&pagination[pageSize]=10`
+    `${URL}/news?populate=*&pagination[page]=1&pagination[pageSize]=4`
   );
   return {
     props: {
@@ -121,6 +121,8 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
+//bug: it always shows first page when called at any page
+
 const Index = ({ news, pagination }) => {
   const router = useRouter();
   const { page } = router.query;
@@ -130,11 +132,12 @@ const Index = ({ news, pagination }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/news?populate=*&pagination[page]=${pageNum}&pagination[pageSize]=10`
+        `${URL}/news?populate=*&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
     fetchPageItems();
+    console.log("useEffect, New pageItems: ", pageItems);
   }, [pageNum, news]);
 
   const totalPages = pagination.pageCount;
@@ -164,6 +167,7 @@ const Index = ({ news, pagination }) => {
           <StyledHeadingH1>Novinky</StyledHeadingH1>
           <StyledNewsWrapper>
             {pageItems.data.map(({ id, attributes }) => {
+              console.log("page items inside map", attributes);
               return (
                 <NewsShowAllPreview
                   key={id}
