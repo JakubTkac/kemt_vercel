@@ -1,14 +1,13 @@
 import { fetcher } from "../../lib/api";
-import Link from "next/link";
-import Theme, { COLOR, SCREENS, WIDTH } from "../../Theme";
+import Theme, { COLOR, FONT_SIZE, SCREENS, SPACE, WIDTH } from "../../Theme";
 import styled from "styled-components";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
-import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
-import NewsPreview from "../../components/News/NewsPreview";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
-
+// populate=*&pagination[page]=1&pagination[pageSize]=10
 export async function getServerSideProps() {
   const newsResponse = await fetcher(
     `${URL}/news?populate=*&pagination[page]=1&pagination[pageSize]=10`
@@ -16,6 +15,7 @@ export async function getServerSideProps() {
   return {
     props: {
       news: newsResponse,
+      pagination: newsResponse.meta.pagination,
     },
   };
 }
@@ -50,6 +50,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 0 2rem;
   background-color: ${COLOR.PLATINUM.DEFAULT};
   border: 1px solid ${COLOR.PLATINUM[600]};
@@ -77,16 +78,87 @@ const StyledNewsWrapper = styled.ul`
   }
 `;
 
-export default function index({ news }) {
-  console.log(news);
+const StyledPaginationButton = styled.button`
+  width: 16rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: ${COLOR.SEC.DEFAULT};
+  color: ${COLOR.WHITE};
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: ${FONT_SIZE.M};
+  height: ${SPACE.XL};
+  border: ${COLOR.SEC[600]} 1px solid;
+  @media (max-width: ${SCREENS.XL}) {
+    height: ${SPACE.L};
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    height: ${SPACE.XL};
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    height: ${SPACE.L};
+  }
+  &:hover {
+    background-color: ${COLOR.SEC[300]};
+  }
+\`;
+`;
+const StyledButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  gap: 2rem;
+`;
+
+export default function index({ news, pagination }) {
+  const router = useRouter();
+  const { page } = router.query;
+  const [pageNum, setPageNum] = useState(parseInt(page) || 1);
+  const [pageItems, setPageItems] = useState(news);
+
+  useEffect(() => {
+    const fetchPageItems = async () => {
+      const tempPageItems = await fetcher(
+        `${URL}/news?populate=*&pagination[page]=${pageNum}&pagination[pageSize]=10`
+      );
+      setPageItems(tempPageItems);
+    };
+    fetchPageItems();
+  }, [pageNum, news]);
+
+  const totalPages = pagination.pageCount;
+
+  const handlePrevClick = () => {
+    if (pageNum > 1) {
+      router.push(`/novinky/?page=${pageNum - 1}`, undefined, {
+        shallow: true,
+      });
+      setPageNum(pageNum - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (pageNum < totalPages) {
+      router.push(`/novinky/?page=${pageNum + 1}`, undefined, {
+        shallow: true,
+      });
+      setPageNum(pageNum + 1);
+    }
+  };
+
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>Novinky</StyledHeadingH1>
           <StyledNewsWrapper>
-            {news.data.map(({ id, attributes }) => {
-              console.log(attributes);
+            {pageItems.data.map(({ id, attributes }) => {
               return (
                 <NewsShowAllPreview
                   key={id}
@@ -99,17 +171,19 @@ export default function index({ news }) {
               );
             })}
           </StyledNewsWrapper>
+          <StyledButtonWrapper>
+            <StyledPaginationButton
+              onClick={handlePrevClick}
+              page={pageNum}
+              maxPage={totalPages}
+            >
+              Predosla
+            </StyledPaginationButton>
+            <StyledPaginationButton onClick={handleNextClick}>
+              Nasledujuca
+            </StyledPaginationButton>
+          </StyledButtonWrapper>
         </StyledContainer>
-        {/*{data.map((news) => (*/}
-        {/*  <StyledWrapper key={news.id}>*/}
-        {/*    <StyledSubHeading>{news.attributes.title}</StyledSubHeading>*/}
-        {/*    <StyledDate>{news.attributes.date}</StyledDate>*/}
-        {/*    <StyledText>{news.attributes.content}</StyledText>*/}
-        {/*    <Link href={`/novinky/${news.attributes.slug}`}>*/}
-        {/*      <StyledMoreButton>Čítaj ďalej...</StyledMoreButton>*/}
-        {/*    </Link>*/}
-        {/*  </StyledWrapper>*/}
-        {/*))}*/}
       </StyledFlex>
     </LandingContainer>
   );
