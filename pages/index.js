@@ -39,11 +39,11 @@ const StyledFlex = styled.div`
   margin: 0 ${WIDTH.XXS};
   height: auto;
   @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XS};
+    margin: 0 ${WIDTH.XXXXXS};
     align-items: start;
   }
   @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXS};
+    margin: 0 ${WIDTH.XXXXXXS};
   }
   @media (max-width: ${SCREENS.MD}) {
     margin: 0 ${WIDTH.MOBILE};

@@ -17,7 +17,7 @@ const StyledNewsWrapper = styled.li`
     width: 48%;
   }
   @media (max-width: ${SCREENS.XL}) {
-    width: 80%;
+    width: 47%;
   }
   @media (max-width: ${SCREENS.LG}) {
     width: 100%;
@@ -38,6 +38,9 @@ const StyledNewsWrapper = styled.li`
     }
     &:hover > h3 {
       text-decoration: none;
+    }
+    &:hover > div > div > img {
+      transform: scale(1.5);
     }
     time {
       text-align: center;
@@ -68,6 +71,10 @@ const Img = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
+  transition: transform 0.5s ease;
+`;
+const StyledAspectRatio = styled(AspectRatio.Root)`
+  overflow: hidden;
 `;
 
 const NewsPreview = ({ heading, slug, date, img }) => {
@@ -75,9 +82,9 @@ const NewsPreview = ({ heading, slug, date, img }) => {
     <StyledNewsWrapper>
       <Link href={`/novinky/${slug}`}>
         <a>
-          <AspectRatio.Root ratio={3 / 2}>
+          <StyledAspectRatio ratio={3 / 2}>
             <Img src={`http://194.233.172.84${img}`} alt={img}></Img>
-          </AspectRatio.Root>
+          </StyledAspectRatio>
           <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
           }.${date.getFullYear()}`}</time>

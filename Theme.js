@@ -133,6 +133,8 @@ export const BOX_SHADOW = {
 
 export const WIDTH = {
   MOBILE: rem(4),
+  XXXXXXS: rem(30),
+  XXXXXS: rem(60),
   XXXXS: rem(120), // 36
   XXXS: rem(144), // 36
   XXS: rem(160), //40

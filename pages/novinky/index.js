@@ -1,20 +1,18 @@
 import { fetcher } from "../../lib/api";
 import Link from "next/link";
-import Theme, {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  SCREENS,
-  SPACE,
-  WIDTH,
-} from "../../Theme";
+import Theme, { COLOR, SCREENS, WIDTH } from "../../Theme";
 import styled from "styled-components";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
+import * as AspectRatio from "@radix-ui/react-aspect-ratio";
+import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
+import NewsPreview from "../../components/News/NewsPreview";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getStaticProps() {
-  const newsResponse = await fetcher(`${URL}/news`);
+export async function getServerSideProps() {
+  const newsResponse = await fetcher(
+    `${URL}/news?populate=*&pagination[page]=1&pagination[pageSize]=10`
+  );
   return {
     props: {
       news: newsResponse,
@@ -36,11 +34,11 @@ const StyledFlex = styled.div`
   margin: 0 ${WIDTH.XXS};
   height: auto;
   @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XS};
+    margin: 0 ${WIDTH.XXXXXS};
     align-items: start;
   }
   @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXS};
+    margin: 0 ${WIDTH.XXXXXXS};
   }
   @media (max-width: ${SCREENS.MD}) {
     margin: 0 ${WIDTH.MOBILE};
@@ -65,29 +63,42 @@ const StyledContainer = styled.div`
   }
 `;
 
+const StyledNewsWrapper = styled.ul`
+  margin-top: 3rem;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: 2rem;
+  @media (max-width: ${SCREENS.SM}) {
+    justify-content: center;
+    gap: 1em;
+  }
+`;
+
 export default function index({ news }) {
-  const data = news.data.sort((prev, next) => prev.id - next.id);
+  console.log(news);
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>Novinky</StyledHeadingH1>
-          <ul>
-            <li>
-              <article>
-                <a href="">
-                  <img src="" alt="" />
-                  <div>
-                    <div>
-                      <time></time>
-                      <h3></h3>
-                    </div>
-                    <p></p>
-                  </div>
-                </a>
-              </article>
-            </li>
-          </ul>
+          <StyledNewsWrapper>
+            {news.data.map(({ id, attributes }) => {
+              console.log(attributes);
+              return (
+                <NewsShowAllPreview
+                  key={id}
+                  date={new Date(attributes.date)}
+                  title={attributes.title}
+                  slug={attributes.slug}
+                  content={attributes.content}
+                  img={attributes.image.data.attributes.url}
+                ></NewsShowAllPreview>
+              );
+            })}
+          </StyledNewsWrapper>
         </StyledContainer>
         {/*{data.map((news) => (*/}
         {/*  <StyledWrapper key={news.id}>*/}

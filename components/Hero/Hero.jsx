@@ -63,9 +63,9 @@ const StyledHeroContent = styled.div`
     font-weight: 500;
     //background-color: ${COLOR.PRI.DEFAULT};
     color: ${COLOR.BLACK};
-    border: ${COLOR.BLACK} 1px solid;
+    border: ${COLOR.BLACK} 3px solid;
     &:hover {
-      background-color: ${COLOR.PRI[500]};
+      background-color: ${COLOR.WHITE};
     }
   }
   div {
@@ -111,7 +111,7 @@ const Hero = () => {
           </button>
           <button>
             <a href="https://www.fei.tuke.sk/sk/studium/pre-uchadzacov/podmienky-prijatia">
-              Podmienky
+              Podmienky Prijatia
             </a>
           </button>
         </div>

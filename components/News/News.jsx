@@ -31,7 +31,7 @@ const StyledNewsWrapper = styled.ul`
   justify-content: space-between;
   flex-direction: row;
   padding-bottom: 2rem;
-  @media (max-width: ${SCREENS.XL}) {
+  @media (max-width: ${SCREENS.LG}) {
     justify-content: center;
   }
 `;
