@@ -121,7 +121,7 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
-export default function index({ news, pagination }) {
+const Index = ({ news, pagination }) => {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
@@ -196,4 +196,6 @@ export default function index({ news, pagination }) {
       </StyledFlex>
     </LandingContainer>
   );
-}
+};
+
+export default Index;
