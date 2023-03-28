@@ -104,6 +104,11 @@ const StyledPaginationButton = styled.button`
   &:hover {
     background-color: ${COLOR.SEC[300]};
   }
+  &:disabled {
+    color: ${COLOR.BLACK};
+    background-color: ${COLOR.SEC[50]};
+    cursor: not-allowed;
+  }
 \`;
 `;
 const StyledButtonWrapper = styled.div`
@@ -176,10 +181,14 @@ export default function index({ news, pagination }) {
               onClick={handlePrevClick}
               page={pageNum}
               maxPage={totalPages}
+              disabled={pageNum === 1}
             >
               Predosla
             </StyledPaginationButton>
-            <StyledPaginationButton onClick={handleNextClick}>
+            <StyledPaginationButton
+              onClick={handleNextClick}
+              disabled={pageNum === totalPages}
+            >
               Nasledujuca
             </StyledPaginationButton>
           </StyledButtonWrapper>
