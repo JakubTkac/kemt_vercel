@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
 import Link from "next/link";
 
+const URL = process.env.NEXT_PUBLIC_IMG_URL;
+
 const StyledNewsShowAllPreviewContainer = styled.li`
   list-style: none;
   width: 50%;
@@ -111,7 +113,7 @@ const NewsShowAllPreview = ({ date, id, slug, content, title, img }) => {
         <Link href={`/novinky/${slug}`}>
           <a>
             <StyledAspectRatio ratio={6 / 4}>
-              <Img src={`http://194.233.172.84${img}`} alt={img}></Img>
+              <Img src={`${URL}${img}`} alt={img}></Img>
             </StyledAspectRatio>
             <StyledContentContainer>
               <div>

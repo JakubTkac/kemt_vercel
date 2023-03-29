@@ -3,7 +3,7 @@ import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
 
-const URL = process.env.STRAPI_URL;
+const URL = process.env.NEXT_PUBLIC_IMG_URL;
 
 const StyledNewsWrapper = styled.li`
   width: 30%;
@@ -83,7 +83,7 @@ const NewsPreview = ({ heading, slug, date, img }) => {
       <Link href={`/novinky/${slug}`}>
         <a>
           <StyledAspectRatio ratio={3 / 2}>
-            <Img src={`http://194.233.172.84${img}`} alt={img}></Img>
+            <Img src={`${URL}${img}`} alt={img}></Img>
           </StyledAspectRatio>
           <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
