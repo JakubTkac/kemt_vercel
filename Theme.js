@@ -107,7 +107,8 @@ export const SPACE = {
 };
 
 export const FONT_SIZE = {
-  XXS: rem(5),
+  XXXS: rem(5),
+  XXS: rem(9),
   XS: rem(12),
   SS: rem(14),
   S: rem(16),

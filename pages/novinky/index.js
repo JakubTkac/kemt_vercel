@@ -8,9 +8,12 @@ import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
 // populate=*&pagination[page]=1&pagination[pageSize]=10
-export async function getStaticProps() {
+export async function getServerSideProps({ query: { page } }) {
+  console.log(page);
   const newsResponse = await fetcher(
-    `${URL}/news?populate=*&pagination[page]=1&pagination[pageSize]=4`
+    `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${
+      page || 1
+    }&pagination[pageSize]=4`
   );
   return {
     props: {
@@ -72,7 +75,7 @@ const StyledNewsWrapper = styled.ul`
   justify-content: space-between;
   flex-direction: row;
   padding-bottom: 2rem;
-  @media (max-width: ${SCREENS.SM}) {
+  @media (max-width: ${SCREENS.MD}) {
     justify-content: center;
     gap: 1em;
   }
@@ -94,12 +97,16 @@ const StyledPaginationButton = styled.button`
   border: ${COLOR.SEC[600]} 1px solid;
   @media (max-width: ${SCREENS.XL}) {
     height: ${SPACE.L};
+    width: 12rem;
   }
   @media (max-width: ${SCREENS.MD}) {
     height: ${SPACE.XL};
+    width: 8rem;
   }
   @media (max-width: ${SCREENS.XS}) {
     height: ${SPACE.L};
+    font-size: ${FONT_SIZE.S};
+    width: 6rem;
   }
   &:hover {
     background-color: ${COLOR.SEC[300]};
@@ -132,12 +139,11 @@ const Index = ({ news, pagination }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/news?populate=*&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
     fetchPageItems();
-    console.log("useEffect, New pageItems: ", pageItems);
   }, [pageNum]);
 
   const totalPages = pagination.pageCount;
@@ -167,7 +173,6 @@ const Index = ({ news, pagination }) => {
           <StyledHeadingH1>Novinky</StyledHeadingH1>
           <StyledNewsWrapper>
             {pageItems.data.map(({ id, attributes }) => {
-              console.log("page items inside map", attributes);
               return (
                 <NewsShowAllPreview
                   key={id}
@@ -183,8 +188,6 @@ const Index = ({ news, pagination }) => {
           <StyledButtonWrapper>
             <StyledPaginationButton
               onClick={handlePrevClick}
-              page={pageNum}
-              maxPage={totalPages}
               disabled={pageNum === 1}
             >
               Predosla

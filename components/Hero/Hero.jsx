@@ -9,19 +9,7 @@ const StyledHeroContainer = styled.div`
   background-size: cover;
   position: relative;
   background-position: 50% 50%;
-  //background: linear-gradient(
-  //  to bottom,
-  //  #006ded 0%,
-  //  #1bace2 34.48%,
-  //  #00e2ed 100%
-  //);
-  //img {
-  //  position: absolute;
-  //  z-index: -1;
-  //  min-height: 200px;
-  //  width: 100%;
-  //  object-fit: cover;
-  //}
+
   @media (max-width: ${SCREENS.XL}) {
   }
   @media (max-width: ${SCREENS.LG}) {
@@ -65,7 +53,7 @@ const StyledHeroContent = styled.div`
     color: ${COLOR.BLACK};
     border: ${COLOR.BLACK} 3px solid;
     &:hover {
-      background-color: ${COLOR.WHITE};
+      background-color: rgba(255,255,255, 0.4)};
     }
   }
   div {

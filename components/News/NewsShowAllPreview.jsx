@@ -11,7 +11,7 @@ const StyledNewsShowAllPreviewContainer = styled.li`
   display: flex;
   //flex-grow: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   justify-items: center;
   padding: 1.5em;
   background-color: ${COLOR.WHITE};
@@ -19,7 +19,7 @@ const StyledNewsShowAllPreviewContainer = styled.li`
   &:hover > li {
     transform: scale(1.5);
   }
-  @media (max-width: ${SCREENS.SM}) {
+  @media (max-width: ${SCREENS.MD}) {
     flex-grow: 1;
   }
   a {
@@ -71,6 +71,15 @@ const StyledContentContainer = styled.div`
       font-size: ${FONT_SIZE.L};
       text-decoration: underline;
       padding: 0 1em;
+      @media (max-width: ${SCREENS.LG}) {
+        font-size: ${FONT_SIZE.M};
+      }
+      @media (max-width: ${SCREENS.MD}) {
+        font-size: ${FONT_SIZE.L};
+      }
+      @media (max-width: ${SCREENS.XS}) {
+        font-size: ${FONT_SIZE.M};
+      }
     }
   }
   p {
@@ -80,6 +89,15 @@ const StyledContentContainer = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     font-size: ${FONT_SIZE.M};
+    @media (max-width: ${SCREENS.LG}) {
+      font-size: ${FONT_SIZE.S};
+    }
+    @media (max-width: ${SCREENS.MD}) {
+      font-size: ${FONT_SIZE.M};
+    }
+    @media (max-width: ${SCREENS.XS}) {
+      font-size: ${FONT_SIZE.S};
+    }
   }
 `;
 
@@ -94,15 +112,48 @@ const StyledTime = styled.time`
   text-align: center;
   padding: 0.5em;
   box-shadow: 0 0 0 1px ${COLOR.SEC[500]};
+  @media (max-width: ${SCREENS.LG}) {
+    margin-left: 10px;
+    top: -40px;
+    padding: 0.25em;
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    top: -40px;
+    margin-left: 30px;
+    padding: 0.5em;
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    margin-left: 10px;
+    top: -40px;
+    padding: 0.25em;
+  }
   > * {
     &:first-child {
       font-size: ${FONT_SIZE.L};
       font-weight: 700;
+      @media (max-width: ${SCREENS.LG}) {
+        font-size: ${FONT_SIZE.M};
+      }
+      @media (max-width: ${SCREENS.MD}) {
+        font-size: ${FONT_SIZE.L};
+      }
+      @media (max-width: ${SCREENS.XS}) {
+        font-size: ${FONT_SIZE.M};
+      }
     }
   }
   span {
     font-size: ${FONT_SIZE.XS};
     font-weight: 500;
+    @media (max-width: ${SCREENS.LG}) {
+      font-size: ${FONT_SIZE.XXS};
+    }
+    @media (max-width: ${SCREENS.MD}) {
+      font-size: ${FONT_SIZE.XS};
+    }
+    @media (max-width: ${SCREENS.XS}) {
+      font-size: ${FONT_SIZE.XXS};
+    }
   }
 `;
 

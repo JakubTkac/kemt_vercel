@@ -64,11 +64,6 @@ const StyledContainer = styled.div`
   }
 `;
 
-function StyledNoticePreview(props) {
-  return null;
-}
-
-StyledNoticePreview.propTypes = { children: PropTypes.node };
 export default function index({ events, pagination }) {
   return (
     <LandingContainer>
