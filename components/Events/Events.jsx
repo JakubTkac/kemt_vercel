@@ -37,27 +37,27 @@ const StyledEventsWrapper = styled.ul`
   }
 `;
 const Events = ({ data, heading }) => {
+  console.log(data);
   return (
-    <>
-      <StyledContainer>
-        <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
-        <StyledEventsWrapper>
-          {data.data.slice(0, 3).map(({ attributes, id }) => {
-            return (
-              <EventPreview
-                key={id}
-                heading={attributes.title}
-                slug={attributes.slug}
-                date={new Date(attributes.date)}
-              ></EventPreview>
-            );
-          })}
-        </StyledEventsWrapper>
-        <Link href="/udalosti">
-          <StyledShowAllButton>Všetký Udalosti</StyledShowAllButton>
-        </Link>
-      </StyledContainer>
-    </>
+    <StyledContainer>
+      <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
+      <StyledEventsWrapper>
+        {data.data.slice(0, 3).map(({ attributes, id }) => {
+          return (
+            <EventPreview
+              key={id}
+              heading={attributes.title}
+              slug={attributes.slug}
+              startingDate={new Date(attributes.startingDate)}
+              endingDate={attributes.endingDate}
+            ></EventPreview>
+          );
+        })}
+      </StyledEventsWrapper>
+      <Link href="/udalosti">
+        <StyledShowAllButton>Všetký Udalosti</StyledShowAllButton>
+      </Link>
+    </StyledContainer>
   );
 };
 

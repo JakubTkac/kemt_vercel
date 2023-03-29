@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS, SPACE } from "../../Theme";
 
+//bug: doest react on mouse wheel click
 const StyledShowAllButton = styled.button`
   width: 100%;
   margin-bottom: 2rem;

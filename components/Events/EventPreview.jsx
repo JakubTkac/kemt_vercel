@@ -67,14 +67,27 @@ const StyledNoticePreview = styled.li`
   }
 `;
 
-const EventPreview = ({ slug, heading, date }) => {
+const EventPreview = ({ slug, heading, startingDate, endingDate }) => {
+  console.log(endingDate);
   return (
     <StyledNoticePreview>
       <Link href={`/udalosti/${slug}`}>
         <a>
-          <time dateTime={date}>{`${date.getDate()}.${
-            date.getMonth() + 1
-          }.${date.getFullYear()}`}</time>
+          <div>
+            <time dateTime={startingDate}>{`${startingDate.getDate()}.${
+              startingDate.getMonth() + 1
+            }.${startingDate.getFullYear()}`}</time>
+            {endingDate && (
+              <>
+                <span> - </span>
+                <time dateTime={endingDate}>
+                  {`${new Date(endingDate).getDate()}.${
+                    new Date(endingDate).getMonth() + 1
+                  }.${new Date(endingDate).getFullYear()}`}
+                </time>
+              </>
+            )}
+          </div>
           <h3>{heading}</h3>
         </a>
       </Link>

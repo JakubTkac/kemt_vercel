@@ -3,14 +3,20 @@ import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
 import styled from "styled-components";
 import { COLOR, SCREENS, WIDTH } from "../../Theme";
 import { fetcher } from "../../lib/api";
+import Link from "next/link";
+import * as PropTypes from "prop-types";
+import EventPreview from "../../components/Events/EventPreview";
 
 const URL = process.env.STRAPI_URL;
 
 export async function getServerSideProps() {
-  const eventResponse = await fetcher(`${URL}/events`);
+  const eventsResponse = await fetcher(
+    `${URL}/events?filters[startingDate][$gt]=2023-03-05&sort=startingDate%3Aasc`
+  );
   return {
     props: {
-      events: eventResponse,
+      events: eventsResponse,
+      pagination: eventsResponse.meta.pagination,
     },
   };
 }
@@ -58,12 +64,28 @@ const StyledContainer = styled.div`
   }
 `;
 
-export default function index({ events }) {
+function StyledNoticePreview(props) {
+  return null;
+}
+
+StyledNoticePreview.propTypes = { children: PropTypes.node };
+export default function index({ events, pagination }) {
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>Udalosti</StyledHeadingH1>
+          {events.data.map(({ attributes, id }) => {
+            return (
+              <EventPreview
+                key={id}
+                heading={attributes.title}
+                slug={attributes.slug}
+                startingDate={new Date(attributes.startingDate)}
+                endingDate={attributes.endingDate}
+              ></EventPreview>
+            );
+          })}
         </StyledContainer>
       </StyledFlex>
     </LandingContainer>

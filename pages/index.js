@@ -15,7 +15,9 @@ const URL = process.env.STRAPI_URL;
 export async function getServerSideProps() {
   const noticeResponse = await fetcher(`${URL}/notices`);
   const newsResponse = await fetcher(`${URL}/news?populate=*`);
-  const eventsResponse = await fetcher(`${URL}/events?sort=date%3Adesc`);
+  const eventsResponse = await fetcher(
+    `${URL}/events?filters[startingDate][$gt]=2023-03-05&sort=startingDate%3Aasc`
+  );
   return {
     props: {
       news: newsResponse,
