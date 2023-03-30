@@ -13,7 +13,7 @@ const pagesize = 2;
 
 export async function getServerSideProps({ query: { page } }) {
   const eventsResponse = await fetcher(
-    `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${
+    `${URL}/events?filters[startingDate][$lt]=${today}&sort=startingDate%3Adesc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=${pagesize}`
   );
@@ -115,7 +115,7 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
-const Index = ({ events, pagination }) => {
+const Minule = ({ events, pagination }) => {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
@@ -125,7 +125,7 @@ const Index = ({ events, pagination }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/events?filters[startingDate][$lt]=${today}&sort=startingDate%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
@@ -136,7 +136,7 @@ const Index = ({ events, pagination }) => {
 
   const handlePrevClick = () => {
     if (pageNum > 1) {
-      router.push(`/udalosti/?page=${pageNum - 1}`, undefined, {
+      router.push(`/udalosti/minule/?page=${pageNum - 1}`, undefined, {
         shallow: true,
       });
       setPageNum(pageNum - 1);
@@ -145,7 +145,7 @@ const Index = ({ events, pagination }) => {
 
   const handleNextClick = () => {
     if (pageNum < totalPages) {
-      router.push(`/udalosti/?page=${pageNum + 1}`, undefined, {
+      router.push(`/udalosti/minule/?page=${pageNum + 1}`, undefined, {
         shallow: true,
       });
       setPageNum(pageNum + 1);
@@ -196,4 +196,4 @@ const Index = ({ events, pagination }) => {
   );
 };
 
-export default Index;
+export default Minule;
