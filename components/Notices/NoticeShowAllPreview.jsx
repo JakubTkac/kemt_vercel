@@ -57,7 +57,7 @@ const StyledNoticePreview = styled.li`
 const NoticeShowAllPreview = ({ date, content, title, slug }) => {
   return (
     <StyledNoticePreview>
-      <Link href={slug}>
+      <Link href={`/oznamy/${slug}`}>
         <a>
           <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1
