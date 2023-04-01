@@ -37,7 +37,6 @@ const StyledEventsWrapper = styled.ul`
   }
 `;
 const Events = ({ data, heading }) => {
-  console.log(data);
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>

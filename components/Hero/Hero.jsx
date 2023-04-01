@@ -53,7 +53,8 @@ const StyledHeroContent = styled.div`
     color: ${COLOR.BLACK};
     border: ${COLOR.BLACK} 3px solid;
     &:hover {
-      background-color: rgba(255,255,255, 0.4)};
+      //background-color: rgba(255,255,255, 0.4)};
+      background-color: ${COLOR.WHITE};
     }
   }
   div {

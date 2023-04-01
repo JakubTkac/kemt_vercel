@@ -11,12 +11,17 @@ import News from "../components/News/News";
 import Events from "../components/Events/Events";
 
 const URL = process.env.STRAPI_URL;
+const today = new Date().toISOString();
 
 export async function getServerSideProps() {
-  const noticeResponse = await fetcher(`${URL}/notices`);
-  const newsResponse = await fetcher(`${URL}/news?populate=*`);
+  const noticeResponse = await fetcher(
+    `${URL}/notices?sort=date%3Adesc&pagination[limit]=6`
+  );
+  const newsResponse = await fetcher(
+    `${URL}/news?populate=*&sort=date%3Adesc&pagination[limit]=3`
+  );
   const eventsResponse = await fetcher(
-    `${URL}/events?filters[startingDate][$gt]=2023-03-05&sort=startingDate%3Aasc`
+    `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[limit]=3`
   );
   return {
     props: {

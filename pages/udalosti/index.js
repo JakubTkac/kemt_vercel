@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
-const pagesize = 2;
+const pagesize = 6;
 
 export async function getServerSideProps({ query: { page } }) {
   const eventsResponse = await fetcher(
@@ -103,9 +103,10 @@ const StyledPaginationButton = styled.button`
     background-color: ${COLOR.SEC[50]};
     cursor: not-allowed;
   }
-\`;
 `;
+
 const StyledButtonWrapper = styled.div`
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -115,12 +116,63 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
+const StyledListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1em;
+`;
+
+const StyledButtonSelectWrapper = styled.div`
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const StyledSelectButton = styled.button`
+  transition: background-color 0.2s ease;
+  width: 12rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: ${(props) =>
+    props.selected ? COLOR.PRI[400] : COLOR.SEC[400]};
+  color: ${(props) => (props.selected ? COLOR.BLACK : COLOR.WHITE)};
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: ${FONT_SIZE.M};
+  height: ${SPACE.XL};
+  border: ${COLOR.SEC[600]} 1px solid;
+  @media (max-width: ${SCREENS.XL}) {
+    height: ${SPACE.L};
+    width: 12rem;
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    height: ${SPACE.XL};
+    width: 10rem;
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    height: ${SPACE.L};
+    font-size: ${FONT_SIZE.S};
+    width: 8rem;
+  }
+  &:hover {
+    background-color: ${COLOR.PRI[400]};
+    color: ${COLOR.BLACK};
+  }
+`;
+
 const Index = ({ events, pagination }) => {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(events);
-  const [pageEvents, setPageEvents] = useState("nadchazdajuce");
 
   useEffect(() => {
     const fetchPageItems = async () => {
@@ -152,30 +204,42 @@ const Index = ({ events, pagination }) => {
     }
   };
 
+  const handlePageReset = () => {
+    router.push(`/udalosti/?page=1`, undefined, {
+      shallow: true,
+    });
+    setPageNum(1);
+  };
+
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>Udalosti</StyledHeadingH1>
-          <StyledButtonWrapper>
+          <StyledButtonSelectWrapper>
             <Link href={"/udalosti"}>
-              <StyledPaginationButton>Nadchadzajuce</StyledPaginationButton>
+              <StyledSelectButton onClick={handlePageReset} selected={true}>
+                Nadchadzajuce
+              </StyledSelectButton>
             </Link>
             <Link href={"/udalosti/minule"}>
-              <StyledPaginationButton>Predosle</StyledPaginationButton>
+              <StyledSelectButton selected={false}>Predosle</StyledSelectButton>
             </Link>
-          </StyledButtonWrapper>
-          {pageItems.data.map(({ attributes, id }) => {
-            return (
-              <EventPreview
-                key={id}
-                heading={attributes.title}
-                slug={attributes.slug}
-                startingDate={new Date(attributes.startingDate)}
-                endingDate={attributes.endingDate}
-              ></EventPreview>
-            );
-          })}
+          </StyledButtonSelectWrapper>
+          <StyledListWrapper>
+            {pageItems.data.map(({ attributes, id }) => {
+              return (
+                <EventPreview
+                  key={id}
+                  heading={attributes.title}
+                  slug={attributes.slug}
+                  startingDate={new Date(attributes.startingDate)}
+                  endingDate={attributes.endingDate}
+                  content={attributes.content}
+                ></EventPreview>
+              );
+            })}
+          </StyledListWrapper>
           <StyledButtonWrapper>
             <StyledPaginationButton
               onClick={handlePrevClick}

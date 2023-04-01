@@ -40,15 +40,17 @@ const News = ({ heading, data }) => {
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledNewsWrapper>
-        {data.data.slice(0, 3).map(({ attributes, id }) => (
-          <NewsPreview
-            key={id}
-            heading={attributes.title}
-            slug={attributes.slug}
-            date={new Date(attributes.date)}
-            img={attributes.image.data.attributes.url}
-          ></NewsPreview>
-        ))}
+        {data.data.slice(0, 3).map(({ attributes, id }) => {
+          return (
+            <NewsPreview
+              key={id}
+              heading={attributes.title}
+              slug={attributes.slug}
+              date={new Date(attributes.date)}
+              img={attributes.image.data.attributes.formats.small.url}
+            ></NewsPreview>
+          );
+        })}
       </StyledNewsWrapper>
       <Link href="/novinky">
         <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>

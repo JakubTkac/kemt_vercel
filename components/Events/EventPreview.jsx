@@ -67,7 +67,16 @@ const StyledNoticePreview = styled.li`
   }
 `;
 
-const EventPreview = ({ slug, heading, startingDate, endingDate }) => {
+const StyledContent = styled.span`
+  padding-left: 0.5em;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+`;
+
+const EventPreview = ({ slug, heading, startingDate, endingDate, content }) => {
   console.log(endingDate);
   return (
     <StyledNoticePreview>
@@ -89,6 +98,7 @@ const EventPreview = ({ slug, heading, startingDate, endingDate }) => {
             )}
           </div>
           <h3>{heading}</h3>
+          {content && <StyledContent>{content}</StyledContent>}
         </a>
       </Link>
     </StyledNoticePreview>

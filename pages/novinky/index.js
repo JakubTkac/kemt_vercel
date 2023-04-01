@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 const URL = process.env.STRAPI_URL;
 // populate=*&pagination[page]=1&pagination[pageSize]=10
 export async function getServerSideProps({ query: { page } }) {
-  console.log(page);
   const newsResponse = await fetcher(
     `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${
       page || 1

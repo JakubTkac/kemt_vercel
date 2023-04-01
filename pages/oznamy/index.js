@@ -1,146 +1,205 @@
 import { fetcher } from "../../lib/api";
 import Link from "next/link";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
+import {
+  COLOR,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SCREENS,
+  SPACE,
+  WIDTH,
+} from "../../Theme";
 import Content from "./[slug]";
+import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
+import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
+import NoticeShowAllPreview from "../../components/Notices/NoticeShowAllPreview";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getStaticProps() {
-  const slug = "notices";
-  const noticeResponse = await fetcher(`${URL}/notices`);
+export async function getServerSideProps({ query: { page } }) {
+  const noticeResponse = await fetcher(
+    `${URL}/notices?populate=*&sort=date%3Adesc&pagination[page]=${
+      page || 1
+    }&pagination[pageSize]=4`
+  );
   return {
     props: {
       notices: noticeResponse,
+      pagination: noticeResponse.meta.pagination,
     },
   };
 }
+const LandingContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  min-height: 85.8vh;
+`;
+
 const StyledFlex = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 ${WIDTH.XXS};
+  height: auto;
+  @media (max-width: ${SCREENS.XL}) {
+    margin: 0 ${WIDTH.XXXXXS};
+    align-items: start;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+    margin: 0 ${WIDTH.XXXXXXS};
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    margin: 0 ${WIDTH.MOBILE};
+    flex-direction: column;
+  }
 `;
 
 const StyledContainer = styled.div`
-  margin: 6rem 10rem;
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: ${COLOR.PLATINUM.DEFAULT};
+  border: 1px solid ${COLOR.PLATINUM[600]};
+  width: 100%;
+  @media (max-width: ${SCREENS.XL}) {
+    padding: 0 1.5rem;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+  }
+  @media (max-width: ${SCREENS.MD}) {
+  }
+`;
+
+const StyledNoticesWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2em;
+`;
+
+const StyledPaginationButton = styled.button`
+  width: 16rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: ${COLOR.SEC.DEFAULT};
+  color: ${COLOR.WHITE};
+  text-align: center;
+  display: flex;
   justify-content: center;
-  justify-items: center;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 4rem 6rem;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 2rem 4rem;
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 2rem;
-  }
-`;
-
-const StyledHeading = styled.h1`
-  font-size: ${FONT_SIZE.XL};
-  width: 100%;
-  padding-bottom: 1.5rem;
-  font-weight: ${FONT_WEIGHT.BOLD};
-  @media (max-width: ${SCREENS.LG}) {
-    padding-bottom: 1rem;
-    font-size: ${FONT_SIZE.L};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.L};
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    font-size: ${FONT_SIZE.L};
-  }
-`;
-
-const StyledMoreButton = styled.text`
-  cursor: pointer;
-  color: ${COLOR.DANGER};
-  @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.XS};
-  }
-`;
-
-const StyledVerticalStack = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: start;
-  justify-items: start;
-`;
-
-const StyledSubHeading = styled.h2`
+  align-items: center;
+  font-weight: 500;
   font-size: ${FONT_SIZE.M};
-  font-weight: ${FONT_WEIGHT.BOLDER};
-  padding-top: 1rem;
+  height: ${SPACE.XL};
+  border: ${COLOR.SEC[600]} 1px solid;
   @media (max-width: ${SCREENS.XL}) {
-    font-size: ${FONT_SIZE.S};
-    padding-top: 0.6rem;
+    height: ${SPACE.L};
+    width: 12rem;
   }
   @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.M};
-    padding-top: 0.6rem;
+    height: ${SPACE.XL};
+    width: 8rem;
   }
   @media (max-width: ${SCREENS.XS}) {
+    height: ${SPACE.L};
     font-size: ${FONT_SIZE.S};
-    padding-top: 0.6rem;
+    width: 6rem;
+  }
+  &:hover {
+    background-color: ${COLOR.SEC[300]};
+  }
+  &:disabled {
+    color: ${COLOR.BLACK};
+    background-color: ${COLOR.SEC[50]};
+    cursor: not-allowed;
   }
 `;
 
-const StyledDate = styled.span`
-  font-weight: ${FONT_WEIGHT.LIGHT};
-  color: ${COLOR.DARKGRAY};
-  @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.XS};
-  }
+const StyledButtonWrapper = styled.div`
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  gap: 2rem;
 `;
 
-const StyledText = styled.p`
-  font-size: ${FONT_SIZE.S};
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  @media (max-width: ${SCREENS.LG}) {
-    font-size: ${FONT_SIZE.XS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.XS};
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    font-size: ${FONT_SIZE.XS};
-  }
-`;
+function Index({ notices, pagination }) {
+  const router = useRouter();
+  const { page } = router.query;
+  const [pageNum, setPageNum] = useState(parseInt(page) || 1);
+  const [pageItems, setPageItems] = useState(notices);
 
-const StyledWrapper = styled.div``;
+  useEffect(() => {
+    const fetchPageItems = async () => {
+      const tempPageItems = await fetcher(
+        `${URL}/notices?sort=date%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+      );
+      setPageItems(tempPageItems);
+    };
+    fetchPageItems();
+  }, [pageNum]);
 
-function Index({ notices }) {
-  const data = notices.data.sort((prev, next) => prev.id - next.id);
+  const totalPages = pagination.pageCount;
+
+  const handlePrevClick = () => {
+    if (pageNum > 1) {
+      router.push(`/oznamy/?page=${pageNum - 1}`, undefined, {
+        shallow: true,
+      });
+      setPageNum(pageNum - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (pageNum < totalPages) {
+      router.push(`/oznamy/?page=${pageNum + 1}`, undefined, {
+        shallow: true,
+      });
+      setPageNum(pageNum + 1);
+    }
+  };
+
   return (
-    <StyledFlex>
-      <StyledContainer>
-        <StyledHeading>Oznamy</StyledHeading>
-        <StyledVerticalStack>
-          {data.map((notice) => (
-            <StyledWrapper key={notice.id}>
-              <StyledSubHeading>{notice.attributes.title}</StyledSubHeading>
-              <StyledDate>{notice.attributes.date}</StyledDate>
-              <StyledText>{notice.attributes.content}</StyledText>
-              <Link href={`/oznamy/${notice.attributes.slug}`}>
-                <StyledMoreButton>Čítaj ďalej...</StyledMoreButton>
-              </Link>
-            </StyledWrapper>
-          ))}
-        </StyledVerticalStack>
-      </StyledContainer>
-    </StyledFlex>
+    <LandingContainer>
+      <StyledFlex>
+        <StyledContainer>
+          <StyledHeadingH1>Oznamy</StyledHeadingH1>
+          <StyledNoticesWrapper>
+            {pageItems.data.map(({ id, attributes }) => {
+              return (
+                <NoticeShowAllPreview
+                  key={id}
+                  date={new Date(attributes.date)}
+                  title={attributes.title}
+                  slug={attributes.slug}
+                  content={attributes.content}
+                ></NoticeShowAllPreview>
+              );
+            })}
+          </StyledNoticesWrapper>
+          <StyledButtonWrapper>
+            <StyledPaginationButton
+              onClick={handlePrevClick}
+              disabled={pageNum === 1}
+            >
+              Predosla
+            </StyledPaginationButton>
+            <StyledPaginationButton
+              onClick={handleNextClick}
+              disabled={pageNum === totalPages}
+            >
+              Nasledujuca
+            </StyledPaginationButton>
+          </StyledButtonWrapper>
+        </StyledContainer>
+      </StyledFlex>
+    </LandingContainer>
   );
 }
 
