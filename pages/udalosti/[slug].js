@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const paths = news.data.map((item) => ({
     params: { slug: item.attributes.slug },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
