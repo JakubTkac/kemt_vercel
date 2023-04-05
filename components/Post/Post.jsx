@@ -66,19 +66,6 @@ const StyledContent = styled.div`
     text-decoration: underline;
   }
 
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: "";
-  }
-
   pre,
   blockquote {
     border: 1px solid ${COLOR.SEC[500]};
