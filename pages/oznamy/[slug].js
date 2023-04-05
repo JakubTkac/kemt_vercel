@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     params: { slug: item.attributes.slug },
   }));
 
-  return { props: paths, revalidate: 60 };
+  return { paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
