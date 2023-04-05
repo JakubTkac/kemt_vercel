@@ -1,7 +1,9 @@
 import React from "react";
 
 const TableOfContents = ({ markdownText }) => {
-  const headings = markdownText.match(/^(#{1,6})\s(.+)$/gm);
+  const headings = markdownText
+    ? markdownText.match(/^(#{1,6})\s(.+)$/gm)
+    : null;
   const toc = headings
     ? headings.map((heading) => {
         const level = heading.match(/^#+/)[0].length;

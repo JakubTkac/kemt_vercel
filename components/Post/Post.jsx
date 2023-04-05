@@ -242,26 +242,32 @@ const StyledAspectRatio = styled(AspectRatio.Root)`
   }
 `;
 
-const generateHeaderComponent = (level) => (props) => {
-  const arr = props.children;
-  let heading = "";
+const generateHeaderComponent = (level) => {
+  const Header = (props) => {
+    const arr = props.children;
+    let heading = "";
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i]?.type !== undefined) {
-      for (let j = 0; j < arr[i].props.children.length; j++) {
-        heading += arr[i]?.props?.children[0];
-      }
-    } else heading += arr[i];
-  }
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]?.type !== undefined) {
+        for (let j = 0; j < arr[i].props.children.length; j++) {
+          heading += arr[i]?.props?.children[0];
+        }
+      } else heading += arr[i];
+    }
 
-  const slug = generateSlug(heading);
-  const HeaderTag = `h${level}`;
+    const slug = generateSlug(heading);
+    const HeaderTag = `h${level}`;
 
-  return (
-    <HeaderTag id={slug}>
-      <a href={`#${slug}`} {...props}></a>
-    </HeaderTag>
-  );
+    return (
+      <HeaderTag id={slug}>
+        <a href={`#${slug}`} {...props}></a>
+      </HeaderTag>
+    );
+  };
+
+  Header.displayName = `Header${level}`;
+
+  return Header;
 };
 
 const MarkdownComponents = {
