@@ -204,7 +204,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderLogo>
-        <Link href="../">
+        <Link href="/">
           <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
         </Link>
       </HeaderLogo>
