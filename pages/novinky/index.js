@@ -1,5 +1,5 @@
 import { fetcher } from "../../lib/api";
-import Theme, { COLOR, FONT_SIZE, SCREENS, SPACE, WIDTH } from "../../Theme";
+import { COLOR, FONT_SIZE, SCREENS, SPACE, WIDTH } from "../../Theme";
 import styled from "styled-components";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
-// populate=*&pagination[page]=1&pagination[pageSize]=10
 export async function getServerSideProps({ query: { page } }) {
   const newsResponse = await fetcher(
     `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${

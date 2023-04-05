@@ -1,17 +1,7 @@
 import { fetcher } from "../../lib/api";
-import Link from "next/link";
 import styled from "styled-components";
-import {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  SCREENS,
-  SPACE,
-  WIDTH,
-} from "../../Theme";
-import Content from "./[slug]";
+import { COLOR, FONT_SIZE, SCREENS, SPACE, WIDTH } from "../../Theme";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
-import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
 import NoticeShowAllPreview from "../../components/Notices/NoticeShowAllPreview";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -138,7 +128,7 @@ function Index({ notices, pagination }) {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/notices?sort=date%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/notices?sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
