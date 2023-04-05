@@ -164,7 +164,14 @@ const NewsShowAllPreview = ({ date, id, slug, content, title, img }) => {
         <Link href={`/novinky/${slug}`}>
           <a>
             <StyledAspectRatio ratio={6 / 4}>
-              <Img src={`${URL}${img}`} alt={img}></Img>
+              <Img
+                src={
+                  img.formats && img.formats.thumbnail.url
+                    ? `${URL}${img.formats.thumbnail.url}`
+                    : `${URL}${img.url}`
+                }
+                alt={img.alternativeText}
+              ></Img>
             </StyledAspectRatio>
             <StyledContentContainer>
               <div>

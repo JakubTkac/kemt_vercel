@@ -179,7 +179,7 @@ const Index = ({ news, pagination }) => {
                   title={attributes.title}
                   slug={attributes.slug}
                   content={attributes.content}
-                  img={attributes.image.data.attributes.url}
+                  img={attributes.image.data.attributes}
                 ></NewsShowAllPreview>
               );
             })}

@@ -26,6 +26,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledEventsWrapper = styled.ul`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
