@@ -215,6 +215,11 @@ div > ul > li > a {
     color: ${COLOR.SEC[600]}!important;
   }
 }
+
+hr {
+  height: 1px;
+  background-color: ${COLOR.SEC[500]};
+}
 `;
 const Img = styled.img`
   object-fit: cover;
