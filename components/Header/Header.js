@@ -6,6 +6,7 @@ import Link from "next/link";
 import { RiArrowDropDownLine, RiMenuLine } from "react-icons/ri";
 import HeaderDropdown from "./HeaderDropdown";
 import useBetterMediaQuery from "../../utils/useBetterMediaQuery";
+import Navbar from "./Navbar";
 
 const HeaderContainer = styled.div`
   padding: 0 5%;
@@ -202,22 +203,25 @@ const MobileButton = ({ items }) => {
 const Header = () => {
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
-    <HeaderContainer>
-      <HeaderLogo>
-        <Link href="/">
-          <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
-        </Link>
-      </HeaderLogo>
-      {isLargerThan768 ? (
-        <HeaderContent>
-          {headerItems.map((item) => (
-            <HeaderItem key={item.id} item={item} />
-          ))}
-        </HeaderContent>
-      ) : (
-        <MobileButton items={headerItems}></MobileButton>
-      )}
-    </HeaderContainer>
+    <>
+      <Navbar></Navbar>
+      <HeaderContainer>
+        <HeaderLogo>
+          <Link href="/">
+            <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
+          </Link>
+        </HeaderLogo>
+        {isLargerThan768 ? (
+          <HeaderContent>
+            {headerItems.map((item) => (
+              <HeaderItem key={item.id} item={item} />
+            ))}
+          </HeaderContent>
+        ) : (
+          <MobileButton items={headerItems}></MobileButton>
+        )}
+      </HeaderContainer>
+    </>
   );
 };
 

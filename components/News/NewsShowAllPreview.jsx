@@ -2,6 +2,8 @@ import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import removeMarkdownSyntax from "../../utils/removeMarkdownSyntax";
 
 const URL = process.env.NEXT_PUBLIC_IMG_URL;
 
@@ -182,7 +184,7 @@ const NewsShowAllPreview = ({ date, id, slug, content, title, img }) => {
                 </StyledTime>
                 <h3>{title}</h3>
               </div>
-              <p>{content}</p>
+              <p>{removeMarkdownSyntax(content)}</p>
             </StyledContentContainer>
           </a>
         </Link>

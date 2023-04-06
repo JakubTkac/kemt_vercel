@@ -7,14 +7,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
-export async function getServerSideProps({ query: { page } }) {
+export async function getServerSideProps({ query: { page }, locale }) {
   const newsResponse = await fetcher(
-    `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${
+    `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=4`
   );
   return {
     props: {
+      locale: locale,
       news: newsResponse,
       pagination: newsResponse.meta.pagination,
     },
@@ -128,7 +129,7 @@ const StyledButtonWrapper = styled.div`
 
 //bug: it always shows first page when called at any page
 
-const Index = ({ news, pagination }) => {
+const Index = ({ news, pagination, locale }) => {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
@@ -137,7 +138,7 @@ const Index = ({ news, pagination }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/news?populate=*&sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
@@ -176,7 +177,11 @@ const Index = ({ news, pagination }) => {
                   key={id}
                   date={new Date(attributes.date)}
                   title={attributes.title}
-                  slug={attributes.slug}
+                  slug={
+                    locale === "en"
+                      ? attributes.localizations.data[0].attributes.slug
+                      : attributes.slug
+                  }
                   content={attributes.content}
                   img={attributes.image.data.attributes}
                 ></NewsShowAllPreview>

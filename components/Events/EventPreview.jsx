@@ -77,7 +77,6 @@ const StyledContent = styled.span`
 `;
 
 const EventPreview = ({ slug, heading, startingDate, endingDate, content }) => {
-  console.log(endingDate);
   return (
     <StyledNoticePreview>
       <Link href={`/udalosti/${slug}`}>

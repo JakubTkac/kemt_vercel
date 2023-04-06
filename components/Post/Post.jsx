@@ -276,12 +276,14 @@ const Post = ({
   title,
   slug,
   id,
+  locale,
   content,
   date,
   location,
   endingDate,
   startingDate,
 }) => {
+  console.log(locale);
   return (
     <LandingContainer>
       <StyledFlex>
@@ -302,7 +304,7 @@ const Post = ({
             </StyledAspectRatio>
           )}
           <StyledContent>
-            <TableOfContents markdownText={content} />
+            <TableOfContents markdownText={content} locale={locale} />
             <ReactMarkdown components={MarkdownComponents}>
               {content}
             </ReactMarkdown>

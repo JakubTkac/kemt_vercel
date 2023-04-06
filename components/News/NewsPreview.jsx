@@ -78,12 +78,20 @@ const StyledAspectRatio = styled(AspectRatio.Root)`
 `;
 
 const NewsPreview = ({ heading, slug, date, img }) => {
+  console.log("slug:", slug);
   return (
     <StyledNewsWrapper>
       <Link href={`/novinky/${slug}`}>
         <a>
           <StyledAspectRatio ratio={3 / 2}>
-            <Img src={`${URL}${img}`} alt={img}></Img>
+            <Img
+              src={
+                img.formats && img.formats.small.url
+                  ? `${URL}${img.formats.small.url}`
+                  : `${URL}${img.url}`
+              }
+              alt={img.alternativeText}
+            ></Img>
           </StyledAspectRatio>
           <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1

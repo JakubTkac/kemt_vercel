@@ -22,24 +22,41 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const news = await fetcher(`${URL}/news/${params.slug}?populate=*`);
   return {
-    props: { params, news },
+    props: { params, news, locale },
   };
 }
 
-function Content({ news }) {
-  const props = news.data.attributes;
+function Content({ news, locale }) {
+  const props = {
+    sk: news.data.attributes,
+    en: news.data.attributes.localizations.data[0].attributes,
+  };
+  const { sk, en } = props;
   return (
-    <Post
-      title={props.title}
-      slug={props.slug}
-      content={props.content}
-      date={new Date(props.date)}
-      img={props.image.data.attributes.url}
-      type="news"
-    ></Post>
+    <>
+      {locale === "en" ? (
+        <Post
+          title={en.title}
+          slug={en.slug}
+          content={en.content}
+          date={new Date(sk.date)}
+          img={sk.image.data.attributes.url}
+          locale={locale}
+        ></Post>
+      ) : (
+        <Post
+          title={sk.title}
+          slug={sk.slug}
+          content={sk.content}
+          date={new Date(sk.date)}
+          img={sk.image.data.attributes.url}
+          locale={locale}
+        ></Post>
+      )}
+    </>
   );
 }
 

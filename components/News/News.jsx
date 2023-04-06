@@ -35,7 +35,7 @@ const StyledNewsWrapper = styled.ul`
     justify-content: center;
   }
 `;
-const News = ({ heading, data }) => {
+const News = ({ heading, data, locale }) => {
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
@@ -45,9 +45,13 @@ const News = ({ heading, data }) => {
             <NewsPreview
               key={id}
               heading={attributes.title}
-              slug={attributes.slug}
+              slug={
+                locale === "en"
+                  ? attributes.localizations.data[0].attributes.slug
+                  : attributes.slug
+              }
               date={new Date(attributes.date)}
-              img={attributes.image.data.attributes.formats.small.url}
+              img={attributes.image.data.attributes}
             ></NewsPreview>
           );
         })}

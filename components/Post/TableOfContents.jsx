@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableOfContents = ({ markdownText }) => {
+const TableOfContents = ({ markdownText, locale }) => {
   const headings = markdownText
     ? markdownText.match(/^(#{1,6})\s(.+)$/gm)
     : null;
@@ -13,9 +13,10 @@ const TableOfContents = ({ markdownText }) => {
       })
     : [];
 
+  console.log(locale);
   return headings ? (
     <div>
-      <h2>Obsah</h2>
+      {locale === "en" ? <h2>Table Of Contents</h2> : <h2>Obsah</h2>}
       <ul>
         {toc.map(({ level, text, slug }) => (
           <li key={slug}>

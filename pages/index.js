@@ -13,18 +13,19 @@ import Events from "../components/Events/Events";
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   const noticeResponse = await fetcher(
-    `${URL}/notices?sort=date%3Adesc&pagination[limit]=6`
+    `${URL}/notices?locale=${locale}&sort=date%3Adesc&pagination[limit]=6`
   );
   const newsResponse = await fetcher(
-    `${URL}/news?populate=*&sort=date%3Adesc&pagination[limit]=3`
+    `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[limit]=3`
   );
   const eventsResponse = await fetcher(
-    `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[limit]=3`
+    `${URL}/events?locale=sk&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[limit]=3`
   );
   return {
     props: {
+      locale: locale,
       news: newsResponse,
       notices: noticeResponse,
       events: eventsResponse,
@@ -66,15 +67,15 @@ const StyledNewsEventsWrapper = styled.div`
     flex-direction: column;
   }
 `;
-export default function Home({ notices, news, events }) {
+export default function Home({ notices, news, events, locale }) {
   return (
     <LandingContainer>
       <StyledFlex>
         <Hero />
-        <Notices data={notices} heading="oznamy" />
+        <Notices data={notices} heading="oznamy" locale={locale} />
         <StyledNewsEventsWrapper>
-          <News data={news} heading="novinky" />
-          <Events data={events} heading="udalosti"></Events>
+          <News data={news} heading="novinky" locale={locale} />
+          <Events data={events} heading="udalosti" locale={locale}></Events>
         </StyledNewsEventsWrapper>
       </StyledFlex>
     </LandingContainer>
