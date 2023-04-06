@@ -32,7 +32,7 @@ export async function getStaticProps({ params, locale }) {
 function Content({ news, locale }) {
   const props = {
     sk: news.data.attributes,
-    en: news.data.attributes.localizations.data[0].attributes,
+    en: news.data.attributes.localizations.data[0]?.attributes,
   };
   const { sk, en } = props;
   return (

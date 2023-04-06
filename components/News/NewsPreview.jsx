@@ -78,7 +78,6 @@ const StyledAspectRatio = styled(AspectRatio.Root)`
 `;
 
 const NewsPreview = ({ heading, slug, date, img }) => {
-  console.log("slug:", slug);
   return (
     <StyledNewsWrapper>
       <Link href={`/novinky/${slug}`}>

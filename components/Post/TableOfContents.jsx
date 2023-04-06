@@ -13,7 +13,6 @@ const TableOfContents = ({ markdownText, locale }) => {
       })
     : [];
 
-  console.log(locale);
   return headings ? (
     <div>
       {locale === "en" ? <h2>Table Of Contents</h2> : <h2>Obsah</h2>}

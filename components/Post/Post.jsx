@@ -283,7 +283,6 @@ const Post = ({
   endingDate,
   startingDate,
 }) => {
-  console.log(locale);
   return (
     <LandingContainer>
       <StyledFlex>
