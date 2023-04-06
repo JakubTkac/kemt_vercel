@@ -1,7 +1,15 @@
+import { useRouter } from "next/router";
+import Link from "next/link";
+
 const Navbar = () => {
+  const { locales } = useRouter();
   return (
     <>
-      <button>Change Language</button>
+      {[...locales].map((locale) => (
+        <Link key={locale} href="/" locale={locale}>
+          {locale}
+        </Link>
+      ))}
     </>
   );
 };
