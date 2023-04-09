@@ -127,8 +127,6 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
-//bug: it always shows first page when called at any page
-
 const Index = ({ news, pagination, locale }) => {
   const router = useRouter();
   const { page } = router.query;

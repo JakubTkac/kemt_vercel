@@ -37,7 +37,7 @@ const StyledEventsWrapper = styled.ul`
     justify-content: center;
   }
 `;
-const Events = ({ data, heading }) => {
+const Events = ({ data, heading, locale }) => {
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
@@ -47,7 +47,11 @@ const Events = ({ data, heading }) => {
             <EventPreview
               key={id}
               heading={attributes.title}
-              slug={attributes.slug}
+              slug={
+                locale === "en"
+                  ? attributes.localizations.data[0].attributes.slug
+                  : attributes.slug
+              }
               startingDate={new Date(attributes.startingDate)}
               endingDate={attributes.endingDate}
             ></EventPreview>

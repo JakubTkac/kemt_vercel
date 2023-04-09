@@ -1,13 +1,3 @@
-import ReactMarkdown from "react-markdown";
-import styled from "styled-components";
-import {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  HEIGHT,
-  SCREENS,
-  SPACE,
-} from "../../Theme";
 import { fetcher } from "../../lib/api";
 import Post from "../../components/Post/Post";
 

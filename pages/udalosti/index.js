@@ -11,9 +11,9 @@ const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
 const pagesize = 6;
 
-export async function getServerSideProps({ query: { page } }) {
+export async function getServerSideProps({ query: { page }, locale }) {
   const eventsResponse = await fetcher(
-    `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${
+    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=${pagesize}`
   );
@@ -21,6 +21,7 @@ export async function getServerSideProps({ query: { page } }) {
     props: {
       events: eventsResponse,
       pagination: eventsResponse.meta.pagination,
+      locale: locale,
     },
   };
 }
@@ -168,7 +169,7 @@ const StyledSelectButton = styled.button`
   }
 `;
 
-const Index = ({ events, pagination }) => {
+const Index = ({ events, pagination, locale }) => {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
@@ -177,7 +178,7 @@ const Index = ({ events, pagination }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/events?filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
@@ -232,7 +233,11 @@ const Index = ({ events, pagination }) => {
                 <EventPreview
                   key={id}
                   heading={attributes.title}
-                  slug={attributes.slug}
+                  slug={
+                    locale === "en"
+                      ? attributes.localizations.data[0]?.attributes.slug
+                      : attributes.slug
+                  }
                   startingDate={new Date(attributes.startingDate)}
                   endingDate={attributes.endingDate}
                   content={attributes.content}

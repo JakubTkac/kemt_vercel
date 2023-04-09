@@ -15,13 +15,13 @@ const today = new Date().toISOString();
 
 export async function getServerSideProps({ locale }) {
   const noticeResponse = await fetcher(
-    `${URL}/notices?locale=${locale}&sort=date%3Adesc&pagination[limit]=6`
+    `${URL}/notices?locale=${locale}&populate=*&sort=date%3Adesc&pagination[limit]=6`
   );
   const newsResponse = await fetcher(
     `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[limit]=3`
   );
   const eventsResponse = await fetcher(
-    `${URL}/events?locale=sk&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[limit]=3`
+    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[limit]=3`
   );
   return {
     props: {

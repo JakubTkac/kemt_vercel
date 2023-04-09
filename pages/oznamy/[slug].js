@@ -1,8 +1,7 @@
 import Post from "../../components/Post/Post";
+import { fetcher } from "../../lib/api";
 
 const URL = process.env.STRAPI_URL;
-
-const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export async function getStaticPaths() {
   const notices = await fetcher(`${URL}/notices`);
@@ -13,22 +12,39 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export async function getStaticProps({ params }) {
-  const notices = await fetcher(`${URL}/notices/${params.slug}`);
+export async function getStaticProps({ params, locale }) {
+  const notices = await fetcher(`${URL}/notices/${params.slug}?populate=*`);
   return {
-    props: { params, notices },
+    props: { params, notices, locale },
   };
 }
 
-function Content({ notices }) {
-  const props = notices.data.attributes;
+function Content({ notices, locale }) {
+  const props = {
+    sk: notices.data.attributes,
+    en: notices.data.attributes.localizations?.data[0]?.attributes,
+  };
+  const { sk, en } = props;
   return (
-    <Post
-      title={props.title}
-      slug={props.slug}
-      content={props.content}
-      date={new Date(props.date)}
-    ></Post>
+    <>
+      {locale === "en" ? (
+        <Post
+          title={en.title}
+          slug={en.slug}
+          content={en.content}
+          date={new Date(sk.date)}
+          locale={locale}
+        ></Post>
+      ) : (
+        <Post
+          title={sk.title}
+          slug={sk.slug}
+          content={sk.content}
+          date={new Date(sk.date)}
+          locale={locale}
+        ></Post>
+      )}
+    </>
   );
 }
 

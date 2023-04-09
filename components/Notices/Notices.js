@@ -1,13 +1,5 @@
-import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
-import {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  HEIGHT,
-  SCREENS,
-  SPACE,
-} from "../../Theme";
+import { COLOR, SCREENS } from "../../Theme";
 import styled from "styled-components";
 import NoticePreview from "./NoticePreview";
 import { Capitalize } from "../../lib/typography";
@@ -49,28 +41,32 @@ const StyledGridWrapper = styled.ul`
   }
 `;
 
-const noticePreviewCount = (data, sliceCount) => {
+const noticePreviewCount = (data, sliceCount, locale) => {
   return data.data
     .slice(0, sliceCount)
     .map(({ attributes, id }) => (
       <NoticePreview
         key={id}
         heading={attributes.title}
-        slug={attributes.slug}
+        slug={
+          locale === "en"
+            ? attributes.localizations.data[0]?.attributes.slug
+            : attributes.slug
+        }
         date={new Date(attributes.date)}
       ></NoticePreview>
     ));
 };
 
-const Notices = ({ data, heading }) => {
+const Notices = ({ data, heading, locale }) => {
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledGridWrapper>
         {isLargerThan768
-          ? noticePreviewCount(data, 9)
-          : noticePreviewCount(data, 3)}
+          ? noticePreviewCount(data, 9, locale)
+          : noticePreviewCount(data, 3, locale)}
       </StyledGridWrapper>
       <Link href={heading}>
         <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>

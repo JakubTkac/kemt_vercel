@@ -85,7 +85,7 @@ const NewsPreview = ({ heading, slug, date, img }) => {
           <StyledAspectRatio ratio={3 / 2}>
             <Img
               src={
-                img.formats && img.formats.small.url
+                img.formats && img.formats.small?.url
                   ? `${URL}${img.formats.small.url}`
                   : `${URL}${img.url}`
               }

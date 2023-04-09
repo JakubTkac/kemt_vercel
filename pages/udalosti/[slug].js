@@ -13,27 +13,47 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export async function getStaticProps({ params }) {
-  const events = await fetcher(`${URL}/events/${params.slug}`);
+export async function getStaticProps({ params, locale }) {
+  const events = await fetcher(`${URL}/events/${params.slug}?populate=*`);
   return {
     props: {
       params,
       events,
+      locale,
     },
   };
 }
 
-function Content({ events }) {
-  const props = events.data.attributes;
+function Content({ events, locale }) {
+  const props = {
+    sk: events.data.attributes,
+    en: events.data.attributes.localizations.data[0]?.attributes,
+  };
+  const { sk, en } = props;
   return (
-    <Post
-      title={props.title}
-      slug={props.slug}
-      content={props.content}
-      startingDate={new Date(props.startingDate)}
-      endingDate={new Date(props.endingDate)}
-      location={props.location}
-    ></Post>
+    <>
+      {locale === "en" ? (
+        <Post
+          title={en.title}
+          slug={en.slug}
+          content={en.content}
+          startingDate={new Date(sk.startingDate)}
+          endingDate={new Date(sk.endingDate)}
+          location={en.location}
+          locale={locale}
+        ></Post>
+      ) : (
+        <Post
+          title={sk.title}
+          slug={sk.slug}
+          content={sk.content}
+          startingDate={new Date(sk.startingDate)}
+          endingDate={new Date(sk.endingDate)}
+          location={sk.location}
+          locale={locale}
+        ></Post>
+      )}
+    </>
   );
 }
 

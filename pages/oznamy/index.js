@@ -8,14 +8,15 @@ import { useEffect, useState } from "react";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getServerSideProps({ query: { page } }) {
+export async function getServerSideProps({ query: { page }, locale }) {
   const noticeResponse = await fetcher(
-    `${URL}/notices?populate=*&sort=date%3Adesc&pagination[page]=${
+    `${URL}/notices?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=4`
   );
   return {
     props: {
+      locale: locale,
       notices: noticeResponse,
       pagination: noticeResponse.meta.pagination,
     },
@@ -119,7 +120,7 @@ const StyledButtonWrapper = styled.div`
   gap: 2rem;
 `;
 
-function Index({ notices, pagination }) {
+function Index({ notices, pagination, locale }) {
   const router = useRouter();
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
@@ -128,7 +129,7 @@ function Index({ notices, pagination }) {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/notices?sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/notices?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
@@ -167,7 +168,11 @@ function Index({ notices, pagination }) {
                   key={id}
                   date={new Date(attributes.date)}
                   title={attributes.title}
-                  slug={attributes.slug}
+                  slug={
+                    locale === "en"
+                      ? attributes.localizations.data[0].attributes.slug
+                      : attributes.slug
+                  }
                   content={attributes.content}
                 ></NoticeShowAllPreview>
               );

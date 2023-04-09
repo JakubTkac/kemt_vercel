@@ -4,19 +4,16 @@ import Link from "next/link";
 const Navbar = () => {
   const router = useRouter();
 
-  const onChangeLanguage = (lang) => (e) => {
-    router.push(router.asPath, undefined, { locale: lang, shallow: false })
-      .reload;
+  const onChangeLanguage = (lang) => async (e) => {
+    await router.push(router.asPath, undefined, {
+      locale: lang,
+      shallow: false,
+    });
+    router.reload();
   };
 
   return (
     <>
-      <h1>Change Language ...</h1>
-      {router.locales.map((locale) => (
-        <Link key={locale} href="/" locale={locale}>
-          {locale}
-        </Link>
-      ))}
       <h1>Change Language ...</h1>
       <div>
         <button onClick={onChangeLanguage("sk")}>Slovak</button>
