@@ -233,7 +233,11 @@ const Minule = ({ events, pagination, locale }) => {
                 <EventPreview
                   key={id}
                   heading={attributes.title}
-                  slug={attributes.slug}
+                  slug={
+                    locale === "en"
+                      ? attributes.localizations.data[0].attributes.slug
+                      : attributes.slug
+                  }
                   startingDate={new Date(attributes.startingDate)}
                   endingDate={attributes.endingDate}
                   content={attributes.content}
