@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
-const pagesize = 6;
+const pagesize = 2;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const eventsResponse = await fetcher(

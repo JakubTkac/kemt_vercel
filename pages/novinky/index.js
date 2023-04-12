@@ -181,7 +181,7 @@ const Index = ({ news, pagination, locale }) => {
                       : attributes.slug
                   }
                   content={attributes.content}
-                  img={attributes.image.data.attributes}
+                  img={attributes.image.data?.attributes}
                 ></NewsShowAllPreview>
               );
             })}
