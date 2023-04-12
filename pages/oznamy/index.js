@@ -122,6 +122,7 @@ const StyledButtonWrapper = styled.div`
 
 function Index({ notices, pagination, locale }) {
   const router = useRouter();
+  const currentLocale = router.locale;
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(notices);
@@ -134,7 +135,7 @@ function Index({ notices, pagination, locale }) {
       setPageItems(tempPageItems);
     };
     fetchPageItems();
-  }, [pageNum]);
+  }, [pageNum, currentLocale]);
 
   const totalPages = pagination.pageCount;
 

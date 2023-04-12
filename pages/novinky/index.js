@@ -130,6 +130,7 @@ const StyledButtonWrapper = styled.div`
 const Index = ({ news, pagination, locale }) => {
   const router = useRouter();
   const { page } = router.query;
+  const currentLocale = router.locale;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(news);
 
@@ -141,7 +142,7 @@ const Index = ({ news, pagination, locale }) => {
       setPageItems(tempPageItems);
     };
     fetchPageItems();
-  }, [pageNum]);
+  }, [pageNum, currentLocale]);
 
   const totalPages = pagination.pageCount;
 
@@ -177,7 +178,7 @@ const Index = ({ news, pagination, locale }) => {
                   title={attributes.title}
                   slug={
                     locale === "en"
-                      ? attributes.localizations.data[0].attributes.slug
+                      ? attributes.localizations.data[0]?.attributes.slug
                       : attributes.slug
                   }
                   content={attributes.content}

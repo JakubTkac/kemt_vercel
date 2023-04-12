@@ -172,6 +172,7 @@ const StyledSelectButton = styled.button`
 const Minule = ({ events, pagination, locale }) => {
   const router = useRouter();
   const { page } = router.query;
+  const currentLocale = router.locale;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(events);
 
@@ -183,7 +184,7 @@ const Minule = ({ events, pagination, locale }) => {
       setPageItems(tempPageItems);
     };
     fetchPageItems();
-  }, [pageNum]);
+  }, [pageNum, currentLocale]);
 
   const totalPages = pagination.pageCount;
 
