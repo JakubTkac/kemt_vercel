@@ -176,7 +176,7 @@ function Index({ notices, pagination, locale }) {
                   title={attributes.title}
                   slug={
                     locale === "en"
-                      ? attributes.localizations.data[0].attributes.slug
+                      ? attributes.localizations.data[0]?.attributes.slug
                       : attributes.slug
                   }
                   content={attributes.content}
