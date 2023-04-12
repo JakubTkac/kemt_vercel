@@ -5,6 +5,9 @@ import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import NoticeShowAllPreview from "../../components/Notices/NoticeShowAllPreview";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Capitalize } from "../../lib/typography";
+import { useTranslation } from "next-i18next";
 
 const URL = process.env.STRAPI_URL;
 
@@ -19,6 +22,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       notices: noticeResponse,
       pagination: noticeResponse.meta.pagination,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
@@ -126,6 +130,7 @@ function Index({ notices, pagination, locale }) {
   const { page } = router.query;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(notices);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const fetchPageItems = async () => {
@@ -161,7 +166,7 @@ function Index({ notices, pagination, locale }) {
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
-          <StyledHeadingH1>Oznamy</StyledHeadingH1>
+          <StyledHeadingH1>{Capitalize(t("notices"))}</StyledHeadingH1>
           <StyledNoticesWrapper>
             {pageItems.data.map(({ id, attributes }) => {
               return (
@@ -184,13 +189,13 @@ function Index({ notices, pagination, locale }) {
               onClick={handlePrevClick}
               disabled={pageNum === 1}
             >
-              Predosla
+              {t("previous")}
             </StyledPaginationButton>
             <StyledPaginationButton
               onClick={handleNextClick}
               disabled={pageNum === totalPages}
             >
-              Nasledujuca
+              {t("next")}
             </StyledPaginationButton>
           </StyledButtonWrapper>
         </StyledContainer>

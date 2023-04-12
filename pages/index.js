@@ -9,6 +9,8 @@ import { SCREENS, WIDTH } from "../Theme";
 import Hero from "../components/Hero/Hero";
 import News from "../components/News/News";
 import Events from "../components/Events/Events";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
@@ -29,6 +31,7 @@ export async function getServerSideProps({ locale }) {
       news: newsResponse,
       notices: noticeResponse,
       events: eventsResponse,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
@@ -68,14 +71,15 @@ const StyledNewsEventsWrapper = styled.div`
   }
 `;
 export default function Home({ notices, news, events, locale }) {
+  const { t } = useTranslation("common");
   return (
     <LandingContainer>
       <StyledFlex>
         <Hero />
-        <Notices data={notices} heading="oznamy" locale={locale} />
+        <Notices data={notices} heading={t("notices")} locale={locale} />
         <StyledNewsEventsWrapper>
-          <News data={news} heading="novinky" locale={locale} />
-          <Events data={events} heading="udalosti" locale={locale}></Events>
+          <News data={news} heading={t("news")} locale={locale} />
+          <Events data={events} heading={t("events")} locale={locale}></Events>
         </StyledNewsEventsWrapper>
       </StyledFlex>
     </LandingContainer>

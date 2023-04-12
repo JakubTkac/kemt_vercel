@@ -6,6 +6,7 @@ import { Capitalize } from "../../lib/typography";
 import StyledShowAllButton from "../Styled/StyledShowAllButton";
 import StyledHeadingH1 from "../Styled/StyledHeadingH1";
 import useBetterMediaQuery from "../../utils/useBetterMediaQuery";
+import { useTranslation } from "next-i18next";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ const noticePreviewCount = (data, sliceCount, locale) => {
 };
 
 const Notices = ({ data, heading, locale }) => {
+  const { t } = useTranslation("common");
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
     <StyledContainer>
@@ -68,8 +70,10 @@ const Notices = ({ data, heading, locale }) => {
           ? noticePreviewCount(data, 9, locale)
           : noticePreviewCount(data, 3, locale)}
       </StyledGridWrapper>
-      <Link href={heading}>
-        <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>
+      <Link href="/oznamy">
+        <StyledShowAllButton>
+          {t("showAll")} {heading}
+        </StyledShowAllButton>
       </Link>
     </StyledContainer>
   );

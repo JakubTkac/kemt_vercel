@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
+import { useTranslation } from "next-i18next";
 
 const StyledHeroContainer = styled.div`
   overflow: hidden;
@@ -51,6 +52,7 @@ const StyledHeroContent = styled.div`
     font-weight: 500;
     //background-color: ${COLOR.PRI.DEFAULT};
     color: ${COLOR.BLACK};
+    background-color: ${COLOR.PRI[300]};
     border: ${COLOR.BLACK} 3px solid;
     &:hover {
       //background-color: rgba(255,255,255, 0.4)};
@@ -84,23 +86,24 @@ const StyledHeroContent = styled.div`
 `;
 
 const Hero = () => {
+  const { t } = useTranslation("common");
   return (
     <StyledHeroContainer>
       <StyledHeroContent>
         <h2>
-          <span>Katedra elektroniky </span>
-          <span>a multimediálnych </span>
-          <span>telekomunikácií</span>
+          <span>{t("kemt1")}</span>
+          <span>{t("kemt2")}</span>
+          <span>{t("kemt3")}</span>
         </h2>
         <div>
           <button>
             <a href="https://eprihlaska.tuke.sk/eprihlaska/pages/odosielatel/rozhranie_odosielatela.mais">
-              E-Prihláška
+              {t("e-application")}
             </a>
           </button>
           <button>
             <a href="https://www.fei.tuke.sk/sk/studium/pre-uchadzacov/podmienky-prijatia">
-              Podmienky Prijatia
+              {t("conditions")}
             </a>
           </button>
         </div>

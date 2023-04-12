@@ -5,6 +5,7 @@ import NewsPreview from "./NewsPreview";
 import Link from "next/link";
 import StyledShowAllButton from "../Styled/StyledShowAllButton";
 import StyledHeadingH1 from "../Styled/StyledHeadingH1";
+import { useTranslation } from "next-i18next";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const StyledNewsWrapper = styled.ul`
   }
 `;
 const News = ({ heading, data, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
@@ -57,7 +59,9 @@ const News = ({ heading, data, locale }) => {
         })}
       </StyledNewsWrapper>
       <Link href="/novinky">
-        <StyledShowAllButton>Zobraziť všetky {heading}</StyledShowAllButton>
+        <StyledShowAllButton>
+          {t("showAll")} {heading}
+        </StyledShowAllButton>
       </Link>
     </StyledContainer>
   );

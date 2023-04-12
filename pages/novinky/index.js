@@ -5,6 +5,9 @@ import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import NewsShowAllPreview from "../../components/News/NewsShowAllPreview";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "next-i18next";
+import { Capitalize } from "../../lib/typography";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const URL = process.env.STRAPI_URL;
 export async function getServerSideProps({ query: { page }, locale }) {
@@ -18,6 +21,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       news: newsResponse,
       pagination: newsResponse.meta.pagination,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
@@ -133,6 +137,7 @@ const Index = ({ news, pagination, locale }) => {
   const currentLocale = router.locale;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(news);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const fetchPageItems = async () => {
@@ -168,7 +173,7 @@ const Index = ({ news, pagination, locale }) => {
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
-          <StyledHeadingH1>Novinky</StyledHeadingH1>
+          <StyledHeadingH1>{Capitalize(t("news"))}</StyledHeadingH1>
           <StyledNewsWrapper>
             {pageItems.data.map(({ id, attributes }) => {
               return (
@@ -192,13 +197,13 @@ const Index = ({ news, pagination, locale }) => {
               onClick={handlePrevClick}
               disabled={pageNum === 1}
             >
-              Predosla
+              {t("previous")}
             </StyledPaginationButton>
             <StyledPaginationButton
               onClick={handleNextClick}
               disabled={pageNum === totalPages}
             >
-              Nasledujuca
+              {t("next")}
             </StyledPaginationButton>
           </StyledButtonWrapper>
         </StyledContainer>

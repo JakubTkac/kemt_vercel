@@ -5,6 +5,7 @@ import { COLOR, SCREENS } from "../../Theme";
 import StyledShowAllButton from "../Styled/StyledShowAllButton";
 import EventPreview from "./EventPreview";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const StyledEventsWrapper = styled.ul`
   }
 `;
 const Events = ({ data, heading, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <StyledContainer>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
@@ -59,7 +61,9 @@ const Events = ({ data, heading, locale }) => {
         })}
       </StyledEventsWrapper>
       <Link href="/udalosti">
-        <StyledShowAllButton>Všetký Udalosti</StyledShowAllButton>
+        <StyledShowAllButton>
+          {t("showAll")} {heading}
+        </StyledShowAllButton>
       </Link>
     </StyledContainer>
   );

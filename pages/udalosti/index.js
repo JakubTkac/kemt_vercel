@@ -6,6 +6,9 @@ import EventPreview from "../../components/Events/EventPreview";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Capitalize } from "../../lib/typography";
+import { useTranslation } from "next-i18next";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
@@ -22,6 +25,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       events: eventsResponse,
       pagination: eventsResponse.meta.pagination,
       locale: locale,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
@@ -175,6 +179,7 @@ const Index = ({ events, pagination, locale }) => {
   const currentLocale = router.locale;
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(events);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const fetchPageItems = async () => {
@@ -217,15 +222,17 @@ const Index = ({ events, pagination, locale }) => {
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
-          <StyledHeadingH1>Udalosti</StyledHeadingH1>
+          <StyledHeadingH1>{Capitalize(t("events"))}</StyledHeadingH1>
           <StyledButtonSelectWrapper>
             <Link href={"/udalosti"}>
               <StyledSelectButton onClick={handlePageReset} selected={true}>
-                Nadchadzajuce
+                {t("coming")}
               </StyledSelectButton>
             </Link>
             <Link href={"/udalosti/minule"}>
-              <StyledSelectButton selected={false}>Predosle</StyledSelectButton>
+              <StyledSelectButton selected={false}>
+                {t("past")}
+              </StyledSelectButton>
             </Link>
           </StyledButtonSelectWrapper>
           <StyledListWrapper>
@@ -251,13 +258,13 @@ const Index = ({ events, pagination, locale }) => {
               onClick={handlePrevClick}
               disabled={pageNum === 1}
             >
-              Predosla
+              {t("previous")}
             </StyledPaginationButton>
             <StyledPaginationButton
               onClick={handleNextClick}
               disabled={pageNum === totalPages}
             >
-              Nasledujuca
+              {t("next")}
             </StyledPaginationButton>
           </StyledButtonWrapper>
         </StyledContainer>

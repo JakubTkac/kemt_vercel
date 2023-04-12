@@ -3,7 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import GlobalStyle from "../config/global";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Wrapper from "../components/Styled/Wrapper";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,4 +18,5 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
+// export default MyApp;
