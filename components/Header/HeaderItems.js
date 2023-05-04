@@ -63,7 +63,7 @@ export const studiumDropdownItems = [
   {
     id: 1,
     title: "Študijné programy",
-    path: "../",
+    path: "/studijne-programy",
   },
   {
     id: 2,
@@ -121,7 +121,6 @@ export const headerItems = [
     id: 2,
     title: "Personál",
     path: "../organizacia",
-    dropdownItems: personalDropdownItems,
   },
   {
     id: 3,

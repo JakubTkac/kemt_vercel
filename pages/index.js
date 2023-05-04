@@ -1,10 +1,6 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { fetcher } from "../lib/api";
 import styled from "styled-components";
 import Notices from "../components/Notices/Notices";
-import { Flex } from "@chakra-ui/react";
 import { SCREENS, WIDTH } from "../Theme";
 import Hero from "../components/Hero/Hero";
 import News from "../components/News/News";
