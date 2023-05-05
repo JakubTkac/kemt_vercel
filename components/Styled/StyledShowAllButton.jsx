@@ -15,13 +15,13 @@ const StyledShowAllButton = styled.button`
   min-height: ${SPACE.XL};
   border: ${COLOR.SEC[600]} 1px solid;
   @media (max-width: ${SCREENS.XL}) {
-    height: ${SPACE.L};
+    min-height: ${SPACE.L};
   }
   @media (max-width: ${SCREENS.MD}) {
-    height: ${SPACE.XL};
+    min-height: ${SPACE.XL};
   }
   @media (max-width: ${SCREENS.XS}) {
-    height: ${SPACE.L};
+    min-height: ${SPACE.L};
   }
   &:hover {
     background-color: ${COLOR.SEC[300]};
