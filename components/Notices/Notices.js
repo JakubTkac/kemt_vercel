@@ -63,7 +63,7 @@ const Notices = ({ data, heading, locale }) => {
   const { t } = useTranslation("common");
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
-    <StyledContainer>
+    <>
       <StyledHeadingH1>{Capitalize(heading)}</StyledHeadingH1>
       <StyledGridWrapper>
         {isLargerThan768
@@ -75,7 +75,7 @@ const Notices = ({ data, heading, locale }) => {
           {t("showAll")} {heading}
         </StyledShowAllButton>
       </Link>
-    </StyledContainer>
+    </>
   );
 };
 

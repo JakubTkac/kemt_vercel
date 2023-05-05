@@ -77,6 +77,8 @@ const StyledIconTextWrapper = styled.div`
 const StyledDescriptionContainer = styled.div`
   width: 66%;
   background-color: ${COLOR.WHITE};
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
   border: 1px ${COLOR.PLATINUM[600]} solid;
   margin-top: 1rem;
   display: flex;

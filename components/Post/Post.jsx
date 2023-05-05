@@ -10,50 +10,6 @@ import TableOfContents from "./TableOfContents";
 
 const URL = process.env.NEXT_PUBLIC_IMG_URL;
 
-const LandingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 85.8vh;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 ${WIDTH.XXS};
-  height: auto;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XXXXXS};
-    align-items: start;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXXXS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 0 ${WIDTH.MOBILE};
-    flex-direction: column;
-  }
-`;
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  width: 100%;
-  @media (max-width: ${SCREENS.XL}) {
-    padding: 0 1.5rem;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-  }
-  @media (max-width: ${SCREENS.MD}) {
-  }
-`;
-
 const StyledContent = styled.div`
   width: 100%;
   padding: 2rem;
@@ -284,33 +240,31 @@ const Post = ({
   startingDate,
 }) => {
   return (
-    <LandingContainer>
-      <StyledFlex>
-        {startingDate ? (
-          <EventBanner
-            startingDate={startingDate}
-            title={title}
-            endingDate={endingDate}
-            location={location}
-          ></EventBanner>
-        ) : (
-          <NoticeBanner date={date} title={title} />
+    <>
+      {startingDate ? (
+        <EventBanner
+          startingDate={startingDate}
+          title={title}
+          endingDate={endingDate}
+          location={location}
+        ></EventBanner>
+      ) : (
+        <NoticeBanner date={date} title={title} />
+      )}
+      <>
+        {img && (
+          <StyledAspectRatio ratio={16 / 9}>
+            <Img src={`${URL}${img}`} alt={img}></Img>
+          </StyledAspectRatio>
         )}
-        <StyledContainer>
-          {img && (
-            <StyledAspectRatio ratio={16 / 9}>
-              <Img src={`${URL}${img}`} alt={img}></Img>
-            </StyledAspectRatio>
-          )}
-          <StyledContent>
-            <TableOfContents markdownText={content} locale={locale} />
-            <ReactMarkdown components={MarkdownComponents}>
-              {content}
-            </ReactMarkdown>
-          </StyledContent>
-        </StyledContainer>
-      </StyledFlex>
-    </LandingContainer>
+        <StyledContent>
+          <TableOfContents markdownText={content} locale={locale} />
+          <ReactMarkdown components={MarkdownComponents}>
+            {content}
+          </ReactMarkdown>
+        </StyledContent>
+      </>
+    </>
   );
 };
 

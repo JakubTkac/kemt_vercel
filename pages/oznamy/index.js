@@ -26,48 +26,6 @@ export async function getServerSideProps({ query: { page }, locale }) {
     },
   };
 }
-const LandingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 85.8vh;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 ${WIDTH.XXS};
-  height: auto;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XXXXXS};
-    align-items: start;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXXXS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 0 ${WIDTH.MOBILE};
-    flex-direction: column;
-  }
-`;
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 2rem;
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  width: 100%;
-  @media (max-width: ${SCREENS.XL}) {
-    padding: 0 1.5rem;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-  }
-  @media (max-width: ${SCREENS.MD}) {
-  }
-`;
 
 const StyledNoticesWrapper = styled.ul`
   display: flex;
@@ -163,44 +121,40 @@ function Index({ notices, pagination, locale }) {
   };
 
   return (
-    <LandingContainer>
-      <StyledFlex>
-        <StyledContainer>
-          <StyledHeadingH1>{Capitalize(t("notices"))}</StyledHeadingH1>
-          <StyledNoticesWrapper>
-            {pageItems.data.map(({ id, attributes }) => {
-              return (
-                <NoticeShowAllPreview
-                  key={id}
-                  date={new Date(attributes.date)}
-                  title={attributes.title}
-                  slug={
-                    locale === "en"
-                      ? attributes.localizations.data[0]?.attributes.slug
-                      : attributes.slug
-                  }
-                  content={attributes.content}
-                ></NoticeShowAllPreview>
-              );
-            })}
-          </StyledNoticesWrapper>
-          <StyledButtonWrapper>
-            <StyledPaginationButton
-              onClick={handlePrevClick}
-              disabled={pageNum === 1}
-            >
-              {t("previous")}
-            </StyledPaginationButton>
-            <StyledPaginationButton
-              onClick={handleNextClick}
-              disabled={pageNum === totalPages}
-            >
-              {t("next")}
-            </StyledPaginationButton>
-          </StyledButtonWrapper>
-        </StyledContainer>
-      </StyledFlex>
-    </LandingContainer>
+    <>
+      <StyledHeadingH1>{Capitalize(t("notices"))}</StyledHeadingH1>
+      <StyledNoticesWrapper>
+        {pageItems.data.map(({ id, attributes }) => {
+          return (
+            <NoticeShowAllPreview
+              key={id}
+              date={new Date(attributes.date)}
+              title={attributes.title}
+              slug={
+                locale === "en"
+                  ? attributes.localizations.data[0]?.attributes.slug
+                  : attributes.slug
+              }
+              content={attributes.content}
+            ></NoticeShowAllPreview>
+          );
+        })}
+      </StyledNoticesWrapper>
+      <StyledButtonWrapper>
+        <StyledPaginationButton
+          onClick={handlePrevClick}
+          disabled={pageNum === 1}
+        >
+          {t("previous")}
+        </StyledPaginationButton>
+        <StyledPaginationButton
+          onClick={handleNextClick}
+          disabled={pageNum === totalPages}
+        >
+          {t("next")}
+        </StyledPaginationButton>
+      </StyledButtonWrapper>
+    </>
   );
 }
 

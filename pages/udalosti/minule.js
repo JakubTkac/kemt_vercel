@@ -30,49 +30,6 @@ export async function getServerSideProps({ query: { page }, locale }) {
   };
 }
 
-const LandingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 85.8vh;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 ${WIDTH.XXS};
-  height: auto;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XXXXXS};
-    align-items: start;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXXXS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 0 ${WIDTH.MOBILE};
-    flex-direction: column;
-  }
-`;
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 2rem;
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  width: 100%;
-  @media (max-width: ${SCREENS.XL}) {
-    padding: 0 1.5rem;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-  }
-  @media (max-width: ${SCREENS.MD}) {
-  }
-`;
-
 const StyledPaginationButton = styled.button`
   width: 16rem;
   margin-bottom: 2rem;
@@ -219,55 +176,51 @@ const Minule = ({ events, pagination, locale }) => {
   };
 
   return (
-    <LandingContainer>
-      <StyledFlex>
-        <StyledContainer>
-          <StyledHeadingH1>{Capitalize(t("events"))}</StyledHeadingH1>
-          <StyledButtonSelectWrapper>
-            <Link href={"/udalosti"}>
-              <StyledSelectButton>{t("coming")}</StyledSelectButton>
-            </Link>
-            <Link href={"/udalosti/minule"}>
-              <StyledSelectButton onClick={handlePageReset} selected={true}>
-                {t("past")}
-              </StyledSelectButton>
-            </Link>
-          </StyledButtonSelectWrapper>
-          <StyledListWrapper>
-            {pageItems.data.map(({ attributes, id }) => {
-              return (
-                <EventPreview
-                  key={id}
-                  heading={attributes.title}
-                  slug={
-                    locale === "en"
-                      ? attributes.localizations.data[0].attributes.slug
-                      : attributes.slug
-                  }
-                  startingDate={new Date(attributes.startingDate)}
-                  endingDate={attributes.endingDate}
-                  content={attributes.content}
-                ></EventPreview>
-              );
-            })}
-          </StyledListWrapper>
-          <StyledButtonWrapper>
-            <StyledPaginationButton
-              onClick={handlePrevClick}
-              disabled={pageNum === 1}
-            >
-              {t("previous")}
-            </StyledPaginationButton>
-            <StyledPaginationButton
-              onClick={handleNextClick}
-              disabled={pageNum === totalPages}
-            >
-              {t("next")}
-            </StyledPaginationButton>
-          </StyledButtonWrapper>
-        </StyledContainer>
-      </StyledFlex>
-    </LandingContainer>
+    <>
+      <StyledHeadingH1>{Capitalize(t("events"))}</StyledHeadingH1>
+      <StyledButtonSelectWrapper>
+        <Link href={"/udalosti"}>
+          <StyledSelectButton>{t("coming")}</StyledSelectButton>
+        </Link>
+        <Link href={"/udalosti/minule"}>
+          <StyledSelectButton onClick={handlePageReset} selected={true}>
+            {t("past")}
+          </StyledSelectButton>
+        </Link>
+      </StyledButtonSelectWrapper>
+      <StyledListWrapper>
+        {pageItems.data.map(({ attributes, id }) => {
+          return (
+            <EventPreview
+              key={id}
+              heading={attributes.title}
+              slug={
+                locale === "en"
+                  ? attributes.localizations.data[0].attributes.slug
+                  : attributes.slug
+              }
+              startingDate={new Date(attributes.startingDate)}
+              endingDate={attributes.endingDate}
+              content={attributes.content}
+            ></EventPreview>
+          );
+        })}
+      </StyledListWrapper>
+      <StyledButtonWrapper>
+        <StyledPaginationButton
+          onClick={handlePrevClick}
+          disabled={pageNum === 1}
+        >
+          {t("previous")}
+        </StyledPaginationButton>
+        <StyledPaginationButton
+          onClick={handleNextClick}
+          disabled={pageNum === totalPages}
+        >
+          {t("next")}
+        </StyledPaginationButton>
+      </StyledButtonWrapper>
+    </>
   );
 };
 

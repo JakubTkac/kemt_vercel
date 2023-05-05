@@ -18,7 +18,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
   //   `${URL}/study-programmes?populate[typeOfStudies][populate]=*`
   // );
   const typeOfStudiesResponse = await fetcher(
-    `${URL}/type-of-studies?populate=*`
+    `${URL}/type-of-studies?populate[studyProgrammes][populate]=*`
   );
   return {
     props: {
@@ -126,6 +126,7 @@ export default function StudDegrees({ locale, typeOfStudies }) {
     width: 100%;
   `;
 
+  console.log(typeOfStudies);
   return (
     <LandingContainer>
       <StyledFlex>

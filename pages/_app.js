@@ -4,6 +4,7 @@ import GlobalStyle from "../config/global";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { appWithTranslation } from "next-i18next";
+import Wrapper from "../components/Styled/Wrapper";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyle />
       <ChakraProvider>
         <Header />
-        <Component {...pageProps} />
+        <Wrapper>
+          <Component {...pageProps} />
+        </Wrapper>
         <Footer />
       </ChakraProvider>
     </>

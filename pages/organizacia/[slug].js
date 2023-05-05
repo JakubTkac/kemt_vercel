@@ -32,52 +32,6 @@ export async function getStaticProps({ params, locale }) {
   };
 }
 
-const LandingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 85.8vh;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 ${WIDTH.XXS};
-  height: auto;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XXXXXS};
-    align-items: start;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXXXS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 0 ${WIDTH.MOBILE};
-    flex-direction: column;
-  }
-`;
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 2rem;
-  background-color: ${COLOR.PLATINUM.DEFAULT};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  width: 100%;
-  @media (max-width: ${SCREENS.XL}) {
-    padding: 0 1.5rem;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-  }
-  @media (max-width: ${SCREENS.MD}) {
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    padding: 0;
-  }
-`;
-
 const StyledRoot = styled(Tabs.Root)`
   width: 100%;
 `;
@@ -141,83 +95,70 @@ function Content({ employees, locale }) {
   const { t } = useTranslation("employees");
 
   return (
-    <LandingContainer>
-      <StyledFlex>
-        <StyledContainer>
-          <Employee
-            employee={employees.data.attributes}
-            locale={locale}
-          ></Employee>
-          <StyledRoot defaultValue="contact" orientation="vertical">
-            <StyledList aria-label="tabs example">
-              <StyledTabTrigger value="contact">
-                {t("contact")}
-              </StyledTabTrigger>
-              {employees.data.attributes.publications.data.length > 0 && (
-                <StyledTabTrigger value="publications">
-                  {t("publications")}
-                </StyledTabTrigger>
-              )}
-              {employees.data.attributes.projects.data.length > 0 && (
-                <StyledTabTrigger value="projects">
-                  {t("projects")}
-                </StyledTabTrigger>
-              )}
-              {employees.data.attributes.subjects.data.length > 0 && (
-                <StyledTabTrigger value="subjects">
-                  {t("subjects")}
-                </StyledTabTrigger>
-              )}
-              {employees.data.attributes.awards.data.length > 0 && (
-                <StyledTabTrigger value="awards">
-                  {t("awards")}
-                </StyledTabTrigger>
-              )}
-              {employees.data.attributes.patents.data.length > 0 && (
-                <StyledTabTrigger value="patents">
-                  {t("patents")}
-                </StyledTabTrigger>
-              )}
-            </StyledList>
-            <Tabs.Content value="contact">
-              <Contact locale={locale} employee={employees}></Contact>
-            </Tabs.Content>
-            <Tabs.Content value="publications">
-              {employees.data.attributes.publications.data.length > 0 &&
-                employees.data.attributes.publications.data.map((item) => {
-                  return (
-                    <Publication key={item.id} publication={item}></Publication>
-                  );
-                })}
-            </Tabs.Content>
-            <Tabs.Content value="projects">
-              {employees.data.attributes.projects.data.length > 0 &&
-                employees.data.attributes.projects.data.map((item) => {
-                  return <div key={item.id}>{item.attributes.title}</div>;
-                })}
-            </Tabs.Content>
-            <Tabs.Content value="subjects">
-              {employees.data.attributes.subjects.data.length > 0 &&
-                employees.data.attributes.subjects.data.map((item) => {
-                  return <div key={item.id}>{item.attributes.shortTitle}</div>;
-                })}
-            </Tabs.Content>
-            <Tabs.Content value="awards">
-              {employees.data.attributes.awards.data.length > 0 &&
-                employees.data.attributes.awards.data.map((item) => {
-                  return <div key={item.id}>{item.attributes.title}</div>;
-                })}
-            </Tabs.Content>
-            <Tabs.Content value="patents">
-              {employees.data.attributes.patents.data.length > 0 &&
-                employees.data.attributes.patents.data.map((item) => {
-                  return <div key={item.id}>{item.attributes.description}</div>;
-                })}
-            </Tabs.Content>
-          </StyledRoot>
-        </StyledContainer>
-      </StyledFlex>
-    </LandingContainer>
+    <>
+      <Employee employee={employees.data.attributes} locale={locale}></Employee>
+      <StyledRoot defaultValue="contact" orientation="vertical">
+        <StyledList aria-label="tabs example">
+          <StyledTabTrigger value="contact">{t("contact")}</StyledTabTrigger>
+          {employees.data.attributes.publications.data.length > 0 && (
+            <StyledTabTrigger value="publications">
+              {t("publications")}
+            </StyledTabTrigger>
+          )}
+          {employees.data.attributes.projects.data.length > 0 && (
+            <StyledTabTrigger value="projects">
+              {t("projects")}
+            </StyledTabTrigger>
+          )}
+          {employees.data.attributes.subjects.data.length > 0 && (
+            <StyledTabTrigger value="subjects">
+              {t("subjects")}
+            </StyledTabTrigger>
+          )}
+          {employees.data.attributes.awards.data.length > 0 && (
+            <StyledTabTrigger value="awards">{t("awards")}</StyledTabTrigger>
+          )}
+          {employees.data.attributes.patents.data.length > 0 && (
+            <StyledTabTrigger value="patents">{t("patents")}</StyledTabTrigger>
+          )}
+        </StyledList>
+        <Tabs.Content value="contact">
+          <Contact locale={locale} employee={employees}></Contact>
+        </Tabs.Content>
+        <Tabs.Content value="publications">
+          {employees.data.attributes.publications.data.length > 0 &&
+            employees.data.attributes.publications.data.map((item) => {
+              return (
+                <Publication key={item.id} publication={item}></Publication>
+              );
+            })}
+        </Tabs.Content>
+        <Tabs.Content value="projects">
+          {employees.data.attributes.projects.data.length > 0 &&
+            employees.data.attributes.projects.data.map((item) => {
+              return <div key={item.id}>{item.attributes.title}</div>;
+            })}
+        </Tabs.Content>
+        <Tabs.Content value="subjects">
+          {employees.data.attributes.subjects.data.length > 0 &&
+            employees.data.attributes.subjects.data.map((item) => {
+              return <div key={item.id}>{item.attributes.shortTitle}</div>;
+            })}
+        </Tabs.Content>
+        <Tabs.Content value="awards">
+          {employees.data.attributes.awards.data.length > 0 &&
+            employees.data.attributes.awards.data.map((item) => {
+              return <div key={item.id}>{item.attributes.title}</div>;
+            })}
+        </Tabs.Content>
+        <Tabs.Content value="patents">
+          {employees.data.attributes.patents.data.length > 0 &&
+            employees.data.attributes.patents.data.map((item) => {
+              return <div key={item.id}>{item.attributes.description}</div>;
+            })}
+        </Tabs.Content>
+      </StyledRoot>
+    </>
   );
 }
 

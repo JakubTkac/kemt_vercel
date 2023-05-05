@@ -32,32 +32,6 @@ export async function getServerSideProps({ locale }) {
   };
 }
 
-const LandingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 85.8vh;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 ${WIDTH.XXS};
-  height: auto;
-  @media (max-width: ${SCREENS.XL}) {
-    margin: 0 ${WIDTH.XXXXXS};
-    align-items: start;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    margin: 0 ${WIDTH.XXXXXXS};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    margin: 0 ${WIDTH.MOBILE};
-    flex-direction: column;
-  }
-`;
-
 const StyledNewsEventsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -69,15 +43,13 @@ const StyledNewsEventsWrapper = styled.div`
 export default function Home({ notices, news, events, locale }) {
   const { t } = useTranslation("common");
   return (
-    <LandingContainer>
-      <StyledFlex>
-        <Hero />
-        <Notices data={notices} heading={t("notices")} locale={locale} />
-        <StyledNewsEventsWrapper>
-          <News data={news} heading={t("news")} locale={locale} />
-          <Events data={events} heading={t("events")} locale={locale}></Events>
-        </StyledNewsEventsWrapper>
-      </StyledFlex>
-    </LandingContainer>
+    <>
+      <Hero />
+      <Notices data={notices} heading={t("notices")} locale={locale} />
+      <StyledNewsEventsWrapper>
+        <News data={news} heading={t("news")} locale={locale} />
+        <Events data={events} heading={t("events")} locale={locale}></Events>
+      </StyledNewsEventsWrapper>
+    </>
   );
 }
