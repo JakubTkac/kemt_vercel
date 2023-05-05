@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import Link from "next/link";
 import { FiChevronDown } from "react-icons/fi";
+import StyledHeadingH1 from "../Styled/StyledHeadingH1";
 
 const URL = process.env.STRAPI_URL;
 
@@ -80,55 +81,58 @@ const Publication = ({ publication }) => {
   );
 
   return (
-    <StyledContainer>
-      <StyledTitle>
-        <h2>{title}</h2>
-        <FiChevronDown></FiChevronDown>
-      </StyledTitle>
-      <StyledContentContainer>
-        <span>Autori: </span>
-        <div>
-          {authors?.data.map((author) => {
-            return (
-              <Link
-                key={author.id}
-                href={`/organizacia/${author.attributes.slug}`}
-              >
-                <a>
-                  <p>{author.attributes.name}</p>
-                </a>
-              </Link>
-            );
-          })}
-        </div>
-      </StyledContentContainer>
-      <StyledContentContainer>
-        <span>Rok: </span>
-        <p>{year}</p>
-      </StyledContentContainer>
-      <StyledContentContainer>
-        <span>Vydavatel: </span>
-        <p>{publisher}</p>
-      </StyledContentContainer>
-      {anotation && (
+    <>
+      <StyledHeadingH1>Publikacie</StyledHeadingH1>
+      <StyledContainer>
+        <StyledTitle>
+          <h2>{title}</h2>
+          <FiChevronDown></FiChevronDown>
+        </StyledTitle>
         <StyledContentContainer>
-          <span>Anotacia: </span>
-          <p>{anotation}</p>
+          <span>Autori: </span>
+          <div>
+            {authors?.data.map((author) => {
+              return (
+                <Link
+                  key={author.id}
+                  href={`/organizacia/${author.attributes.slug}`}
+                >
+                  <a>
+                    <p>{author.attributes.name}</p>
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
         </StyledContentContainer>
-      )}
-      {isbn && (
         <StyledContentContainer>
-          <span>ISBN: </span>
-          <p>{isbn}</p>
+          <span>Rok: </span>
+          <p>{year}</p>
         </StyledContentContainer>
-      )}
-      {doi && (
         <StyledContentContainer>
-          <span>DOI: </span>
-          <p>{doi}</p>
+          <span>Vydavatel: </span>
+          <p>{publisher}</p>
         </StyledContentContainer>
-      )}
-    </StyledContainer>
+        {anotation && (
+          <StyledContentContainer>
+            <span>Anotacia: </span>
+            <p>{anotation}</p>
+          </StyledContentContainer>
+        )}
+        {isbn && (
+          <StyledContentContainer>
+            <span>ISBN: </span>
+            <p>{isbn}</p>
+          </StyledContentContainer>
+        )}
+        {doi && (
+          <StyledContentContainer>
+            <span>DOI: </span>
+            <p>{doi}</p>
+          </StyledContentContainer>
+        )}
+      </StyledContainer>
+    </>
   );
 };
 
