@@ -86,6 +86,7 @@ const StyledList = styled(Tabs.List)`
   font-size: ${FONT_SIZE.L};
   gap: 0.5rem;
   overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const StyledTabTrigger = styled(Tabs.Trigger)`
@@ -123,12 +124,21 @@ const StyledTabTrigger = styled(Tabs.Trigger)`
   &[data-state="active"]:hover:before {
     border-color: ${COLOR.PRI[200]} rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   }
+  @media (max-width: ${SCREENS.LG}) {
+    min-height: ${HEIGHT.XS};
+    font-size: ${FONT_SIZE.M};
+  }
+  @media (max-width: ${SCREENS.SM}) {
+    min-height: ${HEIGHT.XXS};
+    font-size: ${FONT_SIZE.S};
+  }
 `;
 
 function Content({ employees, locale }) {
-  console.log(employees);
+  console.log(employees.data.attributes.awards.data);
   const { t } = useTranslation("employees");
 
+  console.log(": ", employees);
   return (
     <LandingContainer>
       <StyledFlex>
@@ -138,26 +148,63 @@ function Content({ employees, locale }) {
               <StyledTabTrigger value="contact">
                 {t("contact")}
               </StyledTabTrigger>
-              <StyledTabTrigger value="publications">
-                {t("publications")}
-              </StyledTabTrigger>
-              <StyledTabTrigger value="projects">
-                {t("projects")}
-              </StyledTabTrigger>
-              <StyledTabTrigger value="subjects">
-                {t("subjects")}
-              </StyledTabTrigger>
-              <StyledTabTrigger value="awards">{t("awards")}</StyledTabTrigger>
-              <StyledTabTrigger value="patents">
-                {t("patents")}
-              </StyledTabTrigger>
+              {employees.data.attributes.publications.data.length > 0 && (
+                <StyledTabTrigger value="publications">
+                  {t("publications")}
+                </StyledTabTrigger>
+              )}
+              {employees.data.attributes.projects.data.length > 0 && (
+                <StyledTabTrigger value="projects">
+                  {t("projects")}
+                </StyledTabTrigger>
+              )}
+              {employees.data.attributes.subjects.data.length > 0 && (
+                <StyledTabTrigger value="subjects">
+                  {t("subjects")}
+                </StyledTabTrigger>
+              )}
+              {employees.data.attributes.awards.data.length > 0 && (
+                <StyledTabTrigger value="awards">
+                  {t("awards")}
+                </StyledTabTrigger>
+              )}
+              {employees.data.attributes.patents.data.length > 0 && (
+                <StyledTabTrigger value="patents">
+                  {t("patents")}
+                </StyledTabTrigger>
+              )}
             </StyledList>
             <Tabs.Content value="contact">Kontakt</Tabs.Content>
-            <Tabs.Content value="publications">Pub</Tabs.Content>
-            <Tabs.Content value="projects">projekt</Tabs.Content>
-            <Tabs.Content value="subjects">predme</Tabs.Content>
-            <Tabs.Content value="awards">aa</Tabs.Content>
-            <Tabs.Content value="patents">pat</Tabs.Content>
+            <Tabs.Content value="publications">
+              {employees.data.attributes.publications.data.length > 0 &&
+                employees.data.attributes.publications.data.map((item) => {
+                  return <div key={item.id}>{item.attributes.title}</div>;
+                })}
+            </Tabs.Content>
+            <Tabs.Content value="projects">
+              {employees.data.attributes.projects.data.length > 0 &&
+                employees.data.attributes.projects.data.map((item) => {
+                  return <div key={item.id}>{item.attributes.title}</div>;
+                })}
+            </Tabs.Content>
+            <Tabs.Content value="subjects">
+              {employees.data.attributes.subjects.data.length > 0 &&
+                employees.data.attributes.subjects.data.map((item) => {
+                  return <div key={item.id}>{item.attributes.shortTitle}</div>;
+                })}
+            </Tabs.Content>
+            <Tabs.Content value="awards">
+              {employees.data.attributes.awards.data.length > 0 &&
+                employees.data.attributes.awards.data.map((item) => {
+                  return <div key={item.id}>{item.attributes.title}</div>;
+                })}
+            </Tabs.Content>
+            <Tabs.Content value="patents">
+              {employees.data.attributes.patents.data.length > 0 &&
+                employees.data.attributes.patents.data.map((item) => {
+                  return <div key={item.id}>{item.attributes.description}</div>;
+                })}
+            </Tabs.Content>
           </StyledRoot>
         </StyledContainer>
       </StyledFlex>
