@@ -102,10 +102,12 @@ const HeaderItem = ({ item }) => {
       onMouseLeave={() => setDisplaySection(false)}
     >
       <Link href={item.path}>
-        <StyledA>
-          {item.title}
-          {item.dropdownItems && <RiArrowDropDownLine size={32} />}
-        </StyledA>
+        <a>
+          <StyledA>
+            {item.title}
+            {item.dropdownItems && <RiArrowDropDownLine size={32} />}
+          </StyledA>
+        </a>
       </Link>
       {item.dropdownItems && displaySection && (
         <HeaderDropdown dropdownItems={item.dropdownItems} />
@@ -208,7 +210,9 @@ const Header = () => {
       <HeaderContainer>
         <HeaderLogo>
           <Link href="/">
-            <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
+            <a>
+              <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
+            </a>
           </Link>
         </HeaderLogo>
         {isLargerThan768 ? (

@@ -11,8 +11,8 @@ import {
 import { fetcher } from "../../lib/api";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
-import Employee from "../../components/Employees/Employee";
 import { useState } from "react";
+import EmployeePreview from "../../components/Employees/EmployeePreview";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -129,7 +129,7 @@ export default function Organization({ employees, locale }) {
             </select>
             {filteredEmployees.map((employee) => {
               return (
-                <Employee
+                <EmployeePreview
                   key={employee.id}
                   slug={employee.attributes.slug}
                   name={employee.attributes.name}
@@ -144,7 +144,7 @@ export default function Organization({ employees, locale }) {
                   avatar={employee.attributes.avatar}
                   locale={locale}
                   imgURL={imgURL}
-                ></Employee>
+                ></EmployeePreview>
               );
             })}
           </StyledEmployeesWrapper>

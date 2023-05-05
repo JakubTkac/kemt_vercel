@@ -5,6 +5,9 @@ import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Employee from "../../components/Employees/Employee";
+import Contact from "../../components/Employees/Contact";
+import Publication from "../../components/Employees/Publication";
 
 const URL = process.env.STRAPI_URL;
 
@@ -135,14 +138,16 @@ const StyledTabTrigger = styled(Tabs.Trigger)`
 `;
 
 function Content({ employees, locale }) {
-  console.log(employees.data.attributes.awards.data);
   const { t } = useTranslation("employees");
 
-  console.log(": ", employees);
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
+          <Employee
+            employee={employees.data.attributes}
+            locale={locale}
+          ></Employee>
           <StyledRoot defaultValue="contact" orientation="vertical">
             <StyledList aria-label="tabs example">
               <StyledTabTrigger value="contact">
@@ -174,11 +179,15 @@ function Content({ employees, locale }) {
                 </StyledTabTrigger>
               )}
             </StyledList>
-            <Tabs.Content value="contact">Kontakt</Tabs.Content>
+            <Tabs.Content value="contact">
+              <Contact locale={locale} employee={employees}></Contact>
+            </Tabs.Content>
             <Tabs.Content value="publications">
               {employees.data.attributes.publications.data.length > 0 &&
                 employees.data.attributes.publications.data.map((item) => {
-                  return <div key={item.id}>{item.attributes.title}</div>;
+                  return (
+                    <Publication key={item.id} publication={item}></Publication>
+                  );
                 })}
             </Tabs.Content>
             <Tabs.Content value="projects">
