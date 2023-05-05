@@ -75,12 +75,17 @@ const StyledContainer = styled.div`
   }
 `;
 
+const StyledRoot = styled(Tabs.Root)`
+  width: 100%;
+`;
+
 const StyledList = styled(Tabs.List)`
   display: flex;
   width: 100%;
   margin: 2rem 0;
   font-size: ${FONT_SIZE.L};
   gap: 0.5rem;
+  overflow-x: auto;
 `;
 
 const StyledTabTrigger = styled(Tabs.Trigger)`
@@ -128,7 +133,7 @@ function Content({ employees, locale }) {
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
-          <Tabs.Root defaultValue="contact" orientation="vertical">
+          <StyledRoot defaultValue="contact" orientation="vertical">
             <StyledList aria-label="tabs example">
               <StyledTabTrigger value="contact">
                 {t("contact")}
@@ -153,7 +158,7 @@ function Content({ employees, locale }) {
             <Tabs.Content value="subjects">predme</Tabs.Content>
             <Tabs.Content value="awards">aa</Tabs.Content>
             <Tabs.Content value="patents">pat</Tabs.Content>
-          </Tabs.Root>
+          </StyledRoot>
         </StyledContainer>
       </StyledFlex>
     </LandingContainer>

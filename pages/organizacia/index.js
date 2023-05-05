@@ -1,19 +1,26 @@
 import styled from "styled-components";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, WIDTH } from "../../Theme";
+import {
+  COLOR,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  HEIGHT,
+  SCREENS,
+  WIDTH,
+} from "../../Theme";
 import { fetcher } from "../../lib/api";
-import Link from "next/link";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
-import { FiBriefcase, FiMail, FiPhone } from "react-icons/fi";
-import { FaBuilding } from "react-icons/fa";
 import Employee from "../../components/Employees/Employee";
+import { useState } from "react";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
-  const employeesResponse = await fetcher(`${URL}/employees?populate=*`);
+  const employeesResponse = await fetcher(
+    `${URL}/employees?populate=*&sort=name`
+  );
   return {
     props: {
       employees: employeesResponse,
@@ -69,34 +76,76 @@ const StyledContainer = styled.div`
   }
 `;
 
+const StyledEmployeesWrapper = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  select {
+    background-color: ${COLOR.WHITE};
+    border: 1.5px solid ${COLOR.PLATINUM[600]};
+    min-height: ${HEIGHT.XS};
+    margin-bottom: 1rem;
+    padding: 0 1.5em;
+    font-size: ${FONT_SIZE.M};
+    font-weight: ${FONT_WEIGHT.BOLD};
+  }
+`;
+
 export default function Organization({ employees, locale }) {
   const { t } = useTranslation("employees");
+
+  const [filter, setFilter] = useState("all");
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const filteredEmployees =
+    filter === "all"
+      ? employees.data
+      : employees.data.filter((employee) => {
+          return employee.attributes.managements.data.some((management) => {
+            return management.attributes.title === filter;
+          });
+        });
+
   return (
     <LandingContainer>
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>{t("title")}</StyledHeadingH1>
-          {employees.data.map((employee) => {
-            console.log(employee);
-            return (
-              <Employee
-                key={employee.id}
-                slug={employee.attributes.slug}
-                name={employee.attributes.name}
-                titlesBeforeName={employee.attributes.titlesBeforeName}
-                titlesAfterName={employee.attributes.titlesAfterName}
-                titleEN={employee.attributes.titleEN}
-                title={employee.attributes.title}
-                phoneNumber={employee.attributes.phoneNumber}
-                email={employee.attributes.email}
-                roomNumber={employee.attributes.roomNumber}
-                address={employee.attributes.address}
-                avatar={employee.attributes.avatar}
-                locale={locale}
-                imgURL={imgURL}
-              ></Employee>
-            );
-          })}
+          <StyledEmployeesWrapper>
+            <select value={filter} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="Vedenie Katedry">Vedenie Katedry</option>
+              <option value="Profesor">Profesor</option>
+              <option value="Docent">Docent</option>
+              <option value="Odborný asistent">Odborný asistent</option>
+              <option value="PhD. študent">PhD. študent</option>
+              <option value="THP pracovník">THP pracovník</option>
+            </select>
+            {filteredEmployees.map((employee) => {
+              return (
+                <Employee
+                  key={employee.id}
+                  slug={employee.attributes.slug}
+                  name={employee.attributes.name}
+                  titlesBeforeName={employee.attributes.titlesBeforeName}
+                  titlesAfterName={employee.attributes.titlesAfterName}
+                  titleEN={employee.attributes.titleEN}
+                  title={employee.attributes.title}
+                  phoneNumber={employee.attributes.phoneNumber}
+                  email={employee.attributes.email}
+                  roomNumber={employee.attributes.roomNumber}
+                  address={employee.attributes.address}
+                  avatar={employee.attributes.avatar}
+                  locale={locale}
+                  imgURL={imgURL}
+                ></Employee>
+              );
+            })}
+          </StyledEmployeesWrapper>
         </StyledContainer>
       </StyledFlex>
     </LandingContainer>

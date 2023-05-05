@@ -40,7 +40,6 @@ const StyledWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   justify-items: center;
-  margin: 0 2rem;
   background-color: ${COLOR.WHITE};
   border: 1.5px solid ${COLOR.PLATINUM[600]};
   @media (max-width: ${SCREENS.XS}) {
@@ -86,15 +85,14 @@ const Employee = ({
   locale,
   imgURL,
 }) => {
-  console.log(name);
   return (
     <StyledWrapper>
       <div>
         <Link href={`organizacia/${slug}`}>
           <StyledName>
-            {`${name},
-                  ${titlesBeforeName},
-                  ${titlesAfterName}`}
+            {name}
+            {titlesBeforeName && `,${titlesBeforeName}`}
+            {titlesAfterName && `,${titlesAfterName}`}
           </StyledName>
         </Link>
         <StyledSubTitle>
@@ -121,10 +119,12 @@ const Employee = ({
             <span>{`\t: ${email}`}</span>
           </a>
         </StyledIconTextWrapper>
-        <StyledIconTextWrapper>
-          <FiBriefcase></FiBriefcase>
-          <span>{`\t: ${roomNumber}`}</span>
-        </StyledIconTextWrapper>
+        {roomNumber && (
+          <StyledIconTextWrapper>
+            <FiBriefcase></FiBriefcase>
+            <span>{`\t: ${roomNumber}`}</span>
+          </StyledIconTextWrapper>
+        )}
         <StyledIconTextWrapper>
           <FaBuilding></FaBuilding>
           <span>{`\t: ${address}`}</span>
