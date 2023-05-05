@@ -5,5 +5,12 @@
   "projects": "Projects",
   "subjects": "Subjects",
   "awards": "Awards",
-  "patents": "Patents"
+  "patents": "Patents",
+  "management": "Management",
+  "professor": "Professor",
+  "associateProfessor": "Associate professor",
+  "assistantProfessor": "Assistant professor",
+  "phdStudent": "PhD. student",
+  "administrativeStaff": "Administrative staff",
+  "all": "All"
 }

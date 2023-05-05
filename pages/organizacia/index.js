@@ -117,13 +117,15 @@ export default function Organization({ employees, locale }) {
           <StyledHeadingH1>{t("title")}</StyledHeadingH1>
           <StyledEmployeesWrapper>
             <select value={filter} onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="Vedenie Katedry">Vedenie Katedry</option>
-              <option value="Profesor">Profesor</option>
-              <option value="Docent">Docent</option>
-              <option value="Odborný asistent">Odborný asistent</option>
-              <option value="PhD. študent">PhD. študent</option>
-              <option value="THP pracovník">THP pracovník</option>
+              <option value="all">{t("all")}</option>
+              <option value="Vedenie Katedry">{t("management")}</option>
+              <option value="Profesor">{t("professor")}</option>
+              <option value="Docent">{t("associateProfessor")}</option>
+              <option value="Odborný asistent">
+                {t("assistantProfessor")}
+              </option>
+              <option value="PhD. študent">{t("phdStudent")}</option>
+              <option value="THP pracovník">{t("administrativeStaff")}</option>
             </select>
             {filteredEmployees.map((employee) => {
               return (

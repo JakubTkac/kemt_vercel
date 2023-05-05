@@ -67,6 +67,7 @@ const StyledIconTextWrapper = styled.div`
 const StyledSubTitle = styled.div`
   color: ${COLOR.PRI[600]};
   font-size: ${FONT_SIZE.XS};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 const Employee = ({
