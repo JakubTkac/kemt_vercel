@@ -6,6 +6,8 @@ import Link from "next/link";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
 import { FiBriefcase, FiMail, FiPhone } from "react-icons/fi";
+import { FaBuilding } from "react-icons/fa";
+import Employee from "../../components/Employees/Employee";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -62,68 +64,8 @@ const StyledContainer = styled.div`
   }
   @media (max-width: ${SCREENS.MD}) {
   }
-`;
-
-const HeaderLogo = styled.div`
-  width: 150px;
-  cursor: pointer;
-  @media (max-width: ${SCREENS.XL}) {
-    width: 160px;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    width: 100px;
-  }
-`;
-
-const StyledHeaderLogo = styled.img`
-  object-fit: contain;
-`;
-
-const StyledName = styled.h3`
-  font-size: ${FONT_SIZE.L};
-  font-weight: ${FONT_WEIGHT.BOLDER};
-  cursor: pointer;
-  color: ${COLOR.SEC.DEFAULT};
-  text-decoration: underline;
-`;
-
-const StyledText = styled.p`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: ${FONT_SIZE.M};
-  font-weight: ${FONT_WEIGHT.REGULAR};
-`;
-
-const StyledMoreButton = styled.p`
-  margin-top: 1rem;
-  cursor: pointer;
-  color: ${COLOR.DANGER};
-  @media (max-width: ${SCREENS.MD}) {
-    font-size: ${FONT_SIZE.XS};
-  }
-`;
-
-const StyledWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 1.5em;
-  flex-direction: row;
-  justify-content: space-between;
-  justify-items: center;
-  margin: 0 2rem;
-  background-color: ${COLOR.WHITE};
-  border: 1.5px solid ${COLOR.PLATINUM[600]};
-`;
-
-const StyledIconTextWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  a {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  @media (max-width: ${SCREENS.XS}) {
+    padding: 0;
   }
 `;
 
@@ -134,51 +76,25 @@ export default function Organization({ employees, locale }) {
       <StyledFlex>
         <StyledContainer>
           <StyledHeadingH1>{t("title")}</StyledHeadingH1>
-          {employees.data.map((profesor) => {
-            console.log(profesor.attributes.avatar);
+          {employees.data.map((employee) => {
+            console.log(employee);
             return (
-              <StyledWrapper key={profesor.id}>
-                <div>
-                  <Link href={`organizacia/${profesor.attributes.slug}`}>
-                    <StyledName>
-                      {`${profesor.attributes.name},
-                  ${profesor.attributes.titlesBeforeName},
-                  ${profesor.attributes.titlesAfterName}`}
-                    </StyledName>
-                  </Link>
-                  <StyledIconTextWrapper>
-                    <a href={`tel: ${profesor.attributes.phoneNumber}`}>
-                      <FiPhone></FiPhone>
-                      <span>{`\t: ${profesor.attributes.phoneNumber}`}</span>
-                    </a>
-                  </StyledIconTextWrapper>
-                  <StyledIconTextWrapper>
-                    <a href={`mailto: ${profesor.attributes.email}`}>
-                      <FiMail></FiMail>
-                      <span>{`\t: ${profesor.attributes.email}`}</span>
-                    </a>
-                  </StyledIconTextWrapper>
-                  <StyledIconTextWrapper>
-                    <FiBriefcase></FiBriefcase>
-                    <span>{`\t: ${profesor.attributes.roomNumber}`}</span>
-                  </StyledIconTextWrapper>
-                </div>
-                <HeaderLogo>
-                  <Link href={`organizacia/${profesor.attributes.slug}`}>
-                    {profesor.attributes.avatar.data ? (
-                      <StyledHeaderLogo
-                        src={`${imgURL}${profesor.attributes.avatar.data?.attributes.url}`}
-                        alt={`${imgURL}${profesor.attributes.avatar.data?.attributes.alternativeText}`}
-                      />
-                    ) : (
-                      <StyledHeaderLogo
-                        src={"/foto-avatar.png"}
-                        alt="default avatar"
-                      />
-                    )}
-                  </Link>
-                </HeaderLogo>
-              </StyledWrapper>
+              <Employee
+                key={employee.id}
+                slug={employee.attributes.slug}
+                name={employee.attributes.name}
+                titlesBeforeName={employee.attributes.titlesBeforeName}
+                titlesAfterName={employee.attributes.titlesAfterName}
+                titleEN={employee.attributes.titleEN}
+                title={employee.attributes.title}
+                phoneNumber={employee.attributes.phoneNumber}
+                email={employee.attributes.email}
+                roomNumber={employee.attributes.roomNumber}
+                address={employee.attributes.address}
+                avatar={employee.attributes.avatar}
+                locale={locale}
+                imgURL={imgURL}
+              ></Employee>
             );
           })}
         </StyledContainer>

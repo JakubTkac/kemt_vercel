@@ -1,3 +1,9 @@
 {
-  "title": "Employees of KEMT"
+  "title": "Employees of KEMT",
+  "contact": "Contact",
+  "publications": "Publications",
+  "projects": "Projects",
+  "subjects": "Subjects",
+  "awards": "Awards",
+  "patents": "Patents"
 }

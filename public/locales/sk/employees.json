@@ -1,3 +1,9 @@
 {
-  "title": "Zamestnanci katedry KEMT"
+  "title": "Zamestnanci katedry KEMT",
+  "contact": "Kontakt",
+  "publications": "Publikacie",
+  "projects": "Projekty",
+  "subjects": "Predmety",
+  "awards": "Ocenenia",
+  "patents": "Patenty"
 }
