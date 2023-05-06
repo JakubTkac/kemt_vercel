@@ -155,7 +155,7 @@ const Subject = ({ data, locale }) => {
           </StyledInformationContentContainer>
         ))}
       <Content content={type} locale={locale} text={t("type")}></Content>
-      {guarantor && (
+      {guarantor.length > 0 && (
         <StyledInformationContentContainer>
           <span>{t("guarantor")}</span>
           <div>
@@ -167,7 +167,7 @@ const Subject = ({ data, locale }) => {
           </div>
         </StyledInformationContentContainer>
       )}
-      {lecturings && (
+      {lecturings.length > 0 && (
         <StyledInformationContentContainer>
           <span>{t("lecturings")}</span>
           <div>
@@ -186,7 +186,7 @@ const Subject = ({ data, locale }) => {
           </div>
         </StyledInformationContentContainer>
       )}
-      {studyProgrammes && (
+      {studyProgrammes.length > 0 && (
         <StyledInformationContentContainer>
           <span>{t("studyProgrammes")}</span>
           <div>
@@ -209,20 +209,20 @@ const Subject = ({ data, locale }) => {
         <StyledInformationContentContainer>
           {studyYear &&
             (locale === "en" ? (
-              studyYear.data.attributes.titleEN ? (
+              studyYear.data?.attributes.titleEN ? (
                 <>
                   <span>{t("studyYear")}</span>
                   <p>
-                    {studyYear.data.attributes.titleEN}{" "}
-                    {studyYear.data.attributes.semesterEN} {` semester`}
+                    {studyYear.data?.attributes.titleEN}{" "}
+                    {studyYear.data?.attributes.semesterEN} {` semester`}
                   </p>
                 </>
               ) : (
                 <>
                   <span>{t("studyYear")}</span>
                   <p>
-                    {studyYear.data.attributes.title}{" "}
-                    {studyYear.data.attributes.semester} {` semester`}
+                    {studyYear.data?.attributes.title}{" "}
+                    {studyYear.data?.attributes.semester} {` semester`}
                   </p>
                 </>
               )
@@ -230,14 +230,14 @@ const Subject = ({ data, locale }) => {
               <>
                 <span>{t("studyYear")}</span>
                 <p>
-                  {studyYear.data.attributes.title}{" "}
-                  {studyYear.data.attributes.semester} {` semester`}
+                  {studyYear.data?.attributes.title}
+                  {studyYear.data?.attributes.semester} {` semester`}
                 </p>
               </>
             ))}
         </StyledInformationContentContainer>
       )}
-      {teaching && (
+      {teaching.length > 0 && (
         <StyledInformationContentContainer>
           <span>{t("teaching")}</span>
           <div>
