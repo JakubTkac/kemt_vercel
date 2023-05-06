@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT } from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useState } from "react";
 import SubjectItem from "./SubjectItem";
@@ -13,10 +13,18 @@ const StyledTitle = styled.div`
   justify-content: space-between;
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.PLATINUM[600]};
+  @media (max-width: ${SCREENS.XS}) {
+    padding: 0.2rem;
+  }
   h2 {
     font-size: ${FONT_SIZE.L};
-    color: ${COLOR.SEC[500]};
+    color: ${COLOR.PRI[700]};
     font-weight: ${FONT_WEIGHT.EXTRABOLD};
+    text-decoration: underline;
+    @media (max-width: ${SCREENS.MD}) {
+      font-weight: ${FONT_WEIGHT.BOLDER};
+      font-size: ${FONT_SIZE.M};
+    }
   }
   svg {
     font-size: ${FONT_SIZE.XL};

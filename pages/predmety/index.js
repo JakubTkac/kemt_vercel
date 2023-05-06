@@ -40,37 +40,10 @@ export async function getServerSideProps({ query: { page }, locale }) {
 const StyledContentContainer = styled.div`
   width: 100%;
   display: flex;
-  gap: 2rem;
+  gap: 0.5rem;
   flex-direction: column;
   @media (max-width: ${SCREENS.SM}) {
     width: 100%;
-  }
-`;
-
-const StyledSubjectsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-  transition: width 2s, height 4s;
-`;
-
-const StyledTitle = styled.div`
-  display: flex;
-  cursor: pointer;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0.5rem;
-  justify-content: space-between;
-  background-color: ${COLOR.WHITE};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  h2 {
-    font-size: ${FONT_SIZE.L};
-    color: ${COLOR.SEC[500]};
-    font-weight: ${FONT_WEIGHT.EXTRABOLD};
-  }
-  svg {
-    font-size: ${FONT_SIZE.XL};
-    color: ${COLOR.SEC[500]};
   }
 `;
 

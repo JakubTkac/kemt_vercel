@@ -19,10 +19,13 @@ const fadeIn = keyframes`
 `;
 
 const StyledContainer = styled.div`
-  margin: 0 2rem;
+  margin-left: 2rem;
   display: flex;
   flex-direction: column;
   transition: width 2s, height 4s;
+  @media (max-width: ${SCREENS.SM}) {
+    margin: 0;
+  }
 `;
 
 const StyledContentContainer = styled.div`
@@ -60,10 +63,17 @@ const StyledTitle = styled.div`
   justify-content: space-between;
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.PLATINUM[600]};
+  @media (max-width: ${SCREENS.XS}) {
+    padding: 0.2rem;
+  }
   h2 {
     font-size: ${FONT_SIZE.L};
     color: ${COLOR.SEC[500]};
     font-weight: ${FONT_WEIGHT.EXTRABOLD};
+    @media (max-width: ${SCREENS.MD}) {
+      font-weight: ${FONT_WEIGHT.BOLDER};
+      font-size: ${FONT_SIZE.M};
+    }
   }
   svg {
     font-size: ${FONT_SIZE.XL};
