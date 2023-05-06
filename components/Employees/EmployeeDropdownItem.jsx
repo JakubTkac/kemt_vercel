@@ -5,6 +5,7 @@ import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, SPACE } from "../../Theme";
 import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
+import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
 
 const URL = process.env.STRAPI_URL;
 
@@ -23,32 +24,6 @@ const StyledContainer = styled.div`
   flex-direction: column;
   margin-bottom: 2rem;
   transition: width 2s, height 4s;
-`;
-
-const StyledContentContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  transition: width 2s, height 4s;
-  @media (max-width: ${SCREENS.SM}) {
-    flex-direction: column;
-  }
-  span {
-    min-width: 15rem;
-    font-weight: ${FONT_WEIGHT.BOLD};
-    @media (max-width: ${SCREENS.SM}) {
-      min-width: auto;
-    }
-  }
-  p {
-  }
-  a {
-    color: ${COLOR.SEC[400]};
-    text-decoration: underline;
-  }
 `;
 
 const StyledTitle = styled.div`
@@ -111,7 +86,7 @@ const StyledTransitionContainer = styled.div`
 `;
 
 const EmployeeDropdownItem = ({ item, itemType, locale }) => {
-  const id = item.id;
+  const id = itemType === "subjects" ? item.attributes.slug : item.id;
   const itemUrl = `${URL}/${itemType}/${id}?populate=*`;
   const [dropdownItems, setDropdownItems] = useState({});
   const [open, setOpen] = useState(false);
@@ -172,7 +147,7 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
           {open && (
             <StyledTransitionContainer>
               {authors && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("authors")}</span>
                   <div>
                     {authors?.data.map((author) => {
@@ -188,99 +163,101 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
                       );
                     })}
                   </div>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {shortTitle && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("shortTitle")}</span>
                   <p>{shortTitle}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
-              <StyledContentContainer>
-                <span>{t("subjectID")}</span>
-                <p>{subjectID}</p>
-              </StyledContentContainer>
+              {subjectID && (
+                <StyledInformationContentContainer>
+                  <span>{t("subjectID")}</span>
+                  <p>{subjectID}</p>
+                </StyledInformationContentContainer>
+              )}
               {description &&
                 (locale === "en" ? (
                   descriptionEN ? (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("description")}</span>
                       <p>{descriptionEN}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   ) : (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("description")}</span>
                       <p>{description}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   )
                 ) : (
-                  <StyledContentContainer>
+                  <StyledInformationContentContainer>
                     <span>{t("description")}</span>
                     <p>{description}</p>
-                  </StyledContentContainer>
+                  </StyledInformationContentContainer>
                 ))}
               {year && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("year")}</span>
                   <p>{year}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {publisher && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("publisher")}</span>
                   <p>{publisher}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {anotation &&
                 (locale === "en" ? (
                   anotationEN ? (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("anotation")}</span>
                       <p>{anotationEN}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   ) : (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("anotation")}</span>
                       <p>{anotation}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   )
                 ) : (
-                  <StyledContentContainer>
+                  <StyledInformationContentContainer>
                     <span>{t("anotation")}</span>
                     <p>{anotation}</p>
-                  </StyledContentContainer>
+                  </StyledInformationContentContainer>
                 ))}
               {language && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("language")}</span>
                   <p>{language}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {type && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("type")}</span>
                   <p>{type}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {websitePage && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("websitePage")}</span>
                   <a target="_blank" rel="noreferrer" href={websitePage}>
                     <p>{websitePage}</p>
                   </a>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {isbn && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>ISBN:</span>
                   <p>{isbn}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {doi && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>DOI:</span>
                   <p>{doi}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {slug && (
                 <Link href={`/predmety/${slug}`}>

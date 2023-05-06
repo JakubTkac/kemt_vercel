@@ -168,6 +168,7 @@ function Content({ employees, locale }) {
             <>
               <StyledHeadingH1>{t("subjects")}</StyledHeadingH1>
               {employees.data.attributes.subjects.data.map((item) => {
+                console.log(item);
                 return (
                   <EmployeeDropdownItem
                     key={item.id}
