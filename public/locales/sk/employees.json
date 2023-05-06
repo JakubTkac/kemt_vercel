@@ -12,5 +12,19 @@
   "assistantProfessor": "Odborný asistent",
   "phdStudent": "PhD. študent",
   "administrativeStaff": "THP pracovník",
-  "all": "Všetci"
+  "all": "Všetci",
+  "phone": "Telefón:",
+  "name": "Meno:",
+  "address": "Adresa:",
+  "roomNumber": "Číslo miestnosti:",
+  "authors": "Autori:",
+  "year": "Rok:",
+  "publisher": "Vydavateľ:",
+  "description": "Popis:",
+  "anotation": "Anotacia:",
+  "language": "Jazyk:",
+  "shortTitle": "Skrátka Predmetu:",
+  "type": "Typ:",
+  "websitePage": "Webová Stránka:",
+  "more": "Viac Informácií..."
 }

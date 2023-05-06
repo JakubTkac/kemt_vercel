@@ -7,7 +7,8 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Employee from "../../components/Employees/Employee";
 import Contact from "../../components/Employees/Contact";
-import Publication from "../../components/Employees/Publication";
+import EmployeeDropdownItem from "../../components/Employees/EmployeeDropdownItem";
+import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 
 const URL = process.env.STRAPI_URL;
 
@@ -122,40 +123,95 @@ function Content({ employees, locale }) {
             <StyledTabTrigger value="patents">{t("patents")}</StyledTabTrigger>
           )}
         </StyledList>
+
         <Tabs.Content value="contact">
           <Contact locale={locale} employee={employees}></Contact>
         </Tabs.Content>
         <Tabs.Content value="publications">
-          {employees.data.attributes.publications.data.length > 0 &&
-            employees.data.attributes.publications.data.map((item) => {
-              return (
-                <Publication key={item.id} publication={item}></Publication>
-              );
-            })}
+          {employees.data.attributes.publications.data.length > 0 && (
+            <>
+              <StyledHeadingH1>{t("publications")}</StyledHeadingH1>
+              {employees.data.attributes.publications.data.map((item) => {
+                return (
+                  <EmployeeDropdownItem
+                    key={item.id}
+                    item={item}
+                    itemType="publications"
+                    locale={locale}
+                  ></EmployeeDropdownItem>
+                );
+              })}
+            </>
+          )}
         </Tabs.Content>
+
         <Tabs.Content value="projects">
-          {employees.data.attributes.projects.data.length > 0 &&
-            employees.data.attributes.projects.data.map((item) => {
-              return <div key={item.id}>{item.attributes.title}</div>;
-            })}
+          {employees.data.attributes.projects.data.length > 0 && (
+            <>
+              <StyledHeadingH1>{t("projects")}</StyledHeadingH1>
+              {employees.data.attributes.projects.data.map((item) => {
+                return (
+                  <EmployeeDropdownItem
+                    key={item.id}
+                    item={item}
+                    itemType="projects"
+                    locale={locale}
+                  ></EmployeeDropdownItem>
+                );
+              })}
+            </>
+          )}
         </Tabs.Content>
         <Tabs.Content value="subjects">
-          {employees.data.attributes.subjects.data.length > 0 &&
-            employees.data.attributes.subjects.data.map((item) => {
-              return <div key={item.id}>{item.attributes.shortTitle}</div>;
-            })}
+          {employees.data.attributes.subjects.data.length > 0 && (
+            <>
+              <StyledHeadingH1>{t("subjects")}</StyledHeadingH1>
+              {employees.data.attributes.subjects.data.map((item) => {
+                return (
+                  <EmployeeDropdownItem
+                    key={item.id}
+                    item={item}
+                    itemType="subjects"
+                    locale={locale}
+                  ></EmployeeDropdownItem>
+                );
+              })}
+            </>
+          )}
         </Tabs.Content>
         <Tabs.Content value="awards">
-          {employees.data.attributes.awards.data.length > 0 &&
-            employees.data.attributes.awards.data.map((item) => {
-              return <div key={item.id}>{item.attributes.title}</div>;
-            })}
+          {employees.data.attributes.awards.data.length > 0 && (
+            <>
+              <StyledHeadingH1>{t("awards")}</StyledHeadingH1>
+              {employees.data.attributes.awards.data.map((item) => {
+                return (
+                  <EmployeeDropdownItem
+                    key={item.id}
+                    item={item}
+                    itemType="awards"
+                    locale={locale}
+                  ></EmployeeDropdownItem>
+                );
+              })}
+            </>
+          )}
         </Tabs.Content>
         <Tabs.Content value="patents">
-          {employees.data.attributes.patents.data.length > 0 &&
-            employees.data.attributes.patents.data.map((item) => {
-              return <div key={item.id}>{item.attributes.description}</div>;
-            })}
+          {employees.data.attributes.patents.data.length > 0 && (
+            <>
+              <StyledHeadingH1>{t("patents")}</StyledHeadingH1>
+              {employees.data.attributes.patents.data.map((item) => {
+                return (
+                  <EmployeeDropdownItem
+                    key={item.id}
+                    item={item}
+                    itemType="patents"
+                    locale={locale}
+                  ></EmployeeDropdownItem>
+                );
+              })}
+            </>
+          )}
         </Tabs.Content>
       </StyledRoot>
     </>

@@ -2,6 +2,7 @@ import StyledHeadingH1 from "../Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
+import { FiMail, FiPhone } from "react-icons/fi";
 
 const StyledContactContainer = styled.div`
   background-color: ${COLOR.WHITE};
@@ -45,20 +46,28 @@ const Contact = ({ locale, employee }) => {
       <StyledHeadingH1>{t("contact")}</StyledHeadingH1>
       <StyledContactContainer>
         <StyledContactContent>
-          <span>Meno: </span>
+          <span>{t("name")}</span>
           <p>{name}</p>
         </StyledContactContent>
         <StyledContactContent>
-          <span>email: </span>
-          <p>{email}</p>
+          <span>E-mail: </span>
+          <a href={`mailto: ${email}`}>
+            <p>{email}</p>
+          </a>
         </StyledContactContent>
         <StyledContactContent>
-          <span>Telefon: </span>
-          <p>{phoneNumber}</p>
+          <span>{t("phone")}</span>
+          <a href={`tel: ${phoneNumber}`}>
+            <p>{phoneNumber}</p>
+          </a>
+        </StyledContactContent>
+        <StyledContactContent>
+          <span>{t("address")}</span>
+          <p>{address}</p>
         </StyledContactContent>
         {roomNumber && (
           <StyledContactContent>
-            <span>miestnost: </span>
+            <span>{t("roomNumber")}</span>
             <p>{roomNumber}</p>
           </StyledContactContent>
         )}
