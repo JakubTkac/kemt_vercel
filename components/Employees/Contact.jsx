@@ -2,7 +2,6 @@ import StyledHeadingH1 from "../Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
-import { FiMail, FiPhone } from "react-icons/fi";
 
 const StyledContactContainer = styled.div`
   background-color: ${COLOR.WHITE};

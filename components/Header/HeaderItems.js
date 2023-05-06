@@ -67,21 +67,16 @@ export const studiumDropdownItems = [
   },
   {
     id: 2,
-    title: "Bakalárske štúdium",
-    path: "../",
+    title: "Študijné predmety",
+    path: "/predmety",
   },
   {
     id: 3,
-    title: "Inžinierske štúdium",
-    path: "../",
-  },
-  {
-    id: 4,
     title: "Bakalárska práca",
     path: "../",
   },
   {
-    id: 5,
+    id: 4,
     title: "Diplomové práce",
     path: "../",
   },

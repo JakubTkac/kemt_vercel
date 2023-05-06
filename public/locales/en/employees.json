@@ -26,5 +26,6 @@
   "shortTitle": "Short Title:",
   "type": "Type:",
   "websitePage": "Website Page:",
-  "more": "More Information..."
+  "more": "More Information...",
+  "subjectID": "Subject ID: "
 }

@@ -1,0 +1,16 @@
+{
+  "title": "Subjects",
+  "bachelor": "Bachelor Degree (Bc.)",
+  "master": "Master Degree (Ing.)",
+  "doctoral": "Doctoral Degree (Ph.D.)",
+  "year": "Year:",
+  "publisher": "Publisher:",
+  "description": "Description:",
+  "anotation": "Anotation:",
+  "language": "Language:",
+  "shortTitle": "Short Title:",
+  "type": "Type:",
+  "websitePage": "Website Page:",
+  "more": "More Information...",
+  "subjectID": "Subject ID: "
+}

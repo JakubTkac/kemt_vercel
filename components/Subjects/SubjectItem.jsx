@@ -19,9 +19,9 @@ const fadeIn = keyframes`
 `;
 
 const StyledContainer = styled.div`
+  margin: 0 2rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
   transition: width 2s, height 4s;
 `;
 
@@ -103,40 +103,27 @@ const StyledTransitionContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-in-out forwards;
 `;
 
-const EmployeeDropdownItem = ({ item, itemType, locale }) => {
-  const id = item.id;
-  const itemUrl = `${URL}/${itemType}/${id}?populate=*`;
-  const [dropdownItems, setDropdownItems] = useState({});
+const SubjectItem = ({ locale, dropdownItems }) => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation("employees");
-
-  useEffect(() => {
-    const fetchDropdownItems = async () => {
-      const tempPublicationItems = await fetcher(itemUrl);
-      setDropdownItems(tempPublicationItems);
-    };
-    fetchDropdownItems();
-  }, [id, itemUrl]);
+  const { t } = useTranslation("subjects");
+  console.log(dropdownItems);
 
   const {
     anotation,
     anotationEN,
-    doi,
-    isbn,
+    guarantor,
+    lecturings,
     title,
     titleEN,
-    year,
-    authors,
-    publisher,
-    description,
-    descriptionEN,
     language,
     shortTitle,
+    studyProgrammes,
+    teaching,
     slug,
     type,
     websitePage,
     subjectID,
-  } = dropdownItems?.data?.attributes || {};
+  } = dropdownItems?.attributes || {};
 
   return (
     <>
@@ -164,25 +151,6 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
           </StyledTitle>
           {open && (
             <StyledTransitionContainer>
-              {authors && (
-                <StyledContentContainer>
-                  <span>{t("authors")}</span>
-                  <div>
-                    {authors?.data.map((author) => {
-                      return (
-                        <Link
-                          key={author.id}
-                          href={`/organizacia/${author.attributes.slug}`}
-                        >
-                          <a>
-                            <p>{author.attributes.name}</p>
-                          </a>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </StyledContentContainer>
-              )}
               {shortTitle && (
                 <StyledContentContainer>
                   <span>{t("shortTitle")}</span>
@@ -193,37 +161,6 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
                 <span>{t("subjectID")}</span>
                 <p>{subjectID}</p>
               </StyledContentContainer>
-              {description &&
-                (locale === "en" ? (
-                  descriptionEN ? (
-                    <StyledContentContainer>
-                      <span>{t("description")}</span>
-                      <p>{descriptionEN}</p>
-                    </StyledContentContainer>
-                  ) : (
-                    <StyledContentContainer>
-                      <span>{t("description")}</span>
-                      <p>{description}</p>
-                    </StyledContentContainer>
-                  )
-                ) : (
-                  <StyledContentContainer>
-                    <span>{t("description")}</span>
-                    <p>{description}</p>
-                  </StyledContentContainer>
-                ))}
-              {year && (
-                <StyledContentContainer>
-                  <span>{t("year")}</span>
-                  <p>{year}</p>
-                </StyledContentContainer>
-              )}
-              {publisher && (
-                <StyledContentContainer>
-                  <span>{t("publisher")}</span>
-                  <p>{publisher}</p>
-                </StyledContentContainer>
-              )}
               {anotation &&
                 (locale === "en" ? (
                   anotationEN ? (
@@ -263,18 +200,6 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
                   </a>
                 </StyledContentContainer>
               )}
-              {isbn && (
-                <StyledContentContainer>
-                  <span>ISBN:</span>
-                  <p>{isbn}</p>
-                </StyledContentContainer>
-              )}
-              {doi && (
-                <StyledContentContainer>
-                  <span>DOI:</span>
-                  <p>{doi}</p>
-                </StyledContentContainer>
-              )}
               {slug && (
                 <Link href={`/predmety/${slug}`}>
                   <a>
@@ -290,4 +215,4 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
   );
 };
 
-export default EmployeeDropdownItem;
+export default SubjectItem;

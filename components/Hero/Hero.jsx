@@ -97,12 +97,20 @@ const Hero = () => {
         </h2>
         <div>
           <button>
-            <a href="https://eprihlaska.tuke.sk/eprihlaska/pages/odosielatel/rozhranie_odosielatela.mais">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://eprihlaska.tuke.sk/eprihlaska/pages/odosielatel/rozhranie_odosielatela.mais"
+            >
               {t("e-application")}
             </a>
           </button>
           <button>
-            <a href="https://www.fei.tuke.sk/sk/studium/pre-uchadzacov/podmienky-prijatia">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.fei.tuke.sk/sk/studium/pre-uchadzacov/podmienky-prijatia"
+            >
               {t("conditions")}
             </a>
           </button>

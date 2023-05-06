@@ -1,0 +1,13 @@
+{
+  "title": "Predmety",
+  "bachelor": "Bakalárske štúdium (Bc.)",
+  "master": "Magisterské štúdium (Ing.)",
+  "doctoral": "Doktorantské štúdium (Ph.D.)",
+  "anotation": "Anotacia:",
+  "language": "Jazyk:",
+  "shortTitle": "Skrátka Predmetu:",
+  "type": "Typ:",
+  "websitePage": "Webová Stránka:",
+  "more": "Viac Informácií...",
+  "subjectID": "Kód Predmetu: "
+}

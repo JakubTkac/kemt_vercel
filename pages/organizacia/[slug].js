@@ -50,6 +50,7 @@ const StyledList = styled(Tabs.List)`
 const StyledTabTrigger = styled(Tabs.Trigger)`
   position: relative;
   width: 100%;
+  padding: 0.2rem;
   min-height: ${HEIGHT.S};
   background-color: ${COLOR.WHITE};
   border: 1px ${COLOR.PLATINUM[600]} solid;
