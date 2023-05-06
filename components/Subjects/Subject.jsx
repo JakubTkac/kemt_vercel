@@ -159,9 +159,9 @@ const Subject = ({ data, locale }) => {
         <StyledInformationContentContainer>
           <span>{t("guarantor")}</span>
           <div>
-            <Link href={`/organizacia/${guarantor.data.attributes.slug}`}>
+            <Link href={`/organizacia/${guarantor.data?.attributes.slug}`}>
               <a>
-                <p>{guarantor.data.attributes.name}</p>
+                <p>{guarantor.data?.attributes.name}</p>
               </a>
             </Link>
           </div>

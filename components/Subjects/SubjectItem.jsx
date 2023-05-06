@@ -91,7 +91,6 @@ const StyledTransitionContainer = styled.div`
 const SubjectItem = ({ locale, dropdownItems }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation("subjects");
-  console.log(dropdownItems);
 
   const {
     anotation,
