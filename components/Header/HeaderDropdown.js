@@ -50,9 +50,9 @@ const HeaderDropdown = ({ dropdownItems }) => {
       <DropdownList>
         {dropdownItems.map((item) => {
           return (
-            <DropdownItem key={item.id}>
-              <Link href={item.path}>{item.title}</Link>
-            </DropdownItem>
+            <Link href={item.path} key={item.id}>
+              <DropdownItem>{item.title}</DropdownItem>
+            </Link>
           );
         })}
       </DropdownList>

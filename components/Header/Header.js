@@ -117,6 +117,7 @@ const HeaderItem = ({ item }) => {
 };
 
 const StyledMobileButton = styled.button`
+  z-index: 100;
   position: relative;
   height: ${HEIGHT.XXS};
   width: ${HEIGHT.XXS};
@@ -132,6 +133,7 @@ const StyledMobileButton = styled.button`
 `;
 
 const StyledMobileContainer = styled.div`
+  z-index: 99;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -190,9 +192,13 @@ const MobileButton = ({ items }) => {
               <StyledMobileHeading>{item.title}</StyledMobileHeading>
               {item.dropdownItems &&
                 item.dropdownItems.map((dropdownItem) => (
-                  <StyledMobileLi key={dropdownItem.id}>
-                    {dropdownItem.title}
-                  </StyledMobileLi>
+                  <Link href={dropdownItem.path} key={dropdownItem.id}>
+                    <StyledMobileLi
+                      onClick={() => setDisplaySection(!displaySection)}
+                    >
+                      {dropdownItem.title}
+                    </StyledMobileLi>
+                  </Link>
                 ))}
             </StyledMobileUl>
           ))}
