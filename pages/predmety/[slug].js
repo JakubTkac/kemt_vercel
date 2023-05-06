@@ -31,14 +31,13 @@ export async function getStaticProps({ params, locale }) {
 
 function Content({ subject, locale }) {
   const { t } = useTranslation("employees");
-  console.log(subject);
 
   const { title } = subject.data.attributes;
 
   return (
     <>
       <StyledHeadingH1>{title}</StyledHeadingH1>
-      <Subject data={subject.data.attributes}></Subject>
+      <Subject data={subject.data.attributes} locale={locale}></Subject>
     </>
   );
 }

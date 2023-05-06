@@ -12,5 +12,17 @@
   "type": "Type:",
   "websitePage": "Website Page:",
   "more": "More Information...",
-  "subjectID": "Subject ID: "
+  "subjectID": "Subject ID:",
+  "completion": "Method of evaluation and completion of study of the subject:",
+  "credits": "Credits: ",
+  "formOfTeaching": "Study method:",
+  "hoursPerSemester": "External form of study (hours per semester):",
+  "hoursPerWeek": "Daily form of study (hours per week):",
+  "studyMethod": "Study method:",
+  "syllabus": "Course contents:",
+  "guarantor": "Guarantor: ",
+  "lecturings": "Lecturing: ",
+  "studyProgrammes": "Study Programmes: ",
+  "studyYear": "Study Year: ",
+  "teaching": "Teaching: "
 }

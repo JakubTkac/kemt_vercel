@@ -5,6 +5,7 @@ import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, SPACE } from "../../Theme";
 import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
+import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
 
 const URL = process.env.STRAPI_URL;
 
@@ -25,32 +26,6 @@ const StyledContainer = styled.div`
   transition: width 2s, height 4s;
   @media (max-width: ${SCREENS.SM}) {
     margin: 0;
-  }
-`;
-
-const StyledContentContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  transition: width 2s, height 4s;
-  @media (max-width: ${SCREENS.SM}) {
-    flex-direction: column;
-  }
-  span {
-    min-width: 15rem;
-    font-weight: ${FONT_WEIGHT.BOLD};
-    @media (max-width: ${SCREENS.SM}) {
-      min-width: auto;
-    }
-  }
-  p {
-  }
-  a {
-    color: ${COLOR.SEC[400]};
-    text-decoration: underline;
   }
 `;
 
@@ -162,53 +137,53 @@ const SubjectItem = ({ locale, dropdownItems }) => {
           {open && (
             <StyledTransitionContainer>
               {shortTitle && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("shortTitle")}</span>
                   <p>{shortTitle}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
-              <StyledContentContainer>
+              <StyledInformationContentContainer>
                 <span>{t("subjectID")}</span>
                 <p>{subjectID}</p>
-              </StyledContentContainer>
+              </StyledInformationContentContainer>
               {anotation &&
                 (locale === "en" ? (
                   anotationEN ? (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("anotation")}</span>
                       <p>{anotationEN}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   ) : (
-                    <StyledContentContainer>
+                    <StyledInformationContentContainer>
                       <span>{t("anotation")}</span>
                       <p>{anotation}</p>
-                    </StyledContentContainer>
+                    </StyledInformationContentContainer>
                   )
                 ) : (
-                  <StyledContentContainer>
+                  <StyledInformationContentContainer>
                     <span>{t("anotation")}</span>
                     <p>{anotation}</p>
-                  </StyledContentContainer>
+                  </StyledInformationContentContainer>
                 ))}
               {language && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("language")}</span>
                   <p>{language}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {type && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("type")}</span>
                   <p>{type}</p>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {websitePage && (
-                <StyledContentContainer>
+                <StyledInformationContentContainer>
                   <span>{t("websitePage")}</span>
                   <a target="_blank" rel="noreferrer" href={websitePage}>
                     <p>{websitePage}</p>
                   </a>
-                </StyledContentContainer>
+                </StyledInformationContentContainer>
               )}
               {slug && (
                 <Link href={`/predmety/${slug}`}>

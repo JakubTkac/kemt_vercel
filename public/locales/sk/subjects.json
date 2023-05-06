@@ -9,5 +9,17 @@
   "type": "Typ:",
   "websitePage": "Webová Stránka:",
   "more": "Viac Informácií...",
-  "subjectID": "Kód Predmetu: "
+  "subjectID": "Kód Predmetu: ",
+  "completion": "Spôsob hodnotenia a skončenia štúdia predmetu:",
+  "credits": "Kredity: ",
+  "formOfTeaching": "Metóda štúdia:",
+  "hoursPerSemester": "Externá forma štúdia (hodiny za semester):",
+  "hoursPerWeek": "Denná forma štúdia (hodiny za týždeň):",
+  "studyMethod": "Metóda štúdia:",
+  "syllabus": "Stručná osnova predmetu:",
+  "guarantor": "Garant Predmetu: ",
+  "lecturings": "Prednašajúci: ",
+  "studyProgrammes": "Študijné programy: ",
+  "studyYear": "Študijný rok : ",
+  "teaching": "Vyučujúci: "
 }

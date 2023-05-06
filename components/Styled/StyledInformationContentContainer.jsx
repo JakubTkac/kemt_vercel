@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGHT, SCREENS } from "../../Theme";
+import { COLOR, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -13,17 +13,23 @@ const StyledContainer = styled.div`
     flex-direction: column;
   }
   span {
-    min-width: 15rem;
+    min-width: 20rem;
     font-weight: ${FONT_WEIGHT.BOLD};
+    word-break: break-word;
+    min-height: ${HEIGHT.XXS};
     @media (max-width: ${SCREENS.SM}) {
       min-width: auto;
     }
   }
   p {
+    width: 100%;
   }
   a {
     color: ${COLOR.SEC[400]};
     text-decoration: underline;
+  }
+  ul {
+    list-style: none;
   }
 `;
 const StyledInformationContentContainer = ({ children }) => {
