@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import { COLOR, HEIGHT } from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 
 const StyledButton = styled.button`
   position: relative;
   width: 100%;
+  padding: 0.5rem;
+  font-weight: ${FONT_WEIGHT.BOLD};
   min-height: ${HEIGHT.S};
+  font-size: ${FONT_SIZE.L};
   background-color: ${COLOR.WHITE};
   border: 1px ${COLOR.PLATINUM[600]} solid;
   background-color: ${(props) =>
@@ -24,6 +27,16 @@ const StyledButton = styled.button`
     position: absolute;
     top: 100%;
     left: 50%;
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    font-size: ${FONT_SIZE.M};
+  }
+  @media (max-width: ${SCREENS.SM}) {
+    font-size: ${FONT_SIZE.S};
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    font-size: ${FONT_SIZE.XS};
+    padding: 0.2rem;
   }
 `;
 

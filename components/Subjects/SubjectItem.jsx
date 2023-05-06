@@ -33,7 +33,7 @@ const StyledTitle = styled.div`
   display: flex;
   cursor: pointer;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: 0.5rem;
   justify-content: space-between;
   background-color: ${COLOR.WHITE};
