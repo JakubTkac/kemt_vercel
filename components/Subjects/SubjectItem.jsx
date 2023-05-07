@@ -1,13 +1,10 @@
-import { fetcher } from "../../lib/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, SPACE } from "../../Theme";
 import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
 import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
-
-const URL = process.env.STRAPI_URL;
 
 const fadeIn = keyframes`
   from {
@@ -141,10 +138,10 @@ const SubjectItem = ({ locale, dropdownItems }) => {
                   <p>{shortTitle}</p>
                 </StyledInformationContentContainer>
               )}
-              <StyledInformationContentContainer>
-                <span>{t("subjectID")}</span>
-                <p>{subjectID}</p>
-              </StyledInformationContentContainer>
+              {/*<StyledInformationContentContainer>*/}
+              {/*  <span>{t("subjectID")}</span>*/}
+              {/*  <p>{subjectID}</p>*/}
+              {/*</StyledInformationContentContainer>*/}
               {anotation &&
                 (locale === "en" ? (
                   anotationEN ? (
@@ -164,26 +161,26 @@ const SubjectItem = ({ locale, dropdownItems }) => {
                     <p>{anotation}</p>
                   </StyledInformationContentContainer>
                 ))}
-              {language && (
-                <StyledInformationContentContainer>
-                  <span>{t("language")}</span>
-                  <p>{language}</p>
-                </StyledInformationContentContainer>
-              )}
-              {type && (
-                <StyledInformationContentContainer>
-                  <span>{t("type")}</span>
-                  <p>{type}</p>
-                </StyledInformationContentContainer>
-              )}
-              {websitePage && (
-                <StyledInformationContentContainer>
-                  <span>{t("websitePage")}</span>
-                  <a target="_blank" rel="noreferrer" href={websitePage}>
-                    <p>{websitePage}</p>
-                  </a>
-                </StyledInformationContentContainer>
-              )}
+              {/*{language && (*/}
+              {/*  <StyledInformationContentContainer>*/}
+              {/*    <span>{t("language")}</span>*/}
+              {/*    <p>{language}</p>*/}
+              {/*  </StyledInformationContentContainer>*/}
+              {/*)}*/}
+              {/*{type && (*/}
+              {/*  <StyledInformationContentContainer>*/}
+              {/*    <span>{t("type")}</span>*/}
+              {/*    <p>{type}</p>*/}
+              {/*  </StyledInformationContentContainer>*/}
+              {/*)}*/}
+              {/*{websitePage && (*/}
+              {/*  <StyledInformationContentContainer>*/}
+              {/*    <span>{t("websitePage")}</span>*/}
+              {/*    <a target="_blank" rel="noreferrer" href={websitePage}>*/}
+              {/*      <p>{websitePage}</p>*/}
+              {/*    </a>*/}
+              {/*  </StyledInformationContentContainer>*/}
+              {/*)}*/}
               {slug && (
                 <Link href={`/predmety/${slug}`}>
                   <a>
