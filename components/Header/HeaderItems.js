@@ -7,15 +7,10 @@ export const katedraDropdownItems = [
   {
     id: 2,
     title: "História v skratke",
-    path: "../",
+    path: "/historia",
   },
   {
     id: 3,
-    title: "Alumni",
-    path: "../",
-  },
-  {
-    id: 4,
     title: "Výročné správy",
     path: "../",
   },
@@ -73,12 +68,12 @@ export const studiumDropdownItems = [
   {
     id: 3,
     title: "Bakalárska práca",
-    path: "../",
+    path: "/studium/bakalarska-praca",
   },
   {
     id: 4,
     title: "Diplomové práce",
-    path: "../",
+    path: "/studium/diplomova-praca",
   },
 ];
 
@@ -132,21 +127,6 @@ export const headerItems = [
   {
     id: 5,
     title: "Dokumenty",
-    path: "../",
-  },
-  {
-    id: 6,
-    title: "Ocenenia",
-    path: "../",
-  },
-  {
-    id: 7,
-    title: "Galéria",
-    path: "../",
-  },
-  {
-    id: 8,
-    title: "Archív",
     path: "../",
   },
 ];

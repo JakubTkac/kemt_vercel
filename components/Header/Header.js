@@ -40,6 +40,7 @@ const HeaderLogo = styled.div`
   //   width: 100px;
   // }
   max-height: ${HEIGHT.S};
+  margin-right: 1rem;
   @media (max-width: ${SCREENS.XL}) {
     max-height: ${HEIGHT.XS};
   }
