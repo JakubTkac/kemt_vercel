@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 
 const StyledHeadingH1 = styled.h1`
   font-size: ${FONT_SIZE.XL};

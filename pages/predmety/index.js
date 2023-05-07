@@ -140,14 +140,13 @@ export default function Subjects({ subjects, subjectWithStudyType, locale }) {
         </StyledSelectButton>
       </StyledSelectTypesContainer>
       <StyledContentContainer>
-        {studyYears.map((studyYear) => (
-          <>
-            <SubjectDropdownItem
-              data={data}
-              studyYear={studyYear}
-              locale={locale}
-            ></SubjectDropdownItem>
-          </>
+        {studyYears.map((studyYear, index) => (
+          <SubjectDropdownItem
+            key={index}
+            data={data}
+            studyYear={studyYear}
+            locale={locale}
+          ></SubjectDropdownItem>
         ))}
       </StyledContentContainer>
     </>

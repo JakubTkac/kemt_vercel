@@ -52,8 +52,7 @@ const StyledContent = styled.div`
   h3 {
     page-break-after: avoid;
   }
-}
-
+  
 pre,
 code {
   font-family: Menlo, Monaco, "Courier New", monospace;
@@ -176,7 +175,10 @@ hr {
   height: 1px;
   background-color: ${COLOR.SEC[500]};
 }
-`;
+  
+  
+}`;
+
 const Img = styled.img`
   object-fit: cover;
   width: 100%;

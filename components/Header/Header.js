@@ -31,18 +31,26 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderLogo = styled.div`
-  width: 200px;
-  cursor: pointer;
+  // width: 200px;
+  // cursor: pointer;
+  // @media (max-width: ${SCREENS.XL}) {
+  //   width: 160px;
+  // }
+  // @media (max-width: ${SCREENS.LG}) {
+  //   width: 100px;
+  // }
+  max-height: ${HEIGHT.S};
   @media (max-width: ${SCREENS.XL}) {
-    width: 160px;
-  }
-  @media (max-width: ${SCREENS.LG}) {
-    width: 100px;
+    max-height: ${HEIGHT.XS};
   }
 `;
 
 const StyledHeaderLogo = styled.img`
-  object-fit: contain;
+  width: auto;
+  height: 78px;
+  @media (max-width: ${SCREENS.XL}) {
+    height: 58px;
+  }
 `;
 
 const HeaderContent = styled.ul`

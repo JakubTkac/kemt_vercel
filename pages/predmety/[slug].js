@@ -32,7 +32,7 @@ export async function getStaticProps({ params, locale }) {
 function Content({ subject, locale }) {
   const { t } = useTranslation("employees");
 
-  const { title } = subject.data.attributes;
+  const { title, titleEN } = subject.data.attributes;
 
   return (
     <>

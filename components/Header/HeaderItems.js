@@ -2,7 +2,7 @@ export const katedraDropdownItems = [
   {
     id: 1,
     title: "O nás",
-    path: "../",
+    path: "/o-nas",
   },
   {
     id: 2,
