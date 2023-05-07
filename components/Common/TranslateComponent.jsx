@@ -1,14 +1,14 @@
-const TranslateComponent = ({ Component, sk, en, locale }) => {
+const TranslateComponent = ({ Component, sk, en, locale, ...rest }) => {
   return (
     <>
       {locale === "en" ? (
         en ? (
-          <Component>{en}</Component>
+          <Component {...rest}>{en}</Component>
         ) : (
-          <Component>{sk}</Component>
+          <Component {...rest}>{sk}</Component>
         )
       ) : (
-        <Component>{sk}</Component>
+        <Component {...rest}>{sk}</Component>
       )}
     </>
   );

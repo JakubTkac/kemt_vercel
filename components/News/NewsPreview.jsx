@@ -14,7 +14,7 @@ const StyledNewsWrapper = styled.li`
   min-height: 130px;
 
   @media (max-width: ${SCREENS.XXL}) {
-    width: 48%;
+    width: 47%;
   }
   @media (max-width: ${SCREENS.XL}) {
     width: 47%;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { COLOR, HEIGHT, SCREENS } from "../../Theme";
+import TranslateComponent from "../Common/TranslateComponent";
 
 const DropdownContainer = styled.div`
   border: 1px solid ${COLOR.FEI_PRIMARY};
@@ -44,14 +45,21 @@ const DropdownItem = styled.li`
   }
 `;
 
-const HeaderDropdown = ({ dropdownItems }) => {
+const HeaderDropdown = ({ dropdownItems, locale }) => {
   return (
     <DropdownContainer>
       <DropdownList>
         {dropdownItems.map((item) => {
           return (
             <Link href={item.path} key={item.id}>
-              <DropdownItem>{item.title}</DropdownItem>
+              <a>
+                <TranslateComponent
+                  Component={DropdownItem}
+                  locale={locale}
+                  sk={item.title}
+                  en={item.titleEN}
+                ></TranslateComponent>
+              </a>
             </Link>
           );
         })}

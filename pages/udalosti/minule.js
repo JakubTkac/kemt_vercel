@@ -16,7 +16,7 @@ const pagesize = 2;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const eventsResponse = await fetcher(
-    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$lt]=${today}&sort=startingDate%3Adesc&pagination[page]=${
+    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$lt]=${today}&sort[0]=startingDate%3Adesc&sort[1]=title%3Adesc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=${pagesize}`
   );
@@ -137,11 +137,10 @@ const Minule = ({ events, pagination, locale }) => {
   const [pageNum, setPageNum] = useState(parseInt(page) || 1);
   const [pageItems, setPageItems] = useState(events);
   const { t } = useTranslation("common");
-
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$lt]=${today}&sort=startingDate%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagesize}`
+        `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$lt]=${today}&sort[0]=startingDate%3Adesc&sort[1]=title%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagesize}`
       );
       setPageItems(tempPageItems);
     };

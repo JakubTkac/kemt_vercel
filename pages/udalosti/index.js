@@ -16,7 +16,7 @@ const pagesize = 2;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const eventsResponse = await fetcher(
-    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${
+    `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort[0]=startingDate%3Adesc&sort[1]=title%3Adesc%3Aasc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=${pagesize}`
   );
@@ -141,7 +141,7 @@ const Index = ({ events, pagination, locale }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort=startingDate%3Aasc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/events?locale=${locale}&populate=*&filters[startingDate][$gt]=${today}&sort[0]=startingDate%3Adesc&sort[1]=title%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };

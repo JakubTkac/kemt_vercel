@@ -7,6 +7,9 @@ import { RiArrowDropDownLine, RiMenuLine } from "react-icons/ri";
 import HeaderDropdown from "./HeaderDropdown";
 import useBetterMediaQuery from "../../utils/useBetterMediaQuery";
 import Navbar from "./Navbar";
+import TranslateComponent from "../Common/TranslateComponent";
+import Blank from "../Common/Blank";
+import { useRouter } from "next/router";
 
 const HeaderContainer = styled.div`
   padding: 0 5%;
@@ -31,14 +34,6 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderLogo = styled.div`
-  // width: 200px;
-  // cursor: pointer;
-  // @media (max-width: ${SCREENS.XL}) {
-  //   width: 160px;
-  // }
-  // @media (max-width: ${SCREENS.LG}) {
-  //   width: 100px;
-  // }
   max-height: ${HEIGHT.S};
   margin-right: 1rem;
   @media (max-width: ${SCREENS.XL}) {
@@ -103,7 +98,7 @@ const StyledA = styled.a`
   }
 `;
 
-const HeaderItem = ({ item }) => {
+const HeaderItem = ({ item, locale }) => {
   const [displaySection, setDisplaySection] = useState(false);
   return (
     <StyledHeaderItem
@@ -113,13 +108,18 @@ const HeaderItem = ({ item }) => {
       <Link href={item.path}>
         <a>
           <StyledA>
-            {item.title}
+            <TranslateComponent
+              Component={Blank}
+              en={item.titleEN}
+              sk={item.title}
+              locale={locale}
+            ></TranslateComponent>
             {item.dropdownItems && <RiArrowDropDownLine size={32} />}
           </StyledA>
         </a>
       </Link>
       {item.dropdownItems && displaySection && (
-        <HeaderDropdown dropdownItems={item.dropdownItems} />
+        <HeaderDropdown dropdownItems={item.dropdownItems} locale={locale} />
       )}
     </StyledHeaderItem>
   );
@@ -187,7 +187,7 @@ const StyledMobileLi = styled.li`
   }
 `;
 
-const MobileButton = ({ items }) => {
+const MobileButton = ({ items, locale }) => {
   const [displaySection, setDisplaySection] = useState(false);
   return (
     <>
@@ -198,7 +198,12 @@ const MobileButton = ({ items }) => {
         <StyledMobileContainer>
           {items.map((item) => (
             <StyledMobileUl key={item.id}>
-              <StyledMobileHeading>{item.title}</StyledMobileHeading>
+              <TranslateComponent
+                Component={StyledMobileHeading}
+                locale={locale}
+                sk={item.title}
+                en={item.titleEN}
+              ></TranslateComponent>
               {item.dropdownItems &&
                 item.dropdownItems.map((dropdownItem) => (
                   <Link href={dropdownItem.path} key={dropdownItem.id}>
@@ -218,6 +223,7 @@ const MobileButton = ({ items }) => {
 };
 
 const Header = () => {
+  const locale = useRouter().locale;
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
     <>
@@ -233,11 +239,11 @@ const Header = () => {
         {isLargerThan768 ? (
           <HeaderContent>
             {headerItems.map((item) => (
-              <HeaderItem key={item.id} item={item} />
+              <HeaderItem key={item.id} item={item} locale={locale} />
             ))}
           </HeaderContent>
         ) : (
-          <MobileButton items={headerItems}></MobileButton>
+          <MobileButton locale={locale} items={headerItems}></MobileButton>
         )}
       </HeaderContainer>
     </>

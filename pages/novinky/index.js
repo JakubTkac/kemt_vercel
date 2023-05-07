@@ -12,7 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const URL = process.env.STRAPI_URL;
 export async function getServerSideProps({ query: { page }, locale }) {
   const newsResponse = await fetcher(
-    `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${
+    `${URL}/news?locale=${locale}&populate=*&sort[0]=date%3Adesc&sort[1]=title%3Adesc&pagination[page]=${
       page || 1
     }&pagination[pageSize]=4`
   );
@@ -98,7 +98,7 @@ const Index = ({ news, pagination, locale }) => {
   useEffect(() => {
     const fetchPageItems = async () => {
       const tempPageItems = await fetcher(
-        `${URL}/news?locale=${locale}&populate=*&sort=date%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
+        `${URL}/news?locale=${locale}&populate=*&sort[0]=date%3Adesc&sort[1]=title%3Adesc&pagination[page]=${pageNum}&pagination[pageSize]=${pagination.pageSize}`
       );
       setPageItems(tempPageItems);
     };
