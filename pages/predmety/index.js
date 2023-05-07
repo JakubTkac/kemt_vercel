@@ -1,24 +1,15 @@
 import styled from "styled-components";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  HEIGHT,
-  SCREENS,
-  WIDTH,
-} from "../../Theme";
+import { SCREENS } from "../../Theme";
 import { fetcher } from "../../lib/api";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import StyledSelectTypesContainer from "../../components/Styled/StyledSelectTypesContainer";
 import StyledSelectButton from "../../components/Styled/StyledSelectButton";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import SubjectDropdownItem from "../../components/Subjects/SubjectDropdownItem";
 
 const URL = process.env.STRAPI_URL;
-const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const subjectsResponse = await fetcher(

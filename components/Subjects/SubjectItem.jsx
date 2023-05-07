@@ -5,6 +5,12 @@ import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
 import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
+import TranslateComponent from "../Common/TranslateComponent";
+import H2 from "../Common/H2";
+import ContentWithTitle from "../Common/ContentWithTitle";
+import MoreButton from "../Styled/StyledMoreButton";
+import StyledTitle from "../Styled/StyledTitle";
+import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
 
 const fadeIn = keyframes`
   from {
@@ -23,58 +29,6 @@ const StyledContainer = styled.div`
   transition: width 2s, height 4s;
   @media (max-width: ${SCREENS.SM}) {
     margin: 0;
-  }
-`;
-
-const StyledTitle = styled.div`
-  display: flex;
-  cursor: pointer;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.5rem;
-  justify-content: space-between;
-  background-color: ${COLOR.WHITE};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  @media (max-width: ${SCREENS.XS}) {
-    padding: 0.2rem;
-  }
-  h2 {
-    font-size: ${FONT_SIZE.L};
-    color: ${COLOR.SEC[500]};
-    font-weight: ${FONT_WEIGHT.EXTRABOLD};
-    @media (max-width: ${SCREENS.MD}) {
-      font-weight: ${FONT_WEIGHT.BOLDER};
-      font-size: ${FONT_SIZE.M};
-    }
-  }
-  svg {
-    font-size: ${FONT_SIZE.XL};
-    color: ${COLOR.SEC[500]};
-  }
-`;
-
-const StyledMoreButton = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  background-color: ${COLOR.SEC.DEFAULT};
-  color: ${COLOR.WHITE};
-  text-align: center;
-  font-weight: 500;
-  font-size: ${FONT_SIZE.M};
-  min-height: ${SPACE.XL};
-  border: ${COLOR.SEC[600]} 1px solid;
-  margin-top: 2rem;
-  @media (max-width: ${SCREENS.XL}) {
-    min-height: ${SPACE.L};
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    min-height: ${SPACE.XL};
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    min-height: ${SPACE.L};
-  }
-  &:hover {
-    background-color: ${COLOR.SEC[300]};
   }
 `;
 
@@ -115,15 +69,12 @@ const SubjectItem = ({ locale, dropdownItems }) => {
               setOpen(!open);
             }}
           >
-            {locale === "en" ? (
-              titleEN ? (
-                <h2>{titleEN}</h2>
-              ) : (
-                <h2>{title}</h2>
-              )
-            ) : (
-              <h2>{title}</h2>
-            )}
+            <TranslateComponent
+              Component={H2}
+              locale={locale}
+              sk={title}
+              en={titleEN}
+            ></TranslateComponent>
             {open ? (
               <FiChevronUp></FiChevronUp>
             ) : (
@@ -132,59 +83,21 @@ const SubjectItem = ({ locale, dropdownItems }) => {
           </StyledTitle>
           {open && (
             <StyledTransitionContainer>
-              {shortTitle && (
-                <StyledInformationContentContainer>
-                  <span>{t("shortTitle")}</span>
-                  <p>{shortTitle}</p>
-                </StyledInformationContentContainer>
-              )}
-              {/*<StyledInformationContentContainer>*/}
-              {/*  <span>{t("subjectID")}</span>*/}
-              {/*  <p>{subjectID}</p>*/}
-              {/*</StyledInformationContentContainer>*/}
-              {anotation &&
-                (locale === "en" ? (
-                  anotationEN ? (
-                    <StyledInformationContentContainer>
-                      <span>{t("anotation")}</span>
-                      <p>{anotationEN}</p>
-                    </StyledInformationContentContainer>
-                  ) : (
-                    <StyledInformationContentContainer>
-                      <span>{t("anotation")}</span>
-                      <p>{anotation}</p>
-                    </StyledInformationContentContainer>
-                  )
-                ) : (
-                  <StyledInformationContentContainer>
-                    <span>{t("anotation")}</span>
-                    <p>{anotation}</p>
-                  </StyledInformationContentContainer>
-                ))}
-              {/*{language && (*/}
-              {/*  <StyledInformationContentContainer>*/}
-              {/*    <span>{t("language")}</span>*/}
-              {/*    <p>{language}</p>*/}
-              {/*  </StyledInformationContentContainer>*/}
-              {/*)}*/}
-              {/*{type && (*/}
-              {/*  <StyledInformationContentContainer>*/}
-              {/*    <span>{t("type")}</span>*/}
-              {/*    <p>{type}</p>*/}
-              {/*  </StyledInformationContentContainer>*/}
-              {/*)}*/}
-              {/*{websitePage && (*/}
-              {/*  <StyledInformationContentContainer>*/}
-              {/*    <span>{t("websitePage")}</span>*/}
-              {/*    <a target="_blank" rel="noreferrer" href={websitePage}>*/}
-              {/*      <p>{websitePage}</p>*/}
-              {/*    </a>*/}
-              {/*  </StyledInformationContentContainer>*/}
-              {/*)}*/}
+              <TranslateTitleWithContent
+                content={shortTitle}
+                locale={locale}
+                title={t("shortTitle")}
+              ></TranslateTitleWithContent>
+              <TranslateTitleWithContent
+                content={anotation}
+                contentEN={anotationEN}
+                locale={locale}
+                title={t("anotation")}
+              ></TranslateTitleWithContent>
               {slug && (
                 <Link href={`/predmety/${slug}`}>
                   <a>
-                    <StyledMoreButton>{t("more")}</StyledMoreButton>
+                    <MoreButton>{t("more")}</MoreButton>
                   </a>
                 </Link>
               )}

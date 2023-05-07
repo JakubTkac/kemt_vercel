@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, HEIGHT, SCREENS, WIDTH } from "../../Theme";
+import { COLOR, SCREENS } from "../../Theme";
 import StyledShowAllButton from "../../components/Styled/StyledShowAllButton";
 import { fetcher } from "../../lib/api";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -8,13 +8,11 @@ import { useState } from "react";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import StyledSelectTypesContainer from "../../components/Styled/StyledSelectTypesContainer";
 import SelectButton from "../../components/Styled/StyledSelectButton";
+import StudyProgrammeItem from "../../components/Study Programmes/StudyProgrammeItem";
 
 const URL = process.env.STRAPI_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
-  // const programsResponse = await fetcher(
-  //   `${URL}/study-programmes?populate[typeOfStudies][populate]=*`
-  // );
   const typeOfStudiesResponse = await fetcher(
     `${URL}/type-of-studies?populate[studyProgrammes][populate]=*`
   );
@@ -27,40 +25,22 @@ export async function getServerSideProps({ query: { page }, locale }) {
   };
 }
 
-const StyledProgramsContainer = styled.div`
+const StyledContentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  @media (max-width: ${SCREENS.SM}) {
+    width: 100%;
+  }
+`;
+
+const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-`;
-
-const StyledLabel = styled.div`
-  display: flex;
-  width: 100%;
-  div:first-child {
-    display: flex;
-    justify-content: flex-start;
-    font-weight: 700;
-    min-width: 10rem;
-  }
-  div:nth-child(2) {
-    text-align: left;
-  }
-`;
-
-const StyledButton = styled.button`
-  background-color: ${COLOR.SEC[500]};
-  color: ${COLOR.WHITE};
-  width: 100%;
-  border: 1px solid ${COLOR.BLACK};
-`;
-const StyledProgramSection = styled.button`
+  padding: 0.5rem;
   border: 1px solid ${COLOR.PLATINUM[600]};
-  cursor: default;
-  padding: 12px;
-`;
-const StyledSubject = styled.div`
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  padding: 10px;
+  margin-bottom: 2rem;
 `;
 
 export default function StudDegrees({ locale, typeOfStudies }) {
@@ -74,54 +54,6 @@ export default function StudDegrees({ locale, typeOfStudies }) {
     setMasterActive(false);
     setDoctoralActive(false);
     setter(true);
-  };
-
-  const LabelText = ({ label, children }) => {
-    return (
-      <StyledLabel>
-        <div>{label}</div>
-        <div>{children || "Nezadane"}</div>
-      </StyledLabel>
-    );
-  };
-
-  const Subject = ({ subject }) => {
-    const { longTitle, type, year } = subject || {};
-    return (
-      <StyledSubject>
-        <LabelText label={"Nazov:"}>{longTitle}</LabelText>
-        <LabelText label={"Typ:"}>{type}</LabelText>
-        <LabelText label={"Rok:"}>{year}</LabelText>
-      </StyledSubject>
-    );
-  };
-
-  const ProgramSection = ({ program }) => {
-    const { title, goals, absolventProfile, subjects } = program || {};
-    const [open, setOpen] = useState(false);
-
-    function toggleSection() {
-      setOpen(!open);
-    }
-
-    return (
-      <>
-        <StyledButton onClick={toggleSection}>{title}</StyledButton>
-        {open && (
-          <StyledProgramSection>
-            <LabelText label={"Profil Absolventa:"}>
-              {absolventProfile}
-            </LabelText>
-            <LabelText label={"Ciele:"}>{goals}</LabelText>
-            <div>
-              {subjects.data?.map((item) => (
-                <Subject key={item.id} subject={item.attributes} />
-              ))}
-            </div>
-          </StyledProgramSection>
-        )}
-      </>
-    );
   };
 
   return (
@@ -147,49 +79,55 @@ export default function StudDegrees({ locale, typeOfStudies }) {
           {t("doctoral")}
         </SelectButton>
       </StyledSelectTypesContainer>
-      <StyledProgramsContainer>
+      <StyledContentContainer>
         {bachelorActive && (
-          <div
-            style={{
-              flexGap: "8px",
-            }}
-          >
+          <StyledWrapper>
             {typeOfStudies.data[0].attributes.studyProgrammes.data.map(
-              (program) => (
-                <ProgramSection key={program.id} program={program.attributes} />
-              )
+              (program) => {
+                return (
+                  <StudyProgrammeItem
+                    key={program.id}
+                    locale={locale}
+                    attributes={program.attributes}
+                  ></StudyProgrammeItem>
+                );
+              }
             )}
-          </div>
+          </StyledWrapper>
         )}
 
         {masterActive && (
-          <div
-            style={{
-              flexGap: "8px",
-            }}
-          >
+          <StyledWrapper>
             {typeOfStudies.data[1].attributes.studyProgrammes.data.map(
-              (program) => (
-                <ProgramSection key={program.id} program={program.attributes} />
-              )
+              (program) => {
+                return (
+                  <StudyProgrammeItem
+                    key={program.id}
+                    locale={locale}
+                    attributes={program.attributes}
+                  ></StudyProgrammeItem>
+                );
+              }
             )}
-          </div>
+          </StyledWrapper>
         )}
 
         {doctoralActive && (
-          <div
-            style={{
-              flexGap: "8px",
-            }}
-          >
+          <StyledWrapper>
             {typeOfStudies.data[2].attributes.studyProgrammes.data.map(
-              (program) => (
-                <ProgramSection key={program.id} program={program.attributes} />
-              )
+              (program) => {
+                return (
+                  <StudyProgrammeItem
+                    key={program.id}
+                    locale={locale}
+                    attributes={program.attributes}
+                  ></StudyProgrammeItem>
+                );
+              }
             )}
-          </div>
+          </StyledWrapper>
         )}
-      </StyledProgramsContainer>
+      </StyledContentContainer>
       <a
         target="_blank"
         rel="noreferrer"

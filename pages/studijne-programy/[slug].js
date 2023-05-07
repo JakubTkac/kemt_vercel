@@ -1,6 +1,4 @@
 import { fetcher } from "../../lib/api";
-import styled from "styled-components";
-import { COLOR, FONT_SIZE, HEIGHT, SCREENS, WIDTH } from "../../Theme";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
@@ -26,13 +24,13 @@ export async function getStaticProps({ params, locale }) {
       params,
       program,
       locale,
-      ...(await serverSideTranslations(locale, ["subjects"])),
+      ...(await serverSideTranslations(locale, ["programs"])),
     },
   };
 }
 
 function Content({ program, locale }) {
-  const { t } = useTranslation("employees");
+  const { t } = useTranslation("programs");
 
   const { title, titleEN } = program.data.attributes;
 

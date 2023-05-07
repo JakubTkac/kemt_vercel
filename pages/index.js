@@ -47,7 +47,7 @@ export default function Home({ notices, news, events, locale }) {
     <>
       <Head>
         <title>KEMT</title>
-        <link rel="icon" href="/favicon.ico" />{" "}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <Hero />
       <Notices data={notices} heading={t("notices")} locale={locale} />

@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { COLOR, SCREENS } from "../../Theme";
 import Link from "next/link";
+import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -16,30 +17,6 @@ const StyledContainer = styled.div`
     margin: 0;
   }
 `;
-
-const Content = ({ text, content, contentEN, locale }) => {
-  return (
-    content &&
-    (locale === "en" ? (
-      contentEN ? (
-        <StyledInformationContentContainer>
-          <span>{text}</span>
-          <p>{contentEN}</p>
-        </StyledInformationContentContainer>
-      ) : (
-        <StyledInformationContentContainer>
-          <span>{text}</span>
-          <p>{content}</p>
-        </StyledInformationContentContainer>
-      )
-    ) : (
-      <StyledInformationContentContainer>
-        <span>{text}</span>
-        <p>{content}</p>
-      </StyledInformationContentContainer>
-    ))
-  );
-};
 
 const Subject = ({ data, locale }) => {
   const { t } = useTranslation("subjects");
@@ -69,54 +46,58 @@ const Subject = ({ data, locale }) => {
 
   return (
     <StyledContainer>
-      <Content
+      <TranslateTitleWithContent
         content={shortTitle}
         locale={locale}
-        text={t("shortTitle")}
-      ></Content>
-      <Content
+        title={t("shortTitle")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={anotation}
         contentEN={anotationEN}
         locale={locale}
-        text={t("anotation")}
-      ></Content>
-      <Content
+        title={t("anotation")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={completion}
         contentEN={completionEN}
         locale={locale}
-        text={t("completion")}
-      ></Content>
-      <Content content={credits} locale={locale} text={t("credits")}></Content>
-      <Content
+        title={t("completion")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
+        content={credits}
+        locale={locale}
+        title={t("credits")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={formOfTeaching}
         locale={locale}
-        text={t("formOfTeaching")}
-      ></Content>
-      <Content
+        title={t("formOfTeaching")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={hoursPerSemester}
         locale={locale}
-        text={t("hoursPerSemester")}
-      ></Content>
-      <Content
+        title={t("hoursPerSemester")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={hoursPerWeek}
         locale={locale}
-        text={t("hoursPerWeek")}
-      ></Content>
-      <Content
+        title={t("hoursPerWeek")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={language}
         locale={locale}
-        text={t("language")}
-      ></Content>
-      <Content
+        title={t("language")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={studyMethod}
         locale={locale}
-        text={t("studyMethod")}
-      ></Content>
-      <Content
+        title={t("studyMethod")}
+      ></TranslateTitleWithContent>
+      <TranslateTitleWithContent
         content={subjectID}
         locale={locale}
-        text={t("subjectID")}
-      ></Content>
+        title={t("subjectID")}
+      ></TranslateTitleWithContent>
       {syllabus &&
         (locale === "en" ? (
           syllabusEN ? (
@@ -154,7 +135,11 @@ const Subject = ({ data, locale }) => {
             )}
           </StyledInformationContentContainer>
         ))}
-      <Content content={type} locale={locale} text={t("type")}></Content>
+      <TranslateTitleWithContent
+        content={type}
+        locale={locale}
+        title={t("type")}
+      ></TranslateTitleWithContent>
       {guarantor.data && (
         <StyledInformationContentContainer>
           <span>{t("guarantor")}</span>
