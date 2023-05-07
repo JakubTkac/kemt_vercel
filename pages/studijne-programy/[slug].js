@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import TranslateComponent from "../../components/Common/TranslateComponent";
+import StudyProgramme from "../../components/Study Programmes/StudyProgramme";
 
 const URL = process.env.STRAPI_URL;
 
@@ -19,22 +20,32 @@ export async function getStaticProps({ params, locale }) {
   const program = await fetcher(
     `${URL}/study-programmes/${params.slug}?populate=*`
   );
+  const programYear = await fetcher(
+    `${URL}/study-programmes/${params.slug}?populate[subjects][populate]=studyYear`
+  );
   return {
     props: {
       params,
       program,
+      programYear,
       locale,
       ...(await serverSideTranslations(locale, ["programs"])),
     },
   };
 }
 
-function Content({ program, locale }) {
+function Content({ program, programYear, locale }) {
   const { t } = useTranslation("programs");
-
+  const {
+    data: {
+      attributes: {
+        subjects: { data: subjects },
+      },
+    },
+  } = programYear;
+  program.data.attributes.subjects.data = subjects;
   const { title, titleEN } = program.data.attributes;
 
-  console.log(program.data.attributes);
   return (
     <>
       <TranslateComponent
@@ -43,7 +54,10 @@ function Content({ program, locale }) {
         sk={title}
         en={titleEN}
       ></TranslateComponent>
-      {/*<Subject data={program.data.attributes} locale={locale}></Subject>*/}
+      <StudyProgramme
+        data={program.data.attributes}
+        locale={locale}
+      ></StudyProgramme>
     </>
   );
 }

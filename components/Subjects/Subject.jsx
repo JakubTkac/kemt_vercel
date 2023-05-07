@@ -1,22 +1,8 @@
 import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
 import { useTranslation } from "next-i18next";
-import styled from "styled-components";
-import { COLOR, SCREENS } from "../../Theme";
 import Link from "next/link";
 import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
-
-const StyledContainer = styled.div`
-  width: 100%;
-  margin: 2rem;
-  display: flex;
-  flex-direction: column;
-  transition: width 2s, height 4s;
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  background-color: ${COLOR.WHITE};
-  @media (max-width: ${SCREENS.SM}) {
-    margin: 0;
-  }
-`;
+import StyledSingleItemContainer from "../Styled/StyledSingleItemContainer";
 
 const Subject = ({ data, locale }) => {
   const { t } = useTranslation("subjects");
@@ -45,7 +31,7 @@ const Subject = ({ data, locale }) => {
   } = data;
 
   return (
-    <StyledContainer>
+    <StyledSingleItemContainer>
       <TranslateTitleWithContent
         content={shortTitle}
         locale={locale}
@@ -252,7 +238,7 @@ const Subject = ({ data, locale }) => {
           </a>
         </StyledInformationContentContainer>
       )}
-    </StyledContainer>
+    </StyledSingleItemContainer>
   );
 };
 

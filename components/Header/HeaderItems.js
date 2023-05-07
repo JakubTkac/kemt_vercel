@@ -17,53 +17,25 @@ export const katedraDropdownItems = [
     titleEN: "Annual reports",
     path: "/vyrocne-spravy",
   },
-];
-
-export const personalDropdownItems = [
-  {
-    id: 1,
-    title: "Vedenie katedry",
-    titleEN: "Department",
-    path: "../organizacia/vedenie-katedry-kemt",
-  },
-  {
-    id: 2,
-    title: "Profesori",
-    titleEN: "",
-    path: "../organizacia/profesori",
-  },
-  {
-    id: 3,
-    title: "Docenti",
-    titleEN: "",
-    path: "../organizacia/docenti",
-  },
   {
     id: 4,
-    title: "Odborní asistenti",
-    titleEN: "",
-    path: "../organizacia/odborni-asistenti",
+    title: "Oznamy",
+    titleEN: "Notices",
+    path: "/oznamy",
   },
   {
     id: 5,
-    title: "Výskumníci",
-    titleEN: "",
-    path: "../organizacia/vyskumnici",
+    title: "Udalosti",
+    titleEN: "Events",
+    path: "/udalosti",
   },
   {
     id: 6,
-    title: "PhD. Študenti",
-    titleEN: "",
-    path: "../organizacia/phd-studenti",
-  },
-  {
-    id: 7,
-    title: "THP pracovníci",
-    titleEN: "",
-    path: "../organizacia/administrativni-pracovnici",
+    title: "Novinky",
+    titleEN: "News",
+    path: "/novinky",
   },
 ];
-
 export const studiumDropdownItems = [
   {
     id: 1,
@@ -92,23 +64,23 @@ export const studiumDropdownItems = [
 ];
 
 export const vedaDropdownItems = [
-  {
-    id: 1,
-    title: "Výskumné skupiny",
-    titleEN: "Research groups",
-    path: "../",
-  },
+  // {
+  //   id: 1,
+  //   title: "Výskumné skupiny",
+  //   titleEN: "Research groups",
+  //   path: "../",
+  // },
   {
     id: 2,
     title: "Projekty",
     titleEN: "Projects",
-    path: "../",
+    path: "/projekty",
   },
   {
     id: 3,
     title: "Publikácie",
     titleEN: "Publications",
-    path: "../",
+    path: "/publikacie",
   },
 ];
 
@@ -117,33 +89,39 @@ export const headerItems = [
     id: 1,
     title: "Katedra",
     titleEN: "Department",
-    path: "../",
+    path: "/o-nas",
     dropdownItems: katedraDropdownItems,
   },
   {
     id: 2,
     title: "Personál",
     titleEN: "Staff",
-    path: "../organizacia",
+    path: "/organizacia",
   },
   {
     id: 3,
     title: "Štúdium",
     titleEN: "The study",
-    path: "../",
+    path: "/studijne-programy",
     dropdownItems: studiumDropdownItems,
   },
   {
     id: 4,
     title: "Veda a výskum",
     titleEN: "Science and research",
-    path: "../",
+    path: "/projekty",
     dropdownItems: vedaDropdownItems,
   },
   {
     id: 5,
     title: "Dokumenty",
     titleEN: "Documents",
-    path: "../",
+    path: "/dokumenty",
+  },
+  {
+    id: 6,
+    title: "Kontakt",
+    titleEN: "Contact",
+    path: "/kontakt",
   },
 ];

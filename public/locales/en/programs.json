@@ -6,5 +6,8 @@
   "apply": "How to apply",
   "programs": "Study Programs",
   "more": "More Information...",
-  "absolventProfile": "Graduate profile:"
+  "absolventProfile": "Graduate profile:",
+  "goals": "Goals: ",
+  "type_of_study": "Type of Study: ",
+  "subjects": "Subjects: "
 }

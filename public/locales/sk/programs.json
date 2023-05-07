@@ -6,5 +6,8 @@
   "apply": "Ako podať prihlášku?",
   "programs": "Študijné programy",
   "more": "Viac Informácií...",
-  "absolventProfile": "Profil Absolventa:"
+  "absolventProfile": "Profil Absolventa:",
+  "goals": "Ciele Predmetu: ",
+  "type_of_study": "Typ Štúdia: ",
+  "subjects": "Predmety: "
 }
