@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { FiSearch } from "react-icons/fi";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT } from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 
 const StyledForm = styled.form`
   position: relative;
@@ -22,6 +22,25 @@ const StyledForm = styled.form`
   &:hover > input {
     background-color: ${COLOR.SEC[500]};
   }
+  @media (max-width: ${SCREENS.XL}) {
+    width: ${(props) => (props.barOpened ? "20rem" : "2rem")};
+  }
+  @media (max-width: ${SCREENS.LG}) {
+    width: ${(props) => (props.barOpened ? "14.5rem" : "2rem")};
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    width: ${(props) => (props.barOpened ? "12rem" : "2rem")};
+  }
+  @media (max-width: ${SCREENS.SM}) {
+    width: ${(props) => (props.barOpened ? "10rem" : "2rem")};
+  }
+  @media (max-width: ${SCREENS.XS}) {
+    width: ${(props) => (props.barOpened ? "99%" : "2rem")};
+    top: 0;
+    left: 0;
+    //width: 99%;
+    position: absolute;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -30,7 +49,7 @@ const StyledInput = styled.input`
   line-height: 1;
   background-color: transparent;
   width: 100%;
-  margin-left: ${(props) => (props.barOpened ? "1px" : "0rem")};
+  margin-left: ${(props) => (props.barOpened ? "0.25rem" : "0rem")};
   border: none;
   color: ${COLOR.WHITE};
   transition: margin 300ms cubic-bezier(0.645, 0.045, 0.355, 1);

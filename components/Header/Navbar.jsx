@@ -85,6 +85,17 @@ const StyledIconsContainer = styled.div`
     color: ${COLOR.WHITE};
     font-size: ${FONT_SIZE.L};
   }
+  @media (max-width: ${SCREENS.LG}) {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  @media (max-width: ${SCREENS.SM}) {
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+    svg {
+      font-size: ${FONT_SIZE.M};
+    }
+  }
 `;
 
 const Navbar = () => {
