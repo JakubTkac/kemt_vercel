@@ -9,5 +9,15 @@
   "absolventProfile": "Profil Absolventa:",
   "goals": "Ciele Predmetu: ",
   "type_of_study": "Typ Štúdia: ",
-  "subjects": "Predmety: "
+  "subjects": "Predmety: ",
+  "1-rocnik-zimny": "1. Ročník zimný semester",
+  "1-rocnik-letny": "1. Ročník letný semester",
+  "2-rocnik-zimny": "2. Ročník zimný semester",
+  "2-rocnik-letny": "2. Ročník letný semester",
+  "3-rocnik-zimny": "3. Ročník zimný semester",
+  "3-rocnik-letny": "3. Ročník letný semester",
+  "4-rocnik-zimny": "4. Ročník zimný semester",
+  "4-rocnik-letny": "4. Ročník letný semester",
+  "5-rocnik-zimny": "5. Ročník zimný semester",
+  "5-rocnik-letny": "5. Ročník letný semester"
 }

@@ -1,15 +1,13 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, SPACE } from "../../Theme";
+import { COLOR, SCREENS } from "../../Theme";
 import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
-import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
 import TranslateComponent from "../Common/TranslateComponent";
 import H2 from "../Common/H2";
-import ContentWithTitle from "../Common/ContentWithTitle";
 import MoreButton from "../Styled/StyledMoreButton";
-import StyledTitle from "../Styled/StyledTitle";
+import StyledTitleButton from "../Styled/StyledTitleButton";
 import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
 
 const fadeIn = keyframes`
@@ -64,7 +62,7 @@ const SubjectItem = ({ locale, dropdownItems }) => {
     <>
       <>
         <StyledContainer>
-          <StyledTitle
+          <StyledTitleButton
             onClick={() => {
               setOpen(!open);
             }}
@@ -80,7 +78,7 @@ const SubjectItem = ({ locale, dropdownItems }) => {
             ) : (
               <FiChevronDown></FiChevronDown>
             )}
-          </StyledTitle>
+          </StyledTitleButton>
           {open && (
             <StyledTransitionContainer>
               <TranslateTitleWithContent

@@ -9,5 +9,15 @@
   "absolventProfile": "Graduate profile:",
   "goals": "Goals: ",
   "type_of_study": "Type of Study: ",
-  "subjects": "Subjects: "
+  "subjects": "Subjects: ",
+  "1-rocnik-zimny": "1. Year winter semester",
+  "1-rocnik-letny": "1. Year summer semester",
+  "2-rocnik-zimny": "2. Year winter semester",
+  "2-rocnik-letny": "2. Year summer semester",
+  "3-rocnik-zimny": "3. Year winter semester",
+  "3-rocnik-letny": "3. Year summer semester",
+  "4-rocnik-zimny": "4. Year winter semester",
+  "4-rocnik-letny": "4. Year summer semester",
+  "5-rocnik-zimny": "5. Year winter semester",
+  "5-rocnik-letny": "5. Year summer semester"
 }

@@ -7,7 +7,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import H2 from "../Common/H2";
 import MoreButton from "../Styled/StyledMoreButton";
-import StyledTitle from "../Styled/StyledTitle";
+import StyledTitleButton from "../Styled/StyledTitleButton";
 import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
 
 const StyledContainer = styled.div`
@@ -45,7 +45,7 @@ const StyledSelectTypesContainer = ({ attributes, locale }) => {
         setOpen(!open);
       }}
     >
-      <StyledTitle>
+      <StyledTitleButton>
         <TranslateComponent
           Component={H2}
           locale={locale}
@@ -53,7 +53,7 @@ const StyledSelectTypesContainer = ({ attributes, locale }) => {
           sk={title}
         ></TranslateComponent>
         {open ? <FiChevronUp></FiChevronUp> : <FiChevronDown></FiChevronDown>}
-      </StyledTitle>
+      </StyledTitleButton>
       {open && (
         <StyledTransitionContainer>
           <TranslateTitleWithContent

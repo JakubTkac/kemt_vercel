@@ -3,8 +3,9 @@ import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useState } from "react";
 import SubjectItem from "./SubjectItem";
+import TranslateComponent from "../Common/TranslateComponent";
 
-const StyledTitle = styled.div`
+const StyledTitleButton = styled.button`
   display: flex;
   cursor: pointer;
   flex-direction: row;
@@ -28,7 +29,7 @@ const StyledTitle = styled.div`
   }
   svg {
     font-size: ${FONT_SIZE.XL};
-    color: ${COLOR.SEC[500]};
+    color: ${COLOR.PRI[700]};
   }
 `;
 
@@ -42,25 +43,27 @@ const StyledWrapper = styled.div`
 const SubjectDropdownItem = ({ studyYear, locale, data }) => {
   const [open, setOpen] = useState(true);
 
+  const studyYearSemester = {
+    title: `${studyYear.title}, ${studyYear.semester} semester`,
+    titleEN: `${studyYear.titleEN}, ${studyYear.semesterEN} semester`,
+  };
+
   return (
     <StyledWrapper>
-      <StyledTitle
+      <StyledTitleButton
         key={`${studyYear.title}-${studyYear.semester}`}
         onClick={() => {
           setOpen(!open);
         }}
       >
-        {locale === "en" ? (
-          studyYear.titleEN ? (
-            <h2>{`${studyYear.titleEN}, ${studyYear.semesterEN} semester`}</h2>
-          ) : (
-            <h2>{`${studyYear.title}, ${studyYear.semester} semester`}</h2>
-          )
-        ) : (
-          <h2>{`${studyYear.title}, ${studyYear.semester} semester`}</h2>
-        )}
+        <TranslateComponent
+          Component={"h2"}
+          locale={locale}
+          sk={studyYearSemester.title}
+          en={studyYearSemester.titleEN}
+        ></TranslateComponent>
         {open ? <FiChevronUp></FiChevronUp> : <FiChevronDown></FiChevronDown>}
-      </StyledTitle>
+      </StyledTitleButton>
       {open &&
         data
           .filter((subject) => {

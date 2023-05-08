@@ -148,7 +148,7 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
           </StyledTitle>
           {open && (
             <StyledTransitionContainer>
-              {(authors || authorsOther.length > 0) && (
+              {(authors || authorsOther?.length > 0) && (
                 <StyledInformationContentContainer>
                   <span>{t("authors")}</span>
                   <div>

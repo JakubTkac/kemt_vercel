@@ -12,7 +12,7 @@ const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
-  const data = await fetcher(`${URL}/documents?sort=title%3Adesc&populate=*`);
+  const data = await fetcher(`${URL}/publications?sort=title%3Aasc&populate=*`);
   return {
     props: {
       pageData: data,
@@ -24,23 +24,11 @@ export async function getServerSideProps({ query: { page }, locale }) {
 
 function Content({ pageData, locale }) {
   const { t } = useTranslation("common");
+  console.log(pageData);
   return (
     <>
-      <StyledHeadingH1>{t("documents")}</StyledHeadingH1>
-      <StyledList>
-        {pageData.data.map((item) => {
-          return (
-            <TranslateComponent
-              key={item.id}
-              Component={DocumentPDF}
-              locale={locale}
-              sk={item.attributes.title}
-              en={item.attributes.titleEN}
-              url={`${imgURL}${item.attributes.document.data.attributes.url}`}
-            ></TranslateComponent>
-          );
-        })}
-      </StyledList>
+      <StyledHeadingH1>{t("annualReports")}</StyledHeadingH1>
+      <StyledList></StyledList>
     </>
   );
 }

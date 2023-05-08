@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 
-const StyledTitle = styled.div`
+const StyledTitleButton = styled.button`
   display: flex;
   cursor: pointer;
   flex-direction: row;
@@ -28,4 +28,4 @@ const StyledTitle = styled.div`
   }
 `;
 
-export default StyledTitle;
+export default StyledTitleButton;

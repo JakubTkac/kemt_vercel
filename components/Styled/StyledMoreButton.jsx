@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS, SPACE } from "../../Theme";
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   width: 100%;
   padding: 0.5rem;
   background-color: ${COLOR.SEC.DEFAULT};

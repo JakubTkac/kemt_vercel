@@ -6,6 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../Theme";
 import DocumentPDF from "../components/Common/DocumentPDF";
+import StyledList from "../components/Styled/StyledList";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -23,16 +24,6 @@ export async function getServerSideProps({ query: { page }, locale }) {
   };
 }
 
-const StyledList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  background-color: ${COLOR.WHITE};
-  border: 1px solid ${COLOR.PLATINUM[600]};
-  width: 100%;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 2rem;
-`;
 function Content({ pageData, locale }) {
   const { t } = useTranslation("common");
   return (
