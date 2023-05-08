@@ -9,7 +9,7 @@ const StyledFooterContainer = styled.div`
   width: 100%;
   height: ${HEIGHT.S};
   flex-direction: row;
-  background-color: ${COLOR.FEI_PRIMARY};
+  background-color: ${COLOR.PRI[500]};
   @media (max-width: ${SCREENS.XL}) {
     height: ${HEIGHT.XS};
   }

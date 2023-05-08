@@ -11,9 +11,7 @@ const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
-  const data = await fetcher(
-    `${URL}/annual-reports?sort=title%3Adesc&populate=*`
-  );
+  const data = await fetcher(`${URL}/documents?sort=title%3Adesc&populate=*`);
   return {
     props: {
       pageData: data,
@@ -37,7 +35,7 @@ function Content({ pageData, locale }) {
   const { t } = useTranslation("common");
   return (
     <>
-      <StyledHeadingH1>{t("annualReports")}</StyledHeadingH1>
+      <StyledHeadingH1>{t("documents")}</StyledHeadingH1>
       <StyledList>
         {pageData.data.map((item) => {
           return (
@@ -46,7 +44,8 @@ function Content({ pageData, locale }) {
               Component={DocumentPDF}
               locale={locale}
               sk={item.attributes.title}
-              url={`${imgURL}${item.attributes.pdf.data.attributes.url}`}
+              en={item.attributes.titleEN}
+              url={`${imgURL}${item.attributes.document.data.attributes.url}`}
             ></TranslateComponent>
           );
         })}

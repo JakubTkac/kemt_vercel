@@ -19,7 +19,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   height: ${HEIGHT.S};
-  background-color: ${COLOR.FEI_PRIMARY};
+  background-color: ${COLOR.PRI[500]};
   @media (max-width: ${SCREENS.XL}) {
     height: ${HEIGHT.XS};
   }
