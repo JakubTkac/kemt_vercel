@@ -43,7 +43,6 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     window.onscroll = () => {
       const currentScrollPos = window.pageYOffset;
-      console.log(showButton);
       if (currentScrollPos > 150) {
         setShowButton(true);
       } else {
