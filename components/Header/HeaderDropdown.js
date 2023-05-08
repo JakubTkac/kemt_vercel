@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { COLOR, HEIGHT, SCREENS } from "../../Theme";
+import { COLOR, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 import TranslateComponent from "../Common/TranslateComponent";
 
 const DropdownContainer = styled.div`
@@ -10,13 +10,13 @@ const DropdownContainer = styled.div`
   z-index: 10;
   /* gap: 2rem;
   padding-left: 2rem; */
-  top: ${HEIGHT.S};
+  top: ${HEIGHT.DropdownBigger};
   position: absolute;
   width: 15%;
   height: auto;
   flex-direction: column;
   @media (max-width: ${SCREENS.XL}) {
-    top: ${HEIGHT.XS};
+    top: ${HEIGHT.DropdownSmaller};
     width: 20%;
   }
   @media (max-width: ${SCREENS.LG}) {
@@ -30,6 +30,7 @@ const DropdownList = styled.ul`
   width: 100%;
   flex-direction: column;
   background-color: ${COLOR.WHITE};
+  border: 1px ${COLOR.PLATINUM[600]} solid;
 `;
 
 const DropdownItem = styled.li`
@@ -40,8 +41,10 @@ const DropdownItem = styled.li`
   height: 3rem;
   width: auto;
   cursor: pointer;
+  color: ${COLOR.BLACK};
+  font-weight: ${FONT_WEIGHT.BOLD};
   &:hover {
-    background-color: ${COLOR.GRAY};
+    background-color: ${COLOR.SEC[50]};
   }
 `;
 

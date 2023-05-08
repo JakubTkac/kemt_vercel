@@ -160,6 +160,8 @@ export const HEIGHT = {
   XL: rem(420),
   XXL: rem(480), //custom = 30rem
   XXXL: rem(669),
+  DropdownBigger: rem(110),
+  DropdownSmaller: rem(90),
 };
 
 export default {

@@ -63,6 +63,8 @@ const HeaderContent = styled.ul`
   height: 100%;
   flex-direction: row;
   list-style-type: none;
+  color: ${COLOR.BLACK};
+  font-weight: ${FONT_WEIGHT.BOLD};
 
   @media (max-width: ${SCREENS.XL}) {
     justify-content: end;
