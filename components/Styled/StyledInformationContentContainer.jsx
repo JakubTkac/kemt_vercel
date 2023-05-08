@@ -15,8 +15,10 @@ const StyledContainer = styled.div`
   span {
     min-width: 20rem;
     font-weight: ${FONT_WEIGHT.BOLD};
-    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     min-height: ${HEIGHT.XXS};
+    word-break: break-all;
     @media (max-width: ${SCREENS.SM}) {
       min-width: auto;
     }
@@ -25,6 +27,8 @@ const StyledContainer = styled.div`
     width: 100%;
   }
   a {
+    word-break: break-all;
+    width: 100%;
     color: ${COLOR.SEC[400]};
     text-decoration: underline;
   }

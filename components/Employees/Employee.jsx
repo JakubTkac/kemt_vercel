@@ -3,6 +3,7 @@ import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import { FiBriefcase, FiMail, FiPhone } from "react-icons/fi";
 import { FaBuilding } from "react-icons/fa";
+import TranslateComponent from "../Common/TranslateComponent";
 
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
@@ -114,17 +115,12 @@ const Employee = ({ employee, locale }) => {
         {titlesBeforeName && <span>{titlesBeforeName}</span>}
         <p>{name}</p>
         {titlesAfterName && <span>{titlesAfterName}</span>}
-        <StyledSubTitle>
-          {locale === "en" ? (
-            titleEN ? (
-              <span>{titleEN}</span>
-            ) : (
-              <span>{title}</span>
-            )
-          ) : (
-            <span>{title}</span>
-          )}
-        </StyledSubTitle>
+        <TranslateComponent
+          Component={StyledSubTitle}
+          locale={locale}
+          en={titleEN}
+          sk={title}
+        ></TranslateComponent>
         <StyledIconTextWrapper>
           <a href={`tel: ${phoneNumber}`}>
             <FiPhone></FiPhone>

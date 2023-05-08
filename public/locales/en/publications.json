@@ -1,0 +1,20 @@
+{
+  "publications": "Publications",
+  "all": "All",
+  "phone": "Phone:",
+  "name": "Name:",
+  "address": "Address:",
+  "roomNumber": "Room Number:",
+  "authors": "Authors:",
+  "year": "Year:",
+  "publisher": "Publisher:",
+  "description": "Description:",
+  "anotation": "Anotation:",
+  "language": "Language:",
+  "shortTitle": "Short Title:",
+  "type": "Type:",
+  "websitePage": "Website Page:",
+  "more": "More Information...",
+  "subjectID": "Subject ID: ",
+  "authorsOther": "Other Authors:"
+}

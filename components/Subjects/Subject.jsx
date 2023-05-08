@@ -233,9 +233,11 @@ const Subject = ({ data, locale }) => {
       {websitePage && (
         <StyledInformationContentContainer>
           <span>{t("websitePage")}</span>
-          <a target="_blank" rel="noreferrer" href={websitePage}>
-            <p>{websitePage}</p>
-          </a>
+          <div>
+            <a target="_blank" rel="noreferrer" href={websitePage}>
+              <p>{websitePage}</p>
+            </a>
+          </div>
         </StyledInformationContentContainer>
       )}
     </StyledSingleItemContainer>
