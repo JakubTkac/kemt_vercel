@@ -12,7 +12,7 @@ import Blank from "../Common/Blank";
 import { useRouter } from "next/router";
 
 const HeaderContainer = styled.div`
-  padding: 0 5%;
+  padding: 0 2rem;
   display: flex;
   flex: 1 3;
   flex-direction: row;
@@ -20,16 +20,22 @@ const HeaderContainer = styled.div`
   justify-content: space-around;
   height: ${HEIGHT.S};
   background-color: ${COLOR.PRI[500]};
+  border: 1px solid ${COLOR.BLACK};
+  border-top: 0;
   @media (max-width: ${SCREENS.XL}) {
     height: ${HEIGHT.XS};
+    padding: 0 3.75rem;
   }
   @media (max-width: ${SCREENS.LG}) {
     gap: 0.4rem;
-    padding: 0 2.5%;
+    padding: 0 1.9rem;
   }
   @media (max-width: ${SCREENS.MD}) {
     justify-content: space-between;
-    padding: 0 3rem;
+    padding: 0 0.25rem;
+  }
+  @media (max-width: ${SCREENS.SM}) {
+    padding: 0 0.25rem 0 0;
   }
 `;
 

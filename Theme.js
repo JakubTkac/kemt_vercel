@@ -150,6 +150,8 @@ export const WIDTH = {
   XXXXXL: rem(384), //96
 };
 export const HEIGHT = {
+  XXXXS: rem(20),
+  XXXS: rem(30),
   XXS: rem(40),
   XS: rem(60),
   S: rem(80), //20
