@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
 import GlobalStyle from "../config/global";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -9,6 +8,8 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { COLOR, FONT_SIZE, SCREENS, SPACE } from "../Theme";
 import { FiArrowUp } from "react-icons/fi";
+import { ChakraProvider } from "@chakra-ui/react";
+import Breadcrumb from "../components/Common/Breadcrumb";
 
 const StyledTopButton = styled.button`
   position: fixed;
@@ -63,6 +64,7 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyle />
       <ChakraProvider>
         <Header />
+        <Breadcrumb />
         <Wrapper>
           <Component {...pageProps} />
           {showButton && (

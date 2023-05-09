@@ -228,17 +228,6 @@ const StyledNavigation = styled.ul`
   padding: 2rem 0;
 `;
 
-const StyledLi = styled.li`
-  list-style: none;
-`;
-
-const StyledSubUl = styled.ul`
-  margin-left: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-`;
-
 const MobileButton = ({ items, locale }) => {
   const [displaySection, setDisplaySection] = useState(false);
 
@@ -272,27 +261,6 @@ const MobileButton = ({ items, locale }) => {
               </StyledNavigation>
             </StyledContainer>
           </StyledFlex>
-
-          {/*{items.map((item) => (*/}
-          {/*  <StyledMobileUl key={item.id}>*/}
-          {/*    <TranslateComponent*/}
-          {/*      Component={StyledMobileHeading}*/}
-          {/*      locale={locale}*/}
-          {/*      sk={item.title}*/}
-          {/*      en={item.titleEN}*/}
-          {/*    ></TranslateComponent>*/}
-          {/*    {item.dropdownItems &&*/}
-          {/*      item.dropdownItems.map((dropdownItem) => (*/}
-          {/*        <Link href={dropdownItem.path} key={dropdownItem.id}>*/}
-          {/*          <StyledMobileLi*/}
-          {/*            onClick={() => setDisplaySection(!displaySection)}*/}
-          {/*          >*/}
-          {/*            {dropdownItem.title}*/}
-          {/*          </StyledMobileLi>*/}
-          {/*        </Link>*/}
-          {/*      ))}*/}
-          {/*  </StyledMobileUl>*/}
-          {/*))}*/}
         </StyledMobileContainer>
       )}
     </>
@@ -316,7 +284,6 @@ const Header = () => {
         {isLargerThan768 ? (
           <HeaderContent>
             {headerItems.map((item) => {
-              console.log(item);
               return <HeaderItem key={item.id} item={item} locale={locale} />;
             })}
           </HeaderContent>
