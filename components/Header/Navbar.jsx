@@ -12,11 +12,8 @@ import Searchbar from "./Searchbar";
 import { FiMonitor } from "react-icons/fi";
 import { IoIosPeople, IoIosRestaurant } from "react-icons/io";
 import { IoLibrary, IoMailSharp, IoSettings } from "react-icons/io5";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillPhone } from "react-icons/ai";
 import IconLink from "./IconLink";
-import { Icon } from "@chakra-ui/react";
 
 const StyledBodyNavbar = styled.div`
   border: 1px solid ${COLOR.BLACK};

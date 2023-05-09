@@ -29,8 +29,6 @@ const HeaderMobileDropdown = ({
   const handleReset = () => {
     setOpen(false);
     handler();
-
-    //test push
   };
 
   return (
