@@ -4,7 +4,7 @@ import { COLOR, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 import TranslateComponent from "../Common/TranslateComponent";
 
 const DropdownContainer = styled.div`
-  border: 1px solid ${COLOR.FEI_PRIMARY};
+  border: 1px ${COLOR.PLATINUM[600]} solid;
   align-items: start;
   display: flex;
   z-index: 10;
