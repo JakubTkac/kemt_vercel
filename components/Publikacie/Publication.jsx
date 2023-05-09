@@ -49,6 +49,8 @@ const Publication = ({ attributes, locale }) => {
     isbn,
     publisher,
     year,
+    description,
+    descriptionEN,
   } = attributes;
 
   return (
@@ -107,6 +109,12 @@ const Publication = ({ attributes, locale }) => {
             contentEN={anotationEN}
             locale={locale}
             title={t("anotation")}
+          ></TranslateTitleWithContent>
+          <TranslateTitleWithContent
+            content={description}
+            contentEN={descriptionEN}
+            locale={locale}
+            title={t("description")}
           ></TranslateTitleWithContent>
           <TranslateTitleWithContent
             content={isbn}

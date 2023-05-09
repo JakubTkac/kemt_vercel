@@ -10,7 +10,7 @@ import Publication from "../components/Publikacie/Publication";
 const URL = process.env.STRAPI_URL;
 
 export async function getServerSideProps({ query: { page }, locale }) {
-  const data = await fetcher(`${URL}/publications?sort=title%3Aasc&populate=*`);
+  const data = await fetcher(`${URL}/projects?sort=title%3Aasc&populate=*`);
   return {
     props: {
       pageData: data,
@@ -55,30 +55,18 @@ function Content({ pageData, locale }) {
   const filteredPublications =
     filter === "all"
       ? pageData.data
-      : pageData.data.filter((publication) => {
-          return publication.attributes.year.toString() === filter;
+      : pageData.data.filter((project) => {
+          return project.attributes.typeEN === filter;
         });
-
-  const uniqueYears = new Set();
-  const getUniqueYears = (data) => {
-    data.data.forEach((item) => {
-      uniqueYears.add(item.attributes.year);
-    });
-    return Array.from(uniqueYears);
-  };
-  const years = getUniqueYears(pageData);
 
   return (
     <>
-      <StyledHeadingH1>{t("publications")}</StyledHeadingH1>
+      <StyledHeadingH1>{t("projects")}</StyledHeadingH1>
       <StyledPublicationsWrapper>
         <select value={filter} onChange={handleFilterChange}>
           <option value="all">{t("all")}</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
+          <option value="Active">{t("active")}</option>
+          <option value="Finished">{t("finished")}</option>
         </select>
         <StyledWrapper>
           {filteredPublications.map((publication, index) => {
