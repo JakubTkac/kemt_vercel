@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 
 const StyledTitleButton = styled.button`
+  width: 100%;
   display: flex;
   cursor: pointer;
   flex-direction: row;

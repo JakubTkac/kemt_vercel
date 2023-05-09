@@ -1,15 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
+import {
+  COLOR,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  HEIGHT,
+  SCREENS,
+  WIDTH,
+} from "../../Theme";
 import { headerItems } from "./HeaderItems";
 import Link from "next/link";
-import { RiArrowDropDownLine, RiMenuLine } from "react-icons/ri";
+import { RiArrowDropDownLine, RiCloseLine, RiMenuLine } from "react-icons/ri";
 import HeaderDropdown from "./HeaderDropdown";
 import useBetterMediaQuery from "../../utils/useBetterMediaQuery";
 import Navbar from "./Navbar";
 import TranslateComponent from "../Common/TranslateComponent";
 import Blank from "../Common/Blank";
 import { useRouter } from "next/router";
+import HeaderMobileDropdown from "./HeaderMobileDropdown";
+import StyledTitleButton from "../Styled/StyledTitleButton";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 const HeaderContainer = styled.div`
   padding: 0 2rem;
@@ -104,6 +114,9 @@ const StyledA = styled.a`
     font-size: ${FONT_SIZE.SS};
     gap: 0.1em;
   }
+  svg {
+    font-size: ${FONT_SIZE.L};
+  }
 `;
 
 const HeaderItem = ({ item, locale }) => {
@@ -122,7 +135,7 @@ const HeaderItem = ({ item, locale }) => {
               sk={item.title}
               locale={locale}
             ></TranslateComponent>
-            {item.dropdownItems && <RiArrowDropDownLine size={32} />}
+            {item.dropdownItems && <RiArrowDropDownLine />}
           </StyledA>
         </a>
       </Link>
@@ -138,14 +151,17 @@ const StyledMobileButton = styled.button`
   position: relative;
   height: ${HEIGHT.XXS};
   width: ${HEIGHT.XXS};
-  background-color: ${COLOR.BLACK};
-  border-radius: 2rem;
-  color: ${COLOR.FEI_PRIMARY};
+  background-color: ${COLOR.SEC[500]};
+  color: ${COLOR.WHITE};
+  border: 1px solid ${COLOR.SEC[600]};
   display: flex;
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: ${COLOR.WHITE};
+    background-color: ${COLOR.SEC[50]};
+  }
+  svg {
+    font-size: ${FONT_SIZE.L};
   }
 `;
 
@@ -154,76 +170,129 @@ const StyledMobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  //height: 86vh;
-  height: 94%;
   position: absolute;
-  top: ${HEIGHT.XS};
+  top: ${HEIGHT.DropdownSmaller};
   right: 0;
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.BLACK};
-  padding: 2rem 4rem;
-  @media (max-width: ${SCREENS.SM}) {
-    padding: 2rem 2.5rem;
+  border-left: 0;
+  border-right: 0;
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 ${WIDTH.XXS};
+  height: auto;
+  @media (max-width: ${SCREENS.XL}) {
+    margin: 0 ${WIDTH.XXXXXS};
+    align-items: start;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+    margin: 0 ${WIDTH.XXXXXXS};
+  }
+  @media (max-width: ${SCREENS.MD}) {
+    margin: 0 ${WIDTH.MOBILE};
+    flex-direction: column;
+  }
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: ${COLOR.PLATINUM.DEFAULT};
+  border: 1px solid ${COLOR.PLATINUM[600]};
+  border-top: 0px;
+  width: 100%;
+  @media (max-width: ${SCREENS.XL}) {
+    padding: 0 1.5rem;
+  }
+  @media (max-width: ${SCREENS.LG}) {
+  }
+  @media (max-width: ${SCREENS.MD}) {
   }
   @media (max-width: ${SCREENS.XS}) {
-    padding: 2rem 1rem;
+    padding: 0;
   }
 `;
 
-const StyledMobileUl = styled.ul`
+const StyledNavigation = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
-  border: 1px solid black;
-  background-color: ${COLOR.FEI_PRIMARY};
-  margin-bottom: 0.5rem;
-  cursor: pointer;
+  padding: 2rem 0;
 `;
 
-const StyledMobileHeading = styled.h1`
-  font-size: ${FONT_SIZE.M};
-  font-weight: ${FONT_WEIGHT.BOLDER};
-  padding-bottom: 0.4rem;
-`;
-
-const StyledMobileLi = styled.li`
-  width: 100%;
-  border-bottom: 1px solid black;
-  background-color: ${COLOR.FEI_PRIMARY};
-  cursor: pointer;
+const StyledLi = styled.li`
   list-style: none;
-  &:last-child {
-    border-bottom: none;
-  }
+`;
+
+const StyledSubUl = styled.ul`
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 `;
 
 const MobileButton = ({ items, locale }) => {
   const [displaySection, setDisplaySection] = useState(false);
+
+  const handleReset = () => {
+    setDisplaySection(false);
+  };
+
   return (
     <>
       <StyledMobileButton onClick={() => setDisplaySection(!displaySection)}>
-        <RiMenuLine Size={32} />
+        {displaySection ? <RiCloseLine /> : <RiMenuLine />}
       </StyledMobileButton>
       {displaySection && (
         <StyledMobileContainer>
-          {items.map((item) => (
-            <StyledMobileUl key={item.id}>
-              <TranslateComponent
-                Component={StyledMobileHeading}
-                locale={locale}
-                sk={item.title}
-                en={item.titleEN}
-              ></TranslateComponent>
-              {item.dropdownItems &&
-                item.dropdownItems.map((dropdownItem) => (
-                  <Link href={dropdownItem.path} key={dropdownItem.id}>
-                    <StyledMobileLi
-                      onClick={() => setDisplaySection(!displaySection)}
-                    >
-                      {dropdownItem.title}
-                    </StyledMobileLi>
-                  </Link>
-                ))}
-            </StyledMobileUl>
-          ))}
+          <StyledFlex>
+            <StyledContainer>
+              <StyledNavigation>
+                {items.map((item) => {
+                  return (
+                    <HeaderMobileDropdown
+                      handler={handleReset}
+                      key={item.id}
+                      locale={locale}
+                      en={item.titleEN}
+                      sk={item.title}
+                      dropdownItems={item.dropdownItems}
+                      path={item.path}
+                    ></HeaderMobileDropdown>
+                  );
+                })}
+              </StyledNavigation>
+            </StyledContainer>
+          </StyledFlex>
+
+          {/*{items.map((item) => (*/}
+          {/*  <StyledMobileUl key={item.id}>*/}
+          {/*    <TranslateComponent*/}
+          {/*      Component={StyledMobileHeading}*/}
+          {/*      locale={locale}*/}
+          {/*      sk={item.title}*/}
+          {/*      en={item.titleEN}*/}
+          {/*    ></TranslateComponent>*/}
+          {/*    {item.dropdownItems &&*/}
+          {/*      item.dropdownItems.map((dropdownItem) => (*/}
+          {/*        <Link href={dropdownItem.path} key={dropdownItem.id}>*/}
+          {/*          <StyledMobileLi*/}
+          {/*            onClick={() => setDisplaySection(!displaySection)}*/}
+          {/*          >*/}
+          {/*            {dropdownItem.title}*/}
+          {/*          </StyledMobileLi>*/}
+          {/*        </Link>*/}
+          {/*      ))}*/}
+          {/*  </StyledMobileUl>*/}
+          {/*))}*/}
         </StyledMobileContainer>
       )}
     </>
@@ -246,9 +315,10 @@ const Header = () => {
         </HeaderLogo>
         {isLargerThan768 ? (
           <HeaderContent>
-            {headerItems.map((item) => (
-              <HeaderItem key={item.id} item={item} locale={locale} />
-            ))}
+            {headerItems.map((item) => {
+              console.log(item);
+              return <HeaderItem key={item.id} item={item} locale={locale} />;
+            })}
           </HeaderContent>
         ) : (
           <MobileButton locale={locale} items={headerItems}></MobileButton>

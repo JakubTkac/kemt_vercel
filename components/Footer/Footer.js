@@ -76,7 +76,7 @@ const Footer = () => {
       <StyledFooterContainer>
         <Flex alignItems="center" justifyContent="center" width="100%">
           <StyledFooterParagraph>
-            © 2022 Technická univerzita v Košiciach. Všetky práva vyhradené.
+            © 2023 Technická univerzita v Košiciach. Všetky práva vyhradené.
           </StyledFooterParagraph>
         </Flex>
       </StyledFooterContainer>
