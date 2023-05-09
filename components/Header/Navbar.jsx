@@ -79,6 +79,9 @@ const StyledIconsContainer = styled.div`
   justify-content: center;
   gap: 2rem;
   svg {
+    &:hover {
+      background-color: ${COLOR.SEC[300]};
+    }
     color: ${COLOR.WHITE};
     font-size: ${FONT_SIZE.L};
   }
