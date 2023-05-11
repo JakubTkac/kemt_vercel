@@ -235,7 +235,12 @@ const MobileButton = ({ items, locale }) => {
 
   return (
     <>
-      <StyledMobileButton onClick={() => setDisplaySection(!displaySection)}>
+      <StyledMobileButton
+        onClick={() => setDisplaySection(!displaySection)}
+        aria-label={
+          locale === "en" ? "Open Navigation Menu" : "Otvorte menu navigacie"
+        }
+      >
         {displaySection ? <RiCloseLine /> : <RiMenuLine />}
       </StyledMobileButton>
       {displaySection && (
