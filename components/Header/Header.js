@@ -197,7 +197,7 @@ const StyledFlex = styled.div`
   }
 `;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,7 +219,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledNavigation = styled.ul`
-  display: flex;
+  display: ${(props) => (props.open ? "flex" : "none")};
   flex-direction: column;
   gap: 1rem;
   width: 100%;
@@ -247,7 +247,7 @@ const MobileButton = ({ items, locale }) => {
         <StyledMobileContainer>
           <StyledFlex>
             <StyledContainer>
-              <StyledNavigation>
+              <StyledNavigation open={displaySection}>
                 {items.map((item) => {
                   return (
                     <HeaderMobileDropdown
