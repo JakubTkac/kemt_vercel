@@ -95,7 +95,7 @@ export const headerItems = [
   {
     id: 2,
     title: "Personál",
-    titleEN: "Staff",
+    titleEN: "The staff",
     path: "/organizacia",
   },
   {

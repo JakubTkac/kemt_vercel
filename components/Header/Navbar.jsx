@@ -113,7 +113,7 @@ const Navbar = () => {
     <StyledBodyNavbar>
       <StyledNavbar>
         <div>
-          <Searchbar></Searchbar>
+          <Searchbar />
         </div>
         <div>
           <StyledIconsContainer>

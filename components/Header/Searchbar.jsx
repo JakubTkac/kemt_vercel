@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { FiSearch } from "react-icons/fi";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
+import { useRouter } from "next/router";
 
 const StyledForm = styled.form`
   position: relative;
@@ -81,7 +82,7 @@ const StyledButton = styled.button`
 `;
 
 const Searchbar = () => {
-  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
   const formRef = useRef();
@@ -119,7 +120,7 @@ const Searchbar = () => {
           ref={inputFocus}
           value={input}
           barOpened={barOpened}
-          placeholder={t("search")}
+          placeholder={locale === "en" ? "Search..." : "Vyhľadaj..."}
         />
       </StyledForm>
     </div>

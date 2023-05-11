@@ -272,7 +272,7 @@ const Header = () => {
   const isLargerThan768 = useBetterMediaQuery("(min-width: 768px)");
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
       <HeaderContainer>
         <HeaderLogo>
           <Link href="/">

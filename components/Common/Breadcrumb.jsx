@@ -79,12 +79,14 @@ const Breadcrumb = () => {
             <React.Fragment key={index}>
               <li>
                 {index === pathSegments.length - 1 ? (
-                  <button>{segment.toUpperCase().replace(/-/g, " ")}</button>
+                  <button>
+                    {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}
+                  </button>
                 ) : (
                   <Link href={`/${segment}`}>
                     <a>
                       <button>
-                        {segment.toUpperCase().replace(/-/g, " ")}
+                        {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}
                       </button>
                     </a>
                   </Link>
