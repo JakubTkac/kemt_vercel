@@ -63,18 +63,21 @@ export default function StudDegrees({ locale, typeOfStudies }) {
         <SelectButton
           onClickHandler={() => setProgramHandler(setBachelorActive)}
           selected={bachelorActive}
+          aria-label={`${t("type_of_study")}${t("bachelor")}`}
         >
           {t("bachelor")}
         </SelectButton>
         <SelectButton
           selected={masterActive}
           onClickHandler={() => setProgramHandler(setMasterActive)}
+          aria-label={`${t("type_of_study")}${t("master")}`}
         >
           {t("master")}
         </SelectButton>
         <SelectButton
           selected={doctoralActive}
           onClickHandler={() => setProgramHandler(setDoctoralActive)}
+          aria-label={`${t("type_of_study")}${t("doctoral")}`}
         >
           {t("doctoral")}
         </SelectButton>

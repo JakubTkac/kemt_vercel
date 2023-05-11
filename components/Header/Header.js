@@ -18,8 +18,6 @@ import TranslateComponent from "../Common/TranslateComponent";
 import Blank from "../Common/Blank";
 import { useRouter } from "next/router";
 import HeaderMobileDropdown from "./HeaderMobileDropdown";
-import StyledTitleButton from "../Styled/StyledTitleButton";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 const HeaderContainer = styled.div`
   padding: 0 2rem;

@@ -100,6 +100,7 @@ const StyledIconsContainer = styled.div`
 
 const Navbar = () => {
   const router = useRouter();
+  const locale = router.locale;
 
   const onChangeLanguage = (lang) => async (e) => {
     await router.push(router.asPath, undefined, {
@@ -120,36 +121,85 @@ const Navbar = () => {
             <IconLink
               Icon={FiMonitor}
               url={"https://moodle.tuke.sk/"}
+              label={
+                locale === "en"
+                  ? "Visit Moodle.tuke.sk"
+                  : "Navštivte Moodle.tuke.sk"
+              }
             ></IconLink>
             <IconLink
               Icon={IoIosPeople}
               url={"https://mais.tuke.sk/"}
+              label={
+                locale === "en"
+                  ? "Visit Mais.tuke.sk"
+                  : "Navštivte mais.tuke.sk"
+              }
             ></IconLink>
             <IconLink
               Icon={IoMailSharp}
               url={"https://outlook.office365.com/mail/"}
+              label={
+                locale === "en"
+                  ? "Visit school mail outlook.com"
+                  : "Navštivte školský mail outlook.com"
+              }
             ></IconLink>
             <IconLink
               Icon={AiFillPhone}
               url={"https://zoznam.tuke.sk/"}
+              label={
+                locale === "en"
+                  ? "Visit telephone list zoznam.tuke.sk"
+                  : "Navštivte telefonný zoznam zoznam.tuke.sk"
+              }
             ></IconLink>
             <IconLink
               Icon={IoIosRestaurant}
               url={"https://jedalen.tuke.sk/"}
+              label={
+                locale === "en"
+                  ? "Visit school canteen jedalen.tuke.sk"
+                  : "Navštivte školskú jedaleň jedalen.tuke.sk"
+              }
             ></IconLink>
             <IconLink
               Icon={IoLibrary}
               url={"https://www.lib.tuke.sk/#/dashboard"}
+              label={
+                locale === "en"
+                  ? "Visit school library lib.tuke.sk"
+                  : "Navštivte školskú jedaleń lib.tuke.sk"
+              }
             ></IconLink>
             <IconLink
               Icon={IoSettings}
               url={"https://uvt.tuke.sk/wps/portal/uv/sluzby/nastavenia"}
+              label={
+                locale === "en"
+                  ? "Visit uvt options uvt.tuke.sk"
+                  : "Navštivte uvt nastavenia uvt.tuke.sk"
+              }
             ></IconLink>
           </StyledIconsContainer>
-          <StyledLanguageButton onClick={onChangeLanguage("sk")}>
+          <StyledLanguageButton
+            onClick={onChangeLanguage("sk")}
+            aria-label={
+              locale === "en"
+                ? "Change language of website to Slovak"
+                : "Zmeňte jazyk stránky na Slovenský"
+            }
+          >
             SK
           </StyledLanguageButton>
-          <StyledLanguageButton onClick={onChangeLanguage("en")}>
+          <StyledLanguageButton
+            onClick={onChangeLanguage("en")}
+            aria-label={
+              locale === "en"
+                ? "Change language of website to English"
+                : "Zmeňte jazyk stránky na Anglický"
+            }
+          >
             EN
           </StyledLanguageButton>
         </div>

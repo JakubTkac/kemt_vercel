@@ -112,8 +112,12 @@ const Searchbar = () => {
         onSubmit={onFormSubmit}
         ref={formRef}
       >
-        <StyledButton type="submit" barOpened={barOpened}>
-          <FiSearch></FiSearch>
+        <StyledButton
+          type="submit"
+          barOpened={barOpened}
+          aria-label={locale === "en" ? "Search" : "Vyhľadaj"}
+        >
+          <FiSearch />
         </StyledButton>
         <StyledInput
           onChange={(e) => setInput(e.target.value)}
