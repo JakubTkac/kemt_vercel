@@ -11,7 +11,7 @@ const StyledMarkdownContent = styled.div`
   a {
     &:visited {
       color: #3498db;
-      text-decoration: underline; 
+      text-decoration: underline;
     }
 
     &:hover,
@@ -58,14 +58,12 @@ const StyledMarkdownContent = styled.div`
   }
 
   pre {
-    padding: .5rem;
+    padding: 0.5rem;
     line-height: 1.25;
     overflow-x: auto;
   }
-  
 
-
-  p{
+  p {
     font-size: 1rem;
     margin-bottom: 1.3rem;
   }
@@ -73,39 +71,39 @@ const StyledMarkdownContent = styled.div`
   h1,
   h2,
   h3,
-  h4
-  {  margin: 1.414rem 0 .5rem;
+  h4 {
+    margin: 1.414rem 0 0.5rem;
     font-weight: inherit;
     line-height: 1.42;
   }
 
-  h1{
+  h1 {
     margin-top: 0;
     font-size: 3.998rem;
   }
 
-  h2{
+  h2 {
     font-size: 2.827rem;
   }
 
-  h3{
+  h3 {
     font-size: 1.999rem;
   }
 
-  h4{
+  h4 {
     font-size: 1.414rem;
   }
 
-  h5{
+  h5 {
     font-size: 1.121rem;
   }
 
-  h6{
-    font-size: .88rem;
+  h6 {
+    font-size: 0.88rem;
   }
 
-  small{
-    font-size: .707em;
+  small {
+    font-size: 0.707em;
   }
 
   img,
@@ -118,13 +116,12 @@ const StyledMarkdownContent = styled.div`
     max-width: 100%;
   }
 
-
   h1,
   h2,
   h3 {
     border-bottom: 2px solid ${COLOR.SEC[400]};
     margin-bottom: 1.15rem;
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
     text-align: center;
   }
 
@@ -138,16 +135,21 @@ const StyledMarkdownContent = styled.div`
     background-color: ${COLOR.PLATINUM[400]};
   }
   li {
-    margin-left:  5px;
+    margin-left: 5px;
   }
-  ul{
+  ul,
+  ol {
     margin-bottom: 1rem;
+    @media (max-width: ${SCREENS.XS}) {
+      padding-left: 1.5rem;
+    }
   }
-  h1>a,
-  h2>a,
-  h3>a,
-  h4>a,
-  h5>a,
+
+  h1 > a,
+  h2 > a,
+  h3 > a,
+  h4 > a,
+  h5 > a,
   h6 > a {
     color: ${COLOR.BLACK} !important;
     text-decoration: none;
@@ -158,7 +160,7 @@ const StyledMarkdownContent = styled.div`
 
   div > ul > li > a {
     color: ${COLOR.SEC[400]} !important;
-    &:hover{
+    &:hover {
       color: ${COLOR.SEC[600]}!important;
     }
   }
@@ -167,22 +169,21 @@ const StyledMarkdownContent = styled.div`
     height: 1px;
     background-color: ${COLOR.SEC[500]};
   }
-  
-  p{
+
+  p {
     color: ${COLOR.BLACK};
-    a{
+    a {
       color: #3498db;
       &:visited {
         color: #3498db;
         text-decoration: underline;
       }
 
-      &:hover{
+      &:hover {
         color: #2980b9;
       }
     }
   }
-}
 `;
 
 const MarkdownContent = ({ children }) => {
