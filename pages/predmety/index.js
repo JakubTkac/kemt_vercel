@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import StyledSelectTypesContainer from "../../components/Styled/StyledSelectTypesContainer";
 import StyledSelectButton from "../../components/Styled/StyledSelectButton";
 import SubjectDropdownItem from "../../components/Subjects/SubjectDropdownItem";
+import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -107,8 +108,17 @@ export default function Subjects({ subjects, subjectWithStudyType, locale }) {
     handleFilterData(filter[0]);
   }, []);
 
+  const SEO = {
+    title: "KEMT - Študijné predmety",
+    description: "KEMT - Študijné predmety",
+    openGraph: {
+      locale: locale,
+    },
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <StyledHeadingH1>{t("title")}</StyledHeadingH1>
       <StyledSelectTypesContainer>
         <StyledSelectButton

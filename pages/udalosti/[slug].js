@@ -2,6 +2,8 @@ import { fetcher } from "../../lib/api";
 import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import Post from "../../components/Post/Post";
+import { NextSeo } from "next-seo";
+import Seo from "../../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -30,8 +32,12 @@ function Content({ events, locale }) {
     en: events.data.attributes.localizations.data[0]?.attributes,
   };
   const { sk, en } = props;
+
+  const SEO = events.data.attributes?.seo;
+
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       {locale === "en" ? (
         <Post
           title={en.title}

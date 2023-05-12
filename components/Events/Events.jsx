@@ -60,7 +60,7 @@ const Events = ({ data, heading, locale }) => {
           );
         })}
       </StyledEventsWrapper>
-      <Link href="/udalosti">
+      <Link href="/udalosti" passHref>
         <StyledShowAllButton>
           {t("showAll")} {heading}
         </StyledShowAllButton>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
+import ReactMarkdown from "react-markdown";
+import removeMarkdownSyntax from "../../utils/removeMarkdownSyntax";
 
 const StyledNoticePreview = styled.li`
   display: flex;
@@ -63,7 +65,7 @@ const NoticeShowAllPreview = ({ date, content, title, slug }) => {
             date.getMonth() + 1
           }.${date.getFullYear()}`}</time>
           <h3>{title}</h3>
-          <span>{content}</span>
+          <span> {removeMarkdownSyntax(content)}</span>
         </a>
       </Link>
     </StyledNoticePreview>

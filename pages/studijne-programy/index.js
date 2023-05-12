@@ -9,6 +9,7 @@ import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import StyledSelectTypesContainer from "../../components/Styled/StyledSelectTypesContainer";
 import SelectButton from "../../components/Styled/StyledSelectButton";
 import StudyProgrammeItem from "../../components/Study Programmes/StudyProgrammeItem";
+import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -56,8 +57,17 @@ export default function StudDegrees({ locale, typeOfStudies }) {
     setter(true);
   };
 
+  const SEO = {
+    title: "KEMT - Študijné programy",
+    description: "KEMT - Študijné programy",
+    openGraph: {
+      locale: locale,
+    },
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <StyledHeadingH1>{t("programs")}</StyledHeadingH1>
       <StyledSelectTypesContainer>
         <SelectButton

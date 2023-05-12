@@ -58,7 +58,7 @@ const News = ({ heading, data, locale }) => {
           );
         })}
       </StyledNewsWrapper>
-      <Link href="/novinky">
+      <Link href="/novinky" passHref>
         <StyledShowAllButton>
           {t("showAll")} {heading}
         </StyledShowAllButton>

@@ -13,6 +13,7 @@ import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import EmployeePreview from "../../components/Employees/EmployeePreview";
+import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -64,8 +65,17 @@ export default function Organization({ employees, locale }) {
           });
         });
 
+  const SEO = {
+    title: "KEMT - Personal",
+    description: "KEMT - Personal",
+    openGraph: {
+      locale: locale,
+    },
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <StyledHeadingH1>{t("title")}</StyledHeadingH1>
       <StyledEmployeesWrapper>
         <select value={filter} onChange={handleFilterChange}>

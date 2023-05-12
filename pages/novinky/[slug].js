@@ -1,5 +1,6 @@
 import { fetcher } from "../../lib/api";
 import Post from "../../components/Post/Post";
+import Seo from "../../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -25,8 +26,12 @@ function Content({ news, locale }) {
     en: news.data.attributes.localizations.data[0]?.attributes,
   };
   const { sk, en } = props;
+
+  const SEO = news.data.attributes?.seo;
+
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       {locale === "en" ? (
         <Post
           title={en.title}

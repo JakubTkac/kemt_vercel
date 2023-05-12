@@ -158,6 +158,7 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
                           <Link
                             key={author.id}
                             href={`/organizacia/${author.attributes.slug}`}
+                            passHref
                           >
                             <a>
                               <p>{author.attributes.name}</p>
@@ -234,7 +235,7 @@ const EmployeeDropdownItem = ({ item, itemType, locale }) => {
                 title={"DOI:"}
               ></TranslateTitleWithContent>
               {slug && (
-                <Link href={`/predmety/${slug}`}>
+                <Link href={`/predmety/${slug}`} passHref>
                   <a>
                     <StyledMoreButton>{t("more")}</StyledMoreButton>
                   </a>

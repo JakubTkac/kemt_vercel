@@ -4,6 +4,7 @@ import StyledTitleButton from "../Styled/StyledTitleButton";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import TranslateComponent from "../Common/TranslateComponent";
+import { useRouter } from "next/router";
 
 const StyledLi = styled.li`
   list-style: none;
@@ -40,6 +41,11 @@ const HeaderMobileDropdown = ({
               onClick={() => {
                 setOpen(!open);
               }}
+              aria-label={
+                locale === "en"
+                  ? "Click to open submenu"
+                  : "Kliknite aby ste otvorili submenu"
+              }
             >
               <TranslateComponent
                 Component={"h2"}
@@ -50,9 +56,15 @@ const HeaderMobileDropdown = ({
               {open ? <FiChevronUp /> : <FiChevronDown />}
             </StyledTitleButton>
           ) : (
-            <Link href={path}>
+            <Link href={path} passHref>
               <a onClick={handleReset}>
-                <StyledTitleButton>
+                <StyledTitleButton
+                  aria-label={
+                    locale === "en"
+                      ? "Click to change page"
+                      : "Kliknite aby ste šli na novú stránku"
+                  }
+                >
                   <TranslateComponent
                     Component={"h2"}
                     locale={locale}
@@ -69,9 +81,15 @@ const HeaderMobileDropdown = ({
                 return (
                   <StyledLi key={item.id}>
                     <div>
-                      <Link href={item.path}>
+                      <Link href={item.path} passHref>
                         <a onClick={handleReset}>
-                          <StyledTitleButton>
+                          <StyledTitleButton
+                            aria-label={
+                              locale === "en"
+                                ? "Click to change page"
+                                : "Kliknite aby ste šli na novú stránku"
+                            }
+                          >
                             <TranslateComponent
                               Component={"h2"}
                               locale={locale}

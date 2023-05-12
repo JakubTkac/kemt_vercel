@@ -122,9 +122,10 @@ const HeaderItem = ({ item, locale }) => {
   return (
     <StyledHeaderItem
       onMouseEnter={() => setDisplaySection(true)}
+      onFocus={() => setDisplaySection(true)}
       onMouseLeave={() => setDisplaySection(false)}
     >
-      <Link href={item.path}>
+      <Link href={item.path} passHref>
         <a>
           <StyledA>
             <TranslateComponent
@@ -278,7 +279,7 @@ const Header = () => {
       <Navbar />
       <HeaderContainer>
         <HeaderLogo>
-          <Link href="/">
+          <Link href="/" passHref>
             <a>
               <StyledHeaderLogo src={"/kemt_logo_kemt2.jpg"} alt="logo kemt" />
             </a>

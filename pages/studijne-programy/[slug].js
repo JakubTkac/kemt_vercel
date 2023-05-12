@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import TranslateComponent from "../../components/Common/TranslateComponent";
 import StudyProgramme from "../../components/Study Programmes/StudyProgramme";
+import Seo from "../../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -46,8 +47,11 @@ function Content({ program, programYear, locale }) {
   program.data.attributes.subjects.data = subjects;
   const { title, titleEN } = program.data.attributes;
 
+  const SEO = program.data.attributes?.seo;
+
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       <TranslateComponent
         Component={StyledHeadingH1}
         locale={locale}

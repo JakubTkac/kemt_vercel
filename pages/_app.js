@@ -10,6 +10,11 @@ import { COLOR, FONT_SIZE, SCREENS, SPACE } from "../Theme";
 import { FiArrowUp } from "react-icons/fi";
 import { ChakraProvider } from "@chakra-ui/react";
 import Breadcrumb from "../components/Common/Breadcrumb";
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo-config.js";
+import { useRouter } from "next/router";
+import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
+import Head from "next/head";
 
 const StyledTopButton = styled.button`
   position: fixed;
@@ -40,6 +45,7 @@ const StyledTopButton = styled.button`
 
 function MyApp({ Component, pageProps }) {
   const [showButton, setShowButton] = useState(false);
+  const { locale } = useRouter();
 
   useEffect(() => {
     window.onscroll = () => {
@@ -61,6 +67,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      </Head>
+      <DefaultSeo {...SEO} />
       <GlobalStyle />
       <ChakraProvider>
         <Header />
@@ -68,7 +78,14 @@ function MyApp({ Component, pageProps }) {
         <Wrapper>
           <Component {...pageProps} />
           {showButton && (
-            <StyledTopButton onClick={handleButtonClick}>
+            <StyledTopButton
+              onClick={handleButtonClick}
+              aria-label={
+                locale === "en"
+                  ? "Back to the top of the page"
+                  : "Vraťte sa naspäť na vrch stránky"
+              }
+            >
               <FiArrowUp></FiArrowUp>
             </StyledTopButton>
           )}

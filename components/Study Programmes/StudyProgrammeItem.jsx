@@ -63,7 +63,7 @@ const StyledSelectTypesContainer = ({ attributes, locale }) => {
             title={t("absolventProfile")}
           ></TranslateTitleWithContent>
           {slug && (
-            <Link href={`/studijne-programy/${slug}`}>
+            <Link href={`/studijne-programy/${slug}`} passHref>
               <a>
                 <MoreButton>{t("more")}</MoreButton>
               </a>

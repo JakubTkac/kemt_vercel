@@ -7,6 +7,7 @@ import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../Theme";
 import { useState } from "react";
 import Publication from "../components/Publikacie/Publication";
 import TranslateTitleWithContent from "../components/Common/TranslateTitleWithContent";
+import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -93,9 +94,11 @@ const StyledIframe = styled.iframe`
 
 function Content({ pageData, locale }) {
   const { t } = useTranslation("contact");
+  // const SEO = pageData.data.attributes?.seo;
 
   return (
     <>
+      {/*<Seo seo={SEO} locale={locale}></Seo>*/}
       <StyledHeadingH1>{t("title")}</StyledHeadingH1>
       <StyledContainer>
         <StyledDiv>

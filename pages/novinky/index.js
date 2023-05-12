@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { Capitalize } from "../../lib/typography";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 export async function getServerSideProps({ query: { page }, locale }) {
@@ -125,8 +126,17 @@ const Index = ({ news, pagination, locale }) => {
     }
   };
 
+  const SEO = {
+    title: "KEMT - Novinky",
+    description: "KEMT - Novinky",
+    openGraph: {
+      locale: locale,
+    },
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <StyledHeadingH1>{Capitalize(t("news"))}</StyledHeadingH1>
       <StyledNewsWrapper>
         {pageItems.data.map(({ id, attributes }) => {

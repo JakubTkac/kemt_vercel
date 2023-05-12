@@ -93,7 +93,7 @@ const SubjectItem = ({ locale, dropdownItems }) => {
                 title={t("anotation")}
               ></TranslateTitleWithContent>
               {slug && (
-                <Link href={`/predmety/${slug}`}>
+                <Link href={`/predmety/${slug}`} passHref>
                   <a>
                     <MoreButton>{t("more")}</MoreButton>
                   </a>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Capitalize } from "../../lib/typography";
 import { useTranslation } from "next-i18next";
+import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
@@ -174,14 +175,23 @@ const Minule = ({ events, pagination, locale }) => {
     setPageNum(1);
   };
 
+  const SEO = {
+    title: "KEMT - Udalosti - Minule",
+    description: "KEMT Udalosti, minule",
+    openGraph: {
+      locale: locale,
+    },
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <StyledHeadingH1>{Capitalize(t("events"))}</StyledHeadingH1>
       <StyledButtonSelectWrapper>
-        <Link href={"/udalosti"}>
+        <Link href={"/udalosti"} passHref>
           <StyledSelectButton>{t("coming")}</StyledSelectButton>
         </Link>
-        <Link href={"/udalosti/minule"}>
+        <Link href={"/udalosti/minule"} passHref>
           <StyledSelectButton onClick={handlePageReset} selected={true}>
             {t("past")}
           </StyledSelectButton>

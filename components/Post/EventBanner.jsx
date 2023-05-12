@@ -11,6 +11,7 @@ const StyledBanner = styled.div`
   align-items: center;
   background-color: ${COLOR.SEC[500]};
   color: ${COLOR.WHITE};
+  border-top: 1px solid ${COLOR.PLATINUM.DEFAULT};
   h1 {
     font-size: ${FONT_SIZE.XL};
     font-weight: 700;

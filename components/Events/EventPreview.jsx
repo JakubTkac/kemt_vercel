@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { COLOR, FONT_SIZE, SCREENS } from "../../Theme";
+import removeMarkdownSyntax from "../../utils/removeMarkdownSyntax";
 
 const StyledNoticePreview = styled.li`
   display: flex;
@@ -79,7 +80,7 @@ const StyledContent = styled.span`
 const EventPreview = ({ slug, heading, startingDate, endingDate, content }) => {
   return (
     <StyledNoticePreview>
-      <Link href={`/udalosti/${slug}`}>
+      <Link href={`/udalosti/${slug}`} passHref>
         <a>
           <div>
             <time dateTime={startingDate}>{`${startingDate.getDate()}.${
@@ -97,7 +98,9 @@ const EventPreview = ({ slug, heading, startingDate, endingDate, content }) => {
             )}
           </div>
           <h3>{heading}</h3>
-          {content && <StyledContent>{content}</StyledContent>}
+          {content && (
+            <StyledContent>{removeMarkdownSyntax(content)}</StyledContent>
+          )}
         </a>
       </Link>
     </StyledNoticePreview>

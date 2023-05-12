@@ -80,7 +80,7 @@ const StyledAspectRatio = styled(AspectRatio.Root)`
 const NewsPreview = ({ heading, slug, date, img }) => {
   return (
     <StyledNewsWrapper>
-      <Link href={`/novinky/${slug}`}>
+      <Link href={`/novinky/${slug}`} passHref>
         <a>
           <StyledAspectRatio ratio={3 / 2}>
             <Img

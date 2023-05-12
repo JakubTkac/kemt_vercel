@@ -8,6 +8,7 @@ const StyledTitleButton = styled.button`
   flex-direction: row;
   align-items: center;
   padding: 0.5rem;
+  text-align: left;
   justify-content: space-between;
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.PLATINUM[600]};

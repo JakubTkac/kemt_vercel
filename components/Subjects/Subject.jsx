@@ -130,7 +130,10 @@ const Subject = ({ data, locale }) => {
         <StyledInformationContentContainer>
           <span>{t("guarantor")}</span>
           <div>
-            <Link href={`/organizacia/${guarantor.data?.attributes.slug}`}>
+            <Link
+              href={`/organizacia/${guarantor.data?.attributes.slug}`}
+              passHref
+            >
               <a>
                 <p>{guarantor.data?.attributes.name}</p>
               </a>
@@ -147,6 +150,7 @@ const Subject = ({ data, locale }) => {
                 <Link
                   key={lecturing.id}
                   href={`/organizacia/${lecturing.attributes.slug}`}
+                  passHref
                 >
                   <a>
                     <p>{lecturing.attributes.name}</p>
@@ -166,6 +170,7 @@ const Subject = ({ data, locale }) => {
                 <Link
                   key={studyProgramme.id}
                   href={`/studijne-programy/${studyProgramme.attributes.slug}`}
+                  passHref
                 >
                   <a>
                     <p>{studyProgramme.attributes.title}</p>
@@ -220,6 +225,7 @@ const Subject = ({ data, locale }) => {
                 <Link
                   key={teacher.id}
                   href={`/organizacia/${teacher.attributes.slug}`}
+                  passHref
                 >
                   <a>
                     <p>{teacher.attributes.name}</p>

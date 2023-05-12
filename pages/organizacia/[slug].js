@@ -9,6 +9,7 @@ import Employee from "../../components/Employees/Employee";
 import Contact from "../../components/Employees/Contact";
 import EmployeeDropdownItem from "../../components/Employees/EmployeeDropdownItem";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
+import Seo from "../../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -95,9 +96,11 @@ const StyledTabTrigger = styled(Tabs.Trigger)`
 
 function Content({ employees, locale }) {
   const { t } = useTranslation("employees");
+  const SEO = employees.data.attributes?.seo;
 
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       <Employee employee={employees.data.attributes} locale={locale}></Employee>
       <StyledRoot defaultValue="contact" orientation="vertical">
         <StyledList aria-label="tabs example">

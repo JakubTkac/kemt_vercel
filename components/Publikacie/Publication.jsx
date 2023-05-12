@@ -80,6 +80,7 @@ const Publication = ({ attributes, locale }) => {
                       <Link
                         key={author.id}
                         href={`/organizacia/${author.attributes.slug}`}
+                        passHref
                       >
                         <a>
                           <p>{author.attributes.name}</p>

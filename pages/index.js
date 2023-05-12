@@ -8,6 +8,7 @@ import Events from "../components/Events/Events";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
+import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
@@ -45,10 +46,6 @@ export default function Home({ notices, news, events, locale }) {
   const { t } = useTranslation("common");
   return (
     <>
-      <Head>
-        <title>KEMT</title>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-      </Head>
       <Hero />
       <Notices data={notices} heading={t("notices")} locale={locale} />
       <StyledNewsEventsWrapper>

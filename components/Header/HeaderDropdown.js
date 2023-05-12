@@ -54,7 +54,7 @@ const HeaderDropdown = ({ dropdownItems, locale }) => {
       <DropdownList>
         {dropdownItems.map((item) => {
           return (
-            <Link href={item.path} key={item.id}>
+            <Link href={item.path} key={item.id} passHref>
               <a>
                 <TranslateComponent
                   Component={DropdownItem}

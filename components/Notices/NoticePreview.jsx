@@ -66,7 +66,7 @@ const NoticePreview = ({ heading, date, slug }) => {
   const newDate = new Date(date);
   return (
     <StyledNoticePreview>
-      <Link href={`/oznamy/${slug}`}>
+      <Link href={`/oznamy/${slug}`} passHref>
         <a>
           <time dateTime={date}>{`${date.getDate()}.${
             date.getMonth() + 1

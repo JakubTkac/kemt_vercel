@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT } from "../Theme";
 import { useState } from "react";
 import Publication from "../components/Publikacie/Publication";
+import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -59,8 +60,11 @@ function Content({ pageData, locale }) {
           return project.attributes.typeEN === filter;
         });
 
+  const SEO = pageData.data.attributes?.seo;
+
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       <StyledHeadingH1>{t("projects")}</StyledHeadingH1>
       <StyledPublicationsWrapper>
         <select value={filter} onChange={handleFilterChange}>

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT } from "../Theme";
 import { useState } from "react";
 import Publication from "../components/Publikacie/Publication";
+import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
@@ -47,6 +48,8 @@ const StyledWrapper = styled.div`
 function Content({ pageData, locale }) {
   const { t } = useTranslation("publications");
 
+  const SEO = pageData.data.attributes?.seo;
+
   const [filter, setFilter] = useState("all");
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -70,6 +73,7 @@ function Content({ pageData, locale }) {
 
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       <StyledHeadingH1>{t("publications")}</StyledHeadingH1>
       <StyledPublicationsWrapper>
         <select value={filter} onChange={handleFilterChange}>

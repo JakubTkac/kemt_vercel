@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../Theme";
 import DocumentPDF from "../components/Common/DocumentPDF";
 import StyledList from "../components/Styled/StyledList";
+import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -26,8 +27,11 @@ export async function getServerSideProps({ query: { page }, locale }) {
 
 function Content({ pageData, locale }) {
   const { t } = useTranslation("common");
+  const SEO = pageData.data.attributes?.seo;
+
   return (
     <>
+      <Seo seo={SEO} locale={locale}></Seo>
       <StyledHeadingH1>{t("annualReports")}</StyledHeadingH1>
       <StyledList>
         {pageData.data.map((item) => {

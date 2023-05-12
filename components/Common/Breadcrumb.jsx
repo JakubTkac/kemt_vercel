@@ -68,9 +68,9 @@ const Breadcrumb = () => {
       <StyledBreadcrumb>
         <ul>
           <li>
-            <Link href={"/"}>
+            <Link href={"/"} passHref>
               <a>
-                <button>KEMT</button>
+                <button aria-label={"Home Button"}>KEMT</button>
               </a>
             </Link>
           </li>
@@ -83,7 +83,7 @@ const Breadcrumb = () => {
                     {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}
                   </button>
                 ) : (
-                  <Link href={`/${segment}`}>
+                  <Link href={`/${segment}`} passHref>
                     <a>
                       <button>
                         {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}
