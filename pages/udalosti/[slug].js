@@ -23,6 +23,7 @@ export async function getStaticProps({ params, locale }) {
       events,
       locale,
     },
+    revalidate: 10,
   };
 }
 

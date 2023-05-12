@@ -31,6 +31,7 @@ export async function getStaticProps({ params, locale }) {
       locale,
       ...(await serverSideTranslations(locale, ["employees"])),
     },
+    revalidate: 10,
   };
 }
 

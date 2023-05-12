@@ -17,6 +17,7 @@ export async function getStaticProps({ params, locale }) {
   const news = await fetcher(`${URL}/news/${params.slug}?populate=*`);
   return {
     props: { params, news, locale },
+    revalidate: 10,
   };
 }
 

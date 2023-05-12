@@ -13,7 +13,6 @@ import Breadcrumb from "../components/Common/Breadcrumb";
 import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo-config.js";
 import { useRouter } from "next/router";
-import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
 import Head from "next/head";
 
 const StyledTopButton = styled.button`
