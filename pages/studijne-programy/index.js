@@ -13,7 +13,7 @@ import { NextSeo } from "next-seo";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getServerSideProps({ query: { page }, locale }) {
+export async function getStaticProps({ locale }) {
   const typeOfStudiesResponse = await fetcher(
     `${URL}/type-of-studies?populate[studyProgrammes][populate]=*`
   );
@@ -23,6 +23,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       ...(await serverSideTranslations(locale, ["programs"])),
     },
+    revalidate: 10,
   };
 }
 

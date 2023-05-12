@@ -6,13 +6,14 @@ import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getServerSideProps({ query: { page }, locale }) {
+export async function getStaticProps({ locale }) {
   const data = await fetcher(`${URL}/history?populate=*`);
   return {
     props: {
       pageData: data,
       locale: locale,
     },
+    revalidate: 10,
   };
 }
 

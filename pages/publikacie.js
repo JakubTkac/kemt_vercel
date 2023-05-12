@@ -10,7 +10,7 @@ import Seo from "../components/Common/Seo";
 
 const URL = process.env.STRAPI_URL;
 
-export async function getServerSideProps({ query: { page }, locale }) {
+export async function getStaticProps({ locale }) {
   const data = await fetcher(`${URL}/publications?sort=title%3Aasc&populate=*`);
   return {
     props: {
@@ -18,6 +18,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       ...(await serverSideTranslations(locale, ["publications"])),
     },
+    revalidate: 10,
   };
 }
 

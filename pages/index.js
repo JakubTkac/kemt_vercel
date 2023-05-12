@@ -13,7 +13,7 @@ import Seo from "../components/Common/Seo";
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   const noticeResponse = await fetcher(
     `${URL}/notices?locale=${locale}&populate=*&sort=date%3Adesc&pagination[limit]=6`
   );
@@ -31,6 +31,7 @@ export async function getServerSideProps({ locale }) {
       events: eventsResponse,
       ...(await serverSideTranslations(locale, ["common"])),
     },
+    revalidate: 10,
   };
 }
 

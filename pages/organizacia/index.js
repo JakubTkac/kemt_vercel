@@ -18,7 +18,7 @@ import { NextSeo } from "next-seo";
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
-export async function getServerSideProps({ query: { page }, locale }) {
+export async function getStaticProps({ locale }) {
   const employeesResponse = await fetcher(
     `${URL}/employees?populate=*&sort=name`
   );
@@ -28,6 +28,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       ...(await serverSideTranslations(locale, ["employees"])),
     },
+    revalidate: 10,
   };
 }
 

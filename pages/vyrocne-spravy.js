@@ -12,7 +12,7 @@ import Seo from "../components/Common/Seo";
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
-export async function getServerSideProps({ query: { page }, locale }) {
+export async function getStaticProps({ locale }) {
   const data = await fetcher(
     `${URL}/annual-reports?sort=title%3Adesc&populate=*`
   );
@@ -22,6 +22,7 @@ export async function getServerSideProps({ query: { page }, locale }) {
       locale: locale,
       ...(await serverSideTranslations(locale, ["common"])),
     },
+    revalidate: 10,
   };
 }
 
