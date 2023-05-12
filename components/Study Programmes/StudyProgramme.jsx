@@ -25,6 +25,9 @@ const StyledTable = styled.div`
   }
   p {
   }
+  a {
+    width: auto;
+  }
 `;
 
 const StudyProgramme = ({ data, locale }) => {
@@ -86,30 +89,6 @@ const StudyProgramme = ({ data, locale }) => {
         locale={locale}
         title={t("goals")}
       ></TranslateTitleWithContent>
-      {subjects.data.length > 0 && (
-        <StyledInformationContentContainer>
-          <span>{t("subjects")}</span>
-          <div>
-            {subjects?.data.map((subject) => {
-              return (
-                <Link
-                  key={subject.id}
-                  href={`/predmety/${subject.attributes.slug}`}
-                >
-                  <a>
-                    <TranslateComponent
-                      Component={P}
-                      locale={locale}
-                      sk={subject.attributes.title}
-                      en={subject.attributes.titleEN}
-                    ></TranslateComponent>
-                  </a>
-                </Link>
-              );
-            })}
-          </div>
-        </StyledInformationContentContainer>
-      )}
       {newSubjects && (
         <StyledInformationContentContainer>
           <span>{t("subjects")}</span>
