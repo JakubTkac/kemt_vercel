@@ -14,10 +14,10 @@ const URL = process.env.STRAPI_URL;
 
 export async function getStaticProps({ locale }) {
   const subjectsResponse = await fetcher(
-    `${URL}/subjects?populate=*&sort[0]=[studyYear]title&sort[1]=[studyYear]semester`
+    `${URL}/subjects?populate=*&sort[0]=[studyYear]title&sort[1]=[studyYear]semester&pagination[limit]=200`
   );
   const subjectsWithStudyTypeResponse = await fetcher(
-    `${URL}/subjects?populate[studyProgrammes][populate]=type_of_study&sort[0]=[studyYear]title&sort[1]=[studyYear]semester`
+    `${URL}/subjects?populate[studyProgrammes][populate]=type_of_study&sort[0]=[studyYear]title&sort[1]=[studyYear]semester&pagination[limit]=200`
   );
   return {
     props: {
@@ -73,6 +73,7 @@ export default function Subjects({ subjects, subjectWithStudyType, locale }) {
     setData(filteredData);
     filterStudyYears(filteredData);
   };
+
   const filterStudyYears = (filteredData) => {
     const uniqueData = [];
     const set = new Set();
@@ -94,6 +95,7 @@ export default function Subjects({ subjects, subjectWithStudyType, locale }) {
     });
     setStudyYears(uniqueData);
   };
+
   const buttonHandler = (setter, filterType) => {
     setProgram(setter);
     handleFilterData(filterType);
@@ -142,14 +144,16 @@ export default function Subjects({ subjects, subjectWithStudyType, locale }) {
         </StyledSelectButton>
       </StyledSelectTypesContainer>
       <StyledContentContainer>
-        {studyYears.map((studyYear, index) => (
-          <SubjectDropdownItem
-            key={index}
-            data={data}
-            studyYear={studyYear}
-            locale={locale}
-          ></SubjectDropdownItem>
-        ))}
+        {studyYears.map((studyYear, index) => {
+          return (
+            <SubjectDropdownItem
+              key={index}
+              data={data}
+              studyYear={studyYear}
+              locale={locale}
+            ></SubjectDropdownItem>
+          );
+        })}
       </StyledContentContainer>
     </>
   );
