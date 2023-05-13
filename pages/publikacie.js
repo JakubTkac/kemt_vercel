@@ -11,7 +11,9 @@ import Seo from "../components/Common/Seo";
 const URL = process.env.STRAPI_URL;
 
 export async function getStaticProps({ locale }) {
-  const data = await fetcher(`${URL}/publications?sort=title%3Aasc&populate=*`);
+  const data = await fetcher(
+    `${URL}/publications?sort=title%3Aasc&populate=*&pagination[limit]=200`
+  );
   return {
     props: {
       pageData: data,
