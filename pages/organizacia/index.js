@@ -20,7 +20,7 @@ const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
 
 export async function getStaticProps({ locale }) {
   const employeesResponse = await fetcher(
-    `${URL}/employees?populate=*&sort=name`
+    `${URL}/employees?populate=*&sort=name&pagination[limit]=200`
   );
   return {
     props: {
