@@ -42,6 +42,7 @@ const StyledPublicationsWrapper = styled.div`
 
 const StyledWrapper = styled.div`
   display: flex;
+
   flex-direction: column;
   padding: 0.5rem;
   border: 1px solid ${COLOR.PLATINUM[600]};
