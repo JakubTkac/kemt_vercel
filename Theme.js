@@ -1,11 +1,5 @@
 import { rem } from "polished";
 
-export const FONT_STACK = {
-  SERIF: `'DM Serif Display', serif`,
-  INTER: `'Inter', sans-serif`,
-  MANROPE: `'Manrope', sans-serif`,
-};
-
 export const FONT_WEIGHT = {
   LIGHT: 200,
   REGULAR: 400,
@@ -35,21 +29,8 @@ export const SCREENS = {
 };
 
 export const COLOR = {
-  FEI_PRIMARY: "#EAAA00",
-  PRIMARY: "#C7A97A",
-  SECONDARY: "#053426",
   WHITE: "#FFF",
-  DANGER: "#B42B51",
-  LIGHT: "#F4F8FB",
   BLACK: "#000",
-  DARKTEXT: "#3B3A40",
-  LIGHTBROWN: "#F4EFE9",
-  DARKERBROWN: "#dccdba",
-  SMOKE: "#A1A1A2",
-  GRAY: "#C1CCC9",
-  DARKGRAY: "#64626A",
-  FORDGRAY: "#979797",
-  DARKBLUE: "#4D646E",
   BACKGROUND: "#FCFAF8",
   PLATINUM: {
     DEFAULT: "#DFE1E0",
@@ -119,17 +100,6 @@ export const FONT_SIZE = {
   XXL: rem(60),
   XXXL: rem(80),
   XXXXL: rem(100),
-};
-
-export const BOX_SHADOW = {
-  DARK: "0px 1px 2px rgba(13, 64, 128, 0.19)",
-  INNER: "inset 1px 1px 4px rgba(0, 0, 0, 0.08)",
-  ELEVATION_1: "0px 5px 10px rgba(24, 27, 25, 0.07)",
-  ELEVATION_2: "0px 5px 20px rgba(24, 27, 25, 0.08)",
-  ELEVATION_3: "0px 5px 30px rgba(24, 27, 25, 0.1)",
-  ELEVATION_4: "0px 5px 40px rgba(24, 27, 25, 0.1)",
-  ELEVATION_5: "0px 5px 20px rgba(24, 27, 25, 0.1)",
-  ELEVATION_6: "0px 5px 20px rgba(0, 0, 0, 0.1)",
 };
 
 export const WIDTH = {

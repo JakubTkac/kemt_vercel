@@ -32,7 +32,7 @@ const StyledFooterNav = styled.div`
   width: 100%;
   height: ${HEIGHT.L};
   flex-direction: row;
-  background-color: ${COLOR.FEI_PRIMARY};
+  background-color: ${COLOR.PRI.DEFAULT};
   padding: 0 15rem;
 `;
 

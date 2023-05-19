@@ -7,7 +7,7 @@ const LandingContainer = styled.div`
   min-height: 85.8vh;
 `;
 
-const StyledFlex = styled.div`
+const StyledFlex = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
