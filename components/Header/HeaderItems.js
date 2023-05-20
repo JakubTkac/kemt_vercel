@@ -12,12 +12,6 @@ export const katedraDropdownItems = [
     path: "/historia",
   },
   {
-    id: 3,
-    title: "Výročné správy",
-    titleEN: "Annual reports",
-    path: "/vyrocne-spravy",
-  },
-  {
     id: 4,
     title: "Oznamy",
     titleEN: "Notices",
@@ -84,6 +78,21 @@ export const vedaDropdownItems = [
   },
 ];
 
+export const dokumentDropdownItems = [
+  {
+    id: 1,
+    title: "Dokumenty",
+    titleEN: "Documents",
+    path: "/dokumenty",
+  },
+  {
+    id: 2,
+    title: "Výročné správy",
+    titleEN: "Annual reports",
+    path: "/vyrocne-spravy",
+  },
+];
+
 export const headerItems = [
   {
     id: 1,
@@ -117,6 +126,7 @@ export const headerItems = [
     title: "Dokumenty",
     titleEN: "Documents",
     path: "/dokumenty",
+    dropdownItems: dokumentDropdownItems,
   },
   {
     id: 6,
