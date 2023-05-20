@@ -1,19 +1,14 @@
 import styled from "styled-components";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import {
-  COLOR,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  HEIGHT,
-  SCREENS,
-  WIDTH,
-} from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT } from "../../Theme";
 import { fetcher } from "../../lib/api";
 import StyledHeadingH1 from "../../components/Styled/StyledHeadingH1";
 import { useTranslation } from "next-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmployeePreview from "../../components/Employees/EmployeePreview";
 import { NextSeo } from "next-seo";
+import { remove as removeAccents } from "remove-accents";
+import StyledInputWrapper from "../../components/Styled/StyledInputWrapper";
 
 const URL = process.env.STRAPI_URL;
 const imgURL = process.env.NEXT_PUBLIC_IMG_URL;
@@ -33,7 +28,6 @@ export async function getStaticProps({ locale }) {
 }
 
 const StyledEmployeesWrapper = styled.div`
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -52,19 +46,72 @@ export default function Organization({ employees, locale }) {
   const { t } = useTranslation("employees");
 
   const [filter, setFilter] = useState("all");
+  const [nameValue, setNameValue] = useState("");
+  const [roomNumberValue, setRoomNumberValue] = useState("");
+  const [subjectValue, setSubjectValue] = useState("");
+  const [filteredEmployees, setFilteredEmployees] = useState(employees.data);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
+  const handleNameChange = (event) => {
+    const inputValue = event.target.value;
+    setNameValue(inputValue);
+  };
+  const handleRoomNumberChange = (event) => {
+    const inputValue = event.target.value;
+    setRoomNumberValue(inputValue);
+  };
+  const handleSubjectChange = (event) => {
+    const inputValue = event.target.value;
+    setSubjectValue(inputValue);
+  };
+  const filterEmployees = () => {
+    const managementFilter = employees.data.filter((employee) => {
+      return (
+        filter === "all" ||
+        employee.attributes.managements.data.some(
+          (management) => management.attributes.title === filter
+        )
+      );
+    });
+    const nameFilter = managementFilter.filter((employee) => {
+      return (
+        nameValue === "" ||
+        removeAccents(employee.attributes.name.toLowerCase()).includes(
+          removeAccents(nameValue.toLowerCase())
+        )
+      );
+    });
+    const roomNumberFilter = nameFilter.filter((employee) => {
+      return (
+        roomNumberValue === "" ||
+        (typeof employee.attributes.roomNumber !== "object" &&
+          employee.attributes.roomNumber.includes(roomNumberValue))
+      );
+    });
+    const subjectFilter = roomNumberFilter.filter((employee) => {
+      return (
+        subjectFilter === "" ||
+        employee.attributes.subjects.data?.some((subject) => {
+          return (
+            removeAccents(subject.attributes.title.toLowerCase()).includes(
+              removeAccents(subjectValue.toLowerCase())
+            ) ||
+            removeAccents(subject.attributes.shortTitle.toLowerCase()).includes(
+              removeAccents(subjectValue.toLowerCase())
+            )
+          );
+        })
+      );
+    });
 
-  const filteredEmployees =
-    filter === "all"
-      ? employees.data
-      : employees.data.filter((employee) => {
-          return employee.attributes.managements.data.some((management) => {
-            return management.attributes.title === filter;
-          });
-        });
+    setFilteredEmployees(subjectFilter);
+  };
+
+  useEffect(() => {
+    filterEmployees();
+  }, [filter, nameValue, roomNumberValue, subjectValue, locale]);
 
   const SEO = {
     title: "KEMT - Personal",
@@ -78,6 +125,26 @@ export default function Organization({ employees, locale }) {
     <>
       <NextSeo {...SEO} />
       <StyledHeadingH1>{t("title")}</StyledHeadingH1>
+      <StyledInputWrapper>
+        <input
+          type="text"
+          value={nameValue}
+          onChange={handleNameChange}
+          placeholder={t("name")}
+        />
+        <input
+          type="text"
+          value={roomNumberValue}
+          onChange={handleRoomNumberChange}
+          placeholder={t("roomNumber")}
+        />
+        <input
+          type="text"
+          value={subjectValue}
+          onChange={handleSubjectChange}
+          placeholder={t("subjects")}
+        />
+      </StyledInputWrapper>
       <StyledEmployeesWrapper>
         <select value={filter} onChange={handleFilterChange}>
           <option value="all">{t("all")}</option>
@@ -105,7 +172,7 @@ export default function Organization({ employees, locale }) {
               avatar={employee.attributes.avatar}
               locale={locale}
               imgURL={imgURL}
-            ></EmployeePreview>
+            />
           );
         })}
       </StyledEmployeesWrapper>

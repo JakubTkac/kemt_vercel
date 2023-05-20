@@ -3595,6 +3595,11 @@
     "mdast-util-to-hast" "^12.1.0"
     "unified" "^10.0.0"
 
+"remove-accents@^0.4.4":
+  "integrity" "sha512-EpFcOa/ISetVHEXqu+VwI96KZBmq+a8LJnGkaeFw45epGlxIZz5dhEEnNZMsQXgORu3qaMoLX4qJCzOik6ytAg=="
+  "resolved" "https://registry.npmjs.org/remove-accents/-/remove-accents-0.4.4.tgz"
+  "version" "0.4.4"
+
 "resolve-from@^4.0.0":
   "integrity" "sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g=="
   "resolved" "https://registry.npmjs.org/resolve-from/-/resolve-from-4.0.0.tgz"

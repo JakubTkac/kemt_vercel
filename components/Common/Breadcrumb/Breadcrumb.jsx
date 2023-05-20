@@ -102,7 +102,7 @@ const Breadcrumb = () => {
                     {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}
                   </button>
                 ) : (
-                  <Link href={`/${segment}`} passHref>
+                  <Link href={`/${pathSegments[index]}`} passHref>
                     <a>
                       <button>
                         {segment.toUpperCase().replace(/-/g, " ").split("?")[0]}

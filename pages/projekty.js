@@ -25,7 +25,6 @@ export async function getStaticProps({ locale }) {
 }
 
 const StyledPublicationsWrapper = styled.div`
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   width: 100%;

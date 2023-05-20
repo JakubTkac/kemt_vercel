@@ -28,7 +28,6 @@ export async function getServerSideProps({ query: { page }, locale }) {
 }
 
 const StyledNewsWrapper = styled.ul`
-  margin-top: 3rem;
   display: flex;
   width: 100%;
   flex-wrap: wrap;

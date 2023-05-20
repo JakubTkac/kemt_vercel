@@ -87,7 +87,6 @@ const StyledListWrapper = styled.ul`
 `;
 
 const StyledButtonSelectWrapper = styled.div`
-  margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: row;
