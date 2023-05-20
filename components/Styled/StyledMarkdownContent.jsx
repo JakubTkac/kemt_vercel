@@ -132,6 +132,9 @@ const StyledMarkdownContent = styled.div`
   blockquote {
     border-left: 8px solid ${COLOR.SEC[400]};
     padding: 1rem;
+    p {
+      text-align: left;
+    }
   }
 
   pre,

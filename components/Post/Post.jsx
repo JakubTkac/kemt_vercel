@@ -86,9 +86,9 @@ const Post = ({
       )}
       <>
         {img && (
-          <StyledAspectRatio ratio={16 / 9}>
+          <div>
             <Img src={`${URL}${img}`} alt={img}></Img>
-          </StyledAspectRatio>
+          </div>
         )}
         <MarkdownContent>
           <TableOfContents markdownText={content} locale={locale} />
