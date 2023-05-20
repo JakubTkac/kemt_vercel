@@ -1,7 +1,7 @@
 import StyledInformationContentContainer from "../Styled/StyledInformationContentContainer";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import { COLOR, FONT_WEIGHT, SCREENS } from "../../Theme";
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS } from "../../Theme";
 import Link from "next/link";
 import TranslateTitleWithContent from "../Common/TranslateTitleWithContent";
 import StyledSingleItemContainer from "../Styled/StyledSingleItemContainer";
@@ -12,16 +12,18 @@ const StyledTable = styled.div`
   display: flex;
   flex-direction: column;
   h2 {
+    font-size: ${FONT_SIZE.M};
     font-weight: ${FONT_WEIGHT.BOLD};
+    text-decoration: underline;
   }
 
   div {
-    margin-bottom: 0.5rem;
-    border: 1px solid ${COLOR.PLATINUM[600]};
+    margin-bottom: 2rem;
+    //border: 1px solid ${COLOR.PLATINUM[600]};
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.2rem;
+    gap: 0.3rem;
   }
   p {
   }
