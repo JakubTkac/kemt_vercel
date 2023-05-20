@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
-import { COLOR, FONT_SIZE, FONT_WEIGHT, SCREENS, WIDTH } from "../../Theme";
+import { COLOR, FONT_SIZE, SCREENS, WIDTH } from "../../../Theme";
 import { FiChevronRight } from "react-icons/fi";
-import React, { Fragment } from "react";
+import { translateArray } from "./BreadcrumbItems";
+import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
+import React from "react";
 
 const StyledFlex = styled.div`
   display: flex;
@@ -57,11 +59,28 @@ const StyledBreadcrumb = styled.nav`
     height: 100%;
   }
 `;
+
 const Breadcrumb = () => {
   const router = useRouter();
   const { asPath } = router;
+  const locale = router.locale;
 
   const pathSegments = asPath.split("/").filter((segment) => segment !== "");
+
+  const replacePathSegments = (pathSegments, translateArray, locale) => {
+    return pathSegments.map((segment) => {
+      const translation = translateArray.find((item) => item.slug === segment);
+      if (translation) {
+        return locale === "en" ? translation.titleEN : translation.title;
+      }
+      return segment;
+    });
+  };
+  const updatedPathSegments = replacePathSegments(
+    pathSegments,
+    translateArray,
+    locale
+  );
 
   return (
     <StyledFlex>
@@ -75,7 +94,7 @@ const Breadcrumb = () => {
             </Link>
           </li>
           <FiChevronRight />
-          {pathSegments.map((segment, index) => (
+          {updatedPathSegments.map((segment, index) => (
             <React.Fragment key={index}>
               <li>
                 {index === pathSegments.length - 1 ? (

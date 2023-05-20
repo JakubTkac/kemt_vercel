@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { COLOR, FONT_SIZE, SCREENS, SPACE } from "../Theme";
 import { FiArrowUp } from "react-icons/fi";
 import { ChakraProvider } from "@chakra-ui/react";
-import Breadcrumb from "../components/Common/Breadcrumb";
+import Breadcrumb from "../components/Common/Breadcrumb/Breadcrumb";
 import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo-config.js";
 import { useRouter } from "next/router";
