@@ -165,7 +165,7 @@ const NewsShowAllPreview = ({ date, id, slug, content, title, img }) => {
       <article>
         <Link href={`/novinky/${slug}`}>
           <a>
-            <StyledAspectRatio ratio={6 / 4}>
+            <StyledAspectRatio ratio={16 / 8}>
               <Img
                 src={
                   img?.formats && img.formats.small?.url
