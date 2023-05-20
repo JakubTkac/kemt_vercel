@@ -66,6 +66,10 @@ const StyledMarkdownContent = styled.div`
   p {
     font-size: 1rem;
     margin-bottom: 1.3rem;
+    text-align: justify;
+    @media (max-width: ${SCREENS.SM}) {
+      text-align: left;
+    }
   }
 
   h1,

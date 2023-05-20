@@ -5,7 +5,6 @@ import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import NoticeBanner from "./NoticeBanner";
 import EventBanner from "./EventBanner";
 import generateSlug from "../../utils/generateSlug";
-import { useState } from "react";
 import TableOfContents from "./TableOfContents";
 import MarkdownContent from "../Styled/StyledMarkdownContent";
 
