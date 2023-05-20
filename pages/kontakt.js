@@ -12,10 +12,10 @@ import Seo from "../components/Common/Seo";
 const URL = process.env.STRAPI_URL;
 
 export async function getStaticProps({ locale }) {
-  // const data = await fetcher(`${URL}/projects?sort=title%3Aasc&populate=*`);
+  const data = await fetcher(`${URL}/contact?populate[seo][populate]=*`);
   return {
     props: {
-      // pageData: data,
+      pageData: data,
       locale: locale,
       ...(await serverSideTranslations(locale, ["contact"])),
     },
@@ -64,14 +64,6 @@ const StyledMapDiv = styled.div`
   }
 `;
 
-const StyledContentWrapper = styled.div`
-  display: flex;
-  gap: 2rem;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -95,29 +87,36 @@ const StyledIframe = styled.iframe`
 
 function Content({ pageData, locale }) {
   const { t } = useTranslation("contact");
-  // const SEO = pageData.data.attributes?.seo;
+  const SEO = pageData.data.attributes?.seo;
+  const addressArray = pageData.data.attributes.address.split(",");
 
   return (
     <>
-      {/*<Seo seo={SEO} locale={locale}></Seo>*/}
+      <Seo seo={SEO} locale={locale}></Seo>
       <StyledHeadingH1>{t("title")}</StyledHeadingH1>
       <StyledContainer>
         <StyledDiv>
           <StyledContent>
             <h2>{t("address")}</h2>
-            <span>Park Komenského 13,</span>
-            <span>04120 Košice,</span>
-            <span>Slovenská republika</span>
+            {addressArray.map((addressPart, index) => (
+              <span key={index}>{addressPart}</span>
+            ))}
           </StyledContent>
           <StyledContent>
             <h2>{t("phone")}</h2>
-            <a href={`tel: +421(55) 602 4169`}>
-              <span>+421(55) 602 4169</span>
+            <a href={`tel: ${pageData.data.attributes.phoneNumber}`}>
+              <span>{pageData.data.attributes.phoneNumber}</span>
             </a>
           </StyledContent>
           <StyledContent>
             <h2>Fax:</h2>
-            <span>+421 (55) 632 3989</span>
+            <span>{pageData.data.attributes.fax}</span>
+          </StyledContent>
+          <StyledContent>
+            <h2>E-mail:</h2>
+            <a href={`mailto: ${pageData.data.attributes.email}`}>
+              <span>{pageData.data.attributes.email}</span>
+            </a>
           </StyledContent>
         </StyledDiv>
         <StyledMapDiv>
