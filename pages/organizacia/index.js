@@ -142,7 +142,7 @@ export default function Organization({ employees, locale }) {
           type="text"
           value={subjectValue}
           onChange={handleSubjectChange}
-          placeholder={t("subjects")}
+          placeholder={t("subject")}
         />
       </StyledInputWrapper>
       <StyledEmployeesWrapper>

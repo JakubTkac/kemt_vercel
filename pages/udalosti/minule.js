@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Capitalize } from "../../lib/typography";
 import { useTranslation } from "next-i18next";
 import { NextSeo } from "next-seo";
+import Pagination from "../../components/Common/Pagination";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
@@ -30,54 +31,6 @@ export async function getServerSideProps({ query: { page }, locale }) {
     },
   };
 }
-
-const StyledPaginationButton = styled.button`
-  width: 16rem;
-  margin-bottom: 2rem;
-  padding: 2rem;
-  background-color: ${COLOR.SEC.DEFAULT};
-  color: ${COLOR.WHITE};
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: ${FONT_SIZE.M};
-  height: ${SPACE.XL};
-  border: ${COLOR.SEC[600]} 1px solid;
-  @media (max-width: ${SCREENS.XL}) {
-    height: ${SPACE.L};
-    width: 12rem;
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    height: ${SPACE.XL};
-    width: 8rem;
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    height: ${SPACE.L};
-    font-size: ${FONT_SIZE.S};
-    width: 6rem;
-  }
-  &:hover {
-    background-color: ${COLOR.SEC[300]};
-  }
-  &:disabled {
-    color: ${COLOR.BLACK};
-    background-color: ${COLOR.SEC[50]};
-    cursor: not-allowed;
-  }
-\`;
-`;
-const StyledButtonWrapper = styled.div`
-  margin-top: 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-grow: 1;
-  gap: 2rem;
-`;
 
 const StyledListWrapper = styled.ul`
   display: flex;
@@ -149,24 +102,6 @@ const Minule = ({ events, pagination, locale }) => {
 
   const totalPages = pagination.pageCount;
 
-  const handlePrevClick = () => {
-    if (pageNum > 1) {
-      router.push(`/udalosti/minule/?page=${pageNum - 1}`, undefined, {
-        shallow: true,
-      });
-      setPageNum(pageNum - 1);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (pageNum < totalPages) {
-      router.push(`/udalosti/minule/?page=${pageNum + 1}`, undefined, {
-        shallow: true,
-      });
-      setPageNum(pageNum + 1);
-    }
-  };
-
   const handlePageReset = () => {
     router.push(`/udalosti/minule/?page=1`, undefined, {
       shallow: true,
@@ -214,20 +149,14 @@ const Minule = ({ events, pagination, locale }) => {
           );
         })}
       </StyledListWrapper>
-      <StyledButtonWrapper>
-        <StyledPaginationButton
-          onClick={handlePrevClick}
-          disabled={pageNum === 1}
-        >
-          {t("previous")}
-        </StyledPaginationButton>
-        <StyledPaginationButton
-          onClick={handleNextClick}
-          disabled={pageNum === totalPages}
-        >
-          {t("next")}
-        </StyledPaginationButton>
-      </StyledButtonWrapper>
+
+      <Pagination
+        pageNum={pageNum}
+        totalPages={totalPages}
+        locale={locale}
+        setter={setPageNum}
+        url={"/udalosti/minule/?page="}
+      ></Pagination>
     </>
   );
 };

@@ -54,12 +54,12 @@ const Publication = ({ attributes, locale }) => {
   } = attributes;
 
   return (
-    <StyledContainer
-      onClick={() => {
-        setOpen(!open);
-      }}
-    >
-      <StyledTitleButton>
+    <StyledContainer>
+      <StyledTitleButton
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
         <TranslateComponent
           Component={H2}
           locale={locale}
@@ -70,7 +70,7 @@ const Publication = ({ attributes, locale }) => {
       </StyledTitleButton>
       {open && (
         <StyledTransitionContainer>
-          {(authors || authorsOther?.length > 0) && (
+          {(authors.length > 0 || authorsOther?.length > 0) && (
             <StyledInformationContentContainer>
               <span>{t("authors")}</span>
               <div>

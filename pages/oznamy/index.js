@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Capitalize } from "../../lib/typography";
 import { useTranslation } from "next-i18next";
 import { NextSeo } from "next-seo";
+import Pagination from "../../components/Common/Pagination";
 
 const URL = process.env.STRAPI_URL;
 
@@ -33,54 +34,6 @@ const StyledNoticesWrapper = styled.ul`
   flex-direction: column;
   width: 100%;
   gap: 2em;
-`;
-
-const StyledPaginationButton = styled.button`
-  width: 16rem;
-  margin-bottom: 2rem;
-  padding: 2rem;
-  background-color: ${COLOR.SEC.DEFAULT};
-  color: ${COLOR.WHITE};
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: ${FONT_SIZE.M};
-  height: ${SPACE.XL};
-  border: ${COLOR.SEC[600]} 1px solid;
-  @media (max-width: ${SCREENS.XL}) {
-    height: ${SPACE.L};
-    width: 12rem;
-  }
-  @media (max-width: ${SCREENS.MD}) {
-    height: ${SPACE.XL};
-    width: 8rem;
-  }
-  @media (max-width: ${SCREENS.XS}) {
-    height: ${SPACE.L};
-    font-size: ${FONT_SIZE.S};
-    width: 6rem;
-  }
-  &:hover {
-    background-color: ${COLOR.SEC[300]};
-  }
-  &:disabled {
-    color: ${COLOR.BLACK};
-    background-color: ${COLOR.SEC[50]};
-    cursor: not-allowed;
-  }
-`;
-
-const StyledButtonWrapper = styled.div`
-  margin-top: 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-grow: 1;
-  gap: 2rem;
 `;
 
 function Index({ notices, pagination, locale }) {
@@ -134,7 +87,7 @@ function Index({ notices, pagination, locale }) {
       <NextSeo {...SEO} />
       <StyledHeadingH1>{Capitalize(t("notices"))}</StyledHeadingH1>
       <StyledNoticesWrapper>
-        {pageItems.data.map(({ id, attributes }) => {
+        {pageItems.data?.map(({ id, attributes }) => {
           return (
             <NoticeShowAllPreview
               key={id}
@@ -150,20 +103,13 @@ function Index({ notices, pagination, locale }) {
           );
         })}
       </StyledNoticesWrapper>
-      <StyledButtonWrapper>
-        <StyledPaginationButton
-          onClick={handlePrevClick}
-          disabled={pageNum === 1}
-        >
-          {t("previous")}
-        </StyledPaginationButton>
-        <StyledPaginationButton
-          onClick={handleNextClick}
-          disabled={pageNum === totalPages}
-        >
-          {t("next")}
-        </StyledPaginationButton>
-      </StyledButtonWrapper>
+      <Pagination
+        locale={locale}
+        pageNum={pageNum}
+        totalPages={totalPages}
+        url={"/oznamy/?page="}
+        setter={setPageNum}
+      ></Pagination>
     </>
   );
 }
