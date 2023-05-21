@@ -14,7 +14,7 @@ import Pagination from "../../components/Common/Pagination";
 
 const URL = process.env.STRAPI_URL;
 const today = new Date().toISOString();
-const pagesize = 1;
+const pagesize = 4;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const eventsResponse = await fetcher(

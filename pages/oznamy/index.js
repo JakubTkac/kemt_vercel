@@ -12,12 +12,13 @@ import { NextSeo } from "next-seo";
 import Pagination from "../../components/Common/Pagination";
 
 const URL = process.env.STRAPI_URL;
+const pagesize = 5;
 
 export async function getServerSideProps({ query: { page }, locale }) {
   const noticeResponse = await fetcher(
     `${URL}/notices?locale=${locale}&populate=*&sort[0]=date%3Adesc&sort[1]=title%3Adesc&pagination[page]=${
       page || 1
-    }&pagination[pageSize]=4`
+    }&pagination[pageSize]=${pagesize}`
   );
   return {
     props: {
