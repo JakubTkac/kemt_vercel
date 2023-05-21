@@ -126,6 +126,7 @@ const Navbar = () => {
                   ? "Visit Moodle.tuke.sk"
                   : "Navštivte Moodle.tuke.sk"
               }
+              name={"TUKE Moodle"}
             ></IconLink>
             <IconLink
               Icon={IoIosPeople}
@@ -135,6 +136,7 @@ const Navbar = () => {
                   ? "Visit Mais.tuke.sk"
                   : "Navštivte mais.tuke.sk"
               }
+              name={"TUKE Mais"}
             ></IconLink>
             <IconLink
               Icon={IoMailSharp}
@@ -144,6 +146,7 @@ const Navbar = () => {
                   ? "Visit school mail outlook.com"
                   : "Navštivte školský mail outlook.com"
               }
+              name={"TUKE Mail"}
             ></IconLink>
             <IconLink
               Icon={AiFillPhone}
@@ -152,6 +155,11 @@ const Navbar = () => {
                 locale === "en"
                   ? "Visit telephone list zoznam.tuke.sk"
                   : "Navštivte telefonný zoznam zoznam.tuke.sk"
+              }
+              name={
+                locale === "en"
+                  ? "TUKE Telephone List"
+                  : "TUKE Telefonný Zoznam"
               }
             ></IconLink>
             <IconLink
@@ -162,6 +170,7 @@ const Navbar = () => {
                   ? "Visit school canteen jedalen.tuke.sk"
                   : "Navštivte školskú jedaleň jedalen.tuke.sk"
               }
+              name={locale === "en" ? "TUKE Canteen" : "TUKE Jedaleň"}
             ></IconLink>
             <IconLink
               Icon={IoLibrary}
@@ -169,8 +178,9 @@ const Navbar = () => {
               label={
                 locale === "en"
                   ? "Visit school library lib.tuke.sk"
-                  : "Navštivte školskú jedaleń lib.tuke.sk"
+                  : "Navštivte školskú knižnicu lib.tuke.sk"
               }
+              name={locale === "en" ? "TUKE Library" : "TUKE Knižnica"}
             ></IconLink>
             <IconLink
               Icon={IoSettings}
@@ -180,6 +190,7 @@ const Navbar = () => {
                   ? "Visit uvt options uvt.tuke.sk"
                   : "Navštivte uvt nastavenia uvt.tuke.sk"
               }
+              name={locale === "en" ? "TUKE Options" : "TUKE Nastavenia"}
             ></IconLink>
           </StyledIconsContainer>
           <StyledLanguageButton

@@ -6,6 +6,7 @@ import { COLOR, FONT_SIZE, FONT_WEIGHT, HEIGHT, SCREENS } from "../../Theme";
 import { useRouter } from "next/router";
 
 const StyledForm = styled.form`
+  z-index: 300;
   position: relative;
   display: flex;
   align-items: center;
@@ -36,7 +37,7 @@ const StyledForm = styled.form`
     width: ${(props) => (props.barOpened ? "10rem" : "2rem")};
   }
   @media (max-width: ${SCREENS.XS}) {
-    width: ${(props) => (props.barOpened ? "99%" : "2rem")};
+    width: ${(props) => (props.barOpened ? "99.7%" : "2rem")};
     top: 0;
     left: 0;
     //width: 99%;
