@@ -164,7 +164,6 @@ const Pagination = ({ pageNum, totalPages, url, setter, locale }) => {
             <span>{pageNum + 1}</span>
           </StyledPageNumber>
         )}
-
         {totalPages > 3 && <FiMoreHorizontal />}
       </>
     );
@@ -188,9 +187,11 @@ const Pagination = ({ pageNum, totalPages, url, setter, locale }) => {
     return (
       <>
         {pageNum > 3 && <FiMoreHorizontal />}
-        <StyledPageNumber onClick={() => handlePage(pageNum - 1)}>
-          <span>{pageNum - 1}</span>
-        </StyledPageNumber>
+        {totalPages > 1 && (
+          <StyledPageNumber onClick={() => handlePage(pageNum - 1)}>
+            <span>{pageNum - 1}</span>
+          </StyledPageNumber>
+        )}
       </>
     );
   };
